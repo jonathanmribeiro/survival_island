@@ -56,12 +56,42 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\GameController\Scripts\GameState\States\MainMenuState.cs" />
-    <Compile Include="Assets\GameController\Scripts\GameState\Interfaces\IGameState.cs" />
-    <Compile Include="Assets\General\Scripts\Mediator.cs" />
-    <Compile Include="Assets\GameController\Scripts\GameState\States\PauseMenuState.cs" />
-    <Compile Include="Assets\GameController\Scripts\GameState\Managers\GameStatesManager.cs" />
-    <Compile Include="Assets\GameController\Scripts\GameState\States\GameplayState.cs" />
+    <Compile Include="Assets\Common\Components\Management\Scripts\Management\GameManager.cs" />
+    <Compile Include="Assets\Main menu\Components\Management\Scripts\MainMenuUIManager.cs" />
+    <Compile Include="Assets\Common\Constants\Input.cs" />
+    <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterMovementManager.cs" />
+    <Compile Include="Assets\Common\Components\Management\Scripts\Models\InputModel.cs" />
+    <Compile Include="Assets\Gameplay\Components\Management\Scripts\GameplaySceneManager.cs" />
+    <Compile Include="Assets\Common\Constants\Scenes.cs" />
+    <Compile Include="Assets\Main menu\Components\Management\Scripts\MainMenuSceneManager.cs" />
+    <Compile Include="Assets\Common\Components\Management\Scripts\Management\InputManager.cs" />
+    <Compile Include="Assets\Common\Constants\Tags.cs" />
+    <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterManager.cs" />
+    <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterAnimationManager.cs" />
+    <Compile Include="Assets\Common\Constants\AnimatorVariables.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
