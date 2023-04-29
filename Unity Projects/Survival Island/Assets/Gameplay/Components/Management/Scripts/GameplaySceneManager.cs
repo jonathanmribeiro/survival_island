@@ -1,5 +1,6 @@
 using SurvivalIsland.Common.Constants;
 using SurvivalIsland.Common.Management;
+using SurvivalIsland.Common.Utils;
 using SurvivalIsland.Components.MainCharacter;
 using UnityEngine;
 
@@ -9,11 +10,11 @@ namespace SurvivalIsland.Gameplay.Management
     {
         private GameManager _gameManager;
         private InputManager _inputManager;
-
         private GameObject _mainCharacter;
         private MainCharacterManager _mainCharacterManager;
-
         private CameraManager _cameraManager;
+        private DayNightCycle _dayNightCycle;
+
         private void Awake()
         {
             _gameManager = GameObject
@@ -29,6 +30,8 @@ namespace SurvivalIsland.Gameplay.Management
             _inputManager = GetComponent<InputManager>();
 
             _cameraManager = GetComponent<CameraManager>();
+
+            _dayNightCycle = GetComponentInChildren<DayNightCycle>();
         }
 
         private void Start()
@@ -42,6 +45,7 @@ namespace SurvivalIsland.Gameplay.Management
 
             _mainCharacterManager.UpdateInput(_inputManager.InputModel);
             _cameraManager.UpdateCamera();
+            _dayNightCycle.UpdateDayNightCycle();
         }
     }
 }
