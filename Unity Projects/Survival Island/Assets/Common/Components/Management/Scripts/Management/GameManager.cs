@@ -21,7 +21,7 @@ namespace SurvivalIsland.Common.Management
 
         internal void EnterGameplay()
         {
-            SceneManager.LoadScene(Scenes.GAMEPLAY);
+            SceneManager.LoadScene(SceneConstants.GAMEPLAY);
         }
     }
 }

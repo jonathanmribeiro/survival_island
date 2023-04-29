@@ -15,8 +15,8 @@ namespace SurvivalIsland.Common.Management
 
         internal void UpdateInput()
         {
-            InputModel.Vertical = Input.GetAxis(Constants.Input.VERTICAL);
-            InputModel.Horizontal = Input.GetAxis(Constants.Input.HORIZONTAL);
+            InputModel.Vertical = Input.GetAxis(Constants.InputConstants.VERTICAL);
+            InputModel.Horizontal = Input.GetAxis(Constants.InputConstants.HORIZONTAL);
         }
     }
 }

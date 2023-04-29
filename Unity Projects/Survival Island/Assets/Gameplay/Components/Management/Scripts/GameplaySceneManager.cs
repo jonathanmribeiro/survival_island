@@ -9,24 +9,31 @@ namespace SurvivalIsland.Gameplay.Management
     {
         private GameManager _gameManager;
         private InputManager _inputManager;
+
+        private GameObject _mainCharacter;
         private MainCharacterManager _mainCharacterManager;
 
+        private CameraManager _cameraManager;
         private void Awake()
         {
             _gameManager = GameObject
-                .FindGameObjectWithTag(Tags.GAMECONTROLLER)
+                .FindGameObjectWithTag(TagConstants.GAMECONTROLLER)
                 .GetComponent<GameManager>();
 
-            _mainCharacterManager = GameObject
-                .FindGameObjectWithTag(Tags.PLAYER)
+            _mainCharacter = GameObject
+                .FindGameObjectWithTag(TagConstants.PLAYER);
+
+            _mainCharacterManager = _mainCharacter
                 .GetComponent<MainCharacterManager>();
 
             _inputManager = GetComponent<InputManager>();
+
+            _cameraManager = GetComponent<CameraManager>();
         }
 
         private void Start()
         {
-            Debug.Log("GameplayManager");
+            _cameraManager.SetFollowingTarget(_mainCharacter.transform);
         }
 
         private void Update()
@@ -34,6 +41,7 @@ namespace SurvivalIsland.Gameplay.Management
             _inputManager.UpdateInput();
 
             _mainCharacterManager.UpdateInput(_inputManager.InputModel);
+            _cameraManager.UpdateCamera();
         }
     }
 }

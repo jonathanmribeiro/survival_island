@@ -16,10 +16,10 @@ namespace SurvivalIsland.Components.MainCharacter
 
         internal void UpdateMovement(InputModel inputModel)
         {
-            _animator.SetBool(AnimatorVariables.MOVEEAST, inputModel.MovingEast);
-            _animator.SetBool(AnimatorVariables.MOVENORTH, inputModel.MovingNorth);
-            _animator.SetBool(AnimatorVariables.MOVESOUTH, inputModel.MovingSouth);
-            _animator.SetBool(AnimatorVariables.MOVEWEST, inputModel.MovingWest);
+            _animator.SetBool(AnimatorVariablesConstants.MOVEEAST, inputModel.MovingEast);
+            _animator.SetBool(AnimatorVariablesConstants.MOVENORTH, inputModel.MovingNorth);
+            _animator.SetBool(AnimatorVariablesConstants.MOVESOUTH, inputModel.MovingSouth);
+            _animator.SetBool(AnimatorVariablesConstants.MOVEWEST, inputModel.MovingWest);
         }
     }
 }

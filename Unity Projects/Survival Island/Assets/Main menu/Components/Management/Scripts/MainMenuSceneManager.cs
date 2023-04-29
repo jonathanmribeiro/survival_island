@@ -11,7 +11,7 @@ namespace SurvivalIsland.MainMenu.Management
         private void Awake()
         {
             _gameManager = GameObject
-                .FindGameObjectWithTag(Tags.GAMECONTROLLER)
+                .FindGameObjectWithTag(TagConstants.GAMECONTROLLER)
                 .GetComponent<GameManager>();
         }
     }
