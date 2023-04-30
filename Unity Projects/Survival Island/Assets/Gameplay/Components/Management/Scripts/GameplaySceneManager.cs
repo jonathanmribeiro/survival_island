@@ -1,4 +1,5 @@
 using SurvivalIsland.Common.Constants;
+using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Management;
 using SurvivalIsland.Common.Utils;
 using SurvivalIsland.Components.MainCharacter;
@@ -37,14 +38,23 @@ namespace SurvivalIsland.Gameplay.Management
         private void Start()
         {
             _cameraManager.SetFollowingTarget(_mainCharacter.transform);
+
+            Prepare();
+        }
+
+        private void Prepare()
+        {
+            _inputManager.Prepare(InputType.Virtual);
         }
 
         private void Update()
         {
             _inputManager.UpdateInput();
-
-            _mainCharacterManager.UpdateInput(_inputManager.InputModel);
+            
+            _mainCharacterManager.UpdateInput(_inputManager.GetCurrentInput());
+            
             _cameraManager.UpdateCamera();
+            
             _dayNightCycle.UpdateDayNightCycle();
         }
     }

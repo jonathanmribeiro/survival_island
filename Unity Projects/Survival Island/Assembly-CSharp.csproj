@@ -61,18 +61,22 @@
     <Compile Include="Assets\Common\Constants\InputConstants.cs" />
     <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterMovementManager.cs" />
     <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterAnimationManager.cs" />
+    <Compile Include="Assets\Common\Utils\DayNightCycle.cs" />
     <Compile Include="Assets\Common\Components\Management\Scripts\Models\InputModel.cs" />
+    <Compile Include="Assets\Common\Utils\SmoothFollow.cs" />
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\GameplaySceneManager.cs" />
+    <Compile Include="Assets\Gameplay\Components\Management\Scripts\CameraManager.cs" />
     <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterManager.cs" />
     <Compile Include="Assets\Common\Constants\SceneConstants.cs" />
-    <Compile Include="Assets\Main menu\Components\Management\Scripts\MainMenuSceneManager.cs" />
-    <Compile Include="Assets\Common\Components\Management\Scripts\Management\InputManager.cs" />
-    <Compile Include="Assets\Common\Constants\MainCharacterConstants.cs" />
-    <Compile Include="Assets\Common\Utils\SmoothFollow.cs" />
-    <Compile Include="Assets\Common\Constants\AnimatorVariablesConstants.cs" />
     <Compile Include="Assets\Common\Constants\TagConstants.cs" />
-    <Compile Include="Assets\Gameplay\Components\Management\Scripts\CameraManager.cs" />
-    <Compile Include="Assets\Common\Utils\DayNightCycle.cs" />
+    <Compile Include="Assets\Main menu\Components\Management\Scripts\MainMenuSceneManager.cs" />
+    <Compile Include="Assets\Common\Constants\AnimatorVariablesConstants.cs" />
+    <Compile Include="Assets\Common\Components\Management\Scripts\Management\Input\InputManager.cs" />
+    <Compile Include="Assets\Common\Constants\MainCharacterConstants.cs" />
+    <Compile Include="Assets\Common\Enums\InputType.cs" />
+    <Compile Include="Assets\Common\Components\Management\Scripts\Management\Input\Handlers\Base\InputHandlerBase.cs" />
+    <Compile Include="Assets\Common\Components\Management\Scripts\Management\Input\Handlers\VirtualInputHandler.cs" />
+    <Compile Include="Assets\Common\Components\Management\Scripts\Management\Input\Handlers\AxisInputHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
