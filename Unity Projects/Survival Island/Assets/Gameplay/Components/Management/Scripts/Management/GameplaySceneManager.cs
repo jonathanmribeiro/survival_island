@@ -15,6 +15,7 @@ namespace SurvivalIsland.Gameplay.Management
         private MainCharacterManager _mainCharacterManager;
         private CameraManager _cameraManager;
         private DayNightCycle _dayNightCycle;
+        private GameplayUIManager _uiManager;
 
         private void Awake()
         {
@@ -33,6 +34,8 @@ namespace SurvivalIsland.Gameplay.Management
             _cameraManager = GetComponent<CameraManager>();
 
             _dayNightCycle = GetComponentInChildren<DayNightCycle>();
+
+            _uiManager = GetComponent<GameplayUIManager>();
         }
 
         private void Start()
