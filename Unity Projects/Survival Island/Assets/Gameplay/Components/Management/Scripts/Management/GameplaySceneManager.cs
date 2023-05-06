@@ -48,21 +48,25 @@ namespace SurvivalIsland.Gameplay.Management
         private void Prepare()
         {
             _inputManager.Prepare(InputType.Virtual);
+            _mainCharacterManager.Prepare();
         }
 
         private void Update()
         {
             _inputManager.UpdateInput();
             
-            var currentInput = _inputManager.GetCurrentInput();
-            _mainCharacterManager.UpdateInput(currentInput);
-            
             _cameraManager.UpdateCamera();
             
             _dayNightCycle.UpdateDayNightCycle();
 
+            var currentInput = _inputManager.GetCurrentInput();
             var currentDateTime = _dayNightCycle.GetCurrentTime();
-            _uiManager.UpdateUI(currentDateTime);
+
+            _mainCharacterManager.UpdateMainCharacter(currentInput, currentDateTime);
+
+            var mainCharacterVitalitySystem = _mainCharacterManager.GetVitalitySystem();
+
+            _uiManager.UpdateUI(currentDateTime, mainCharacterVitalitySystem);
         }
     }
 }

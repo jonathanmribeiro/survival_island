@@ -140,12 +140,6 @@ namespace SurvivalIsland.Common.Utils
             var timeSpan = TimeSpan.FromSeconds(seconds);
             return timeSpan.TotalDays;
         }
-
-        internal bool IsNewHour()
-        {
-            int seconds = Mathf.FloorToInt(_timeOfDay * 86400);
-            return TimeSpan.FromSeconds(seconds).Minutes == 0;
-        }
     }
 
 }

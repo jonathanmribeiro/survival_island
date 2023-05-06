@@ -1,4 +1,5 @@
 using SurvivalIsland.Common.Extensions;
+using SurvivalIsland.Common.Models;
 using SurvivalIsland.Common.Utils;
 using System;
 using UnityEngine;
@@ -38,14 +39,14 @@ namespace SurvivalIsland.Gameplay.Management
                 .GetComponentInChildren<ChildTextUpdater>();
         }
 
-        public void UpdateUI(DateTime datetime)
+        public void UpdateUI(DateTime datetime, VitalitySystemModel currentPlayerVitality)
         {
             _datetimeText.UpdateUI(datetime.ToString("g"));
             
-            _healthText.UpdateUI("99");
-            _hungerText.UpdateUI("99");
-            _thirstText.UpdateUI("99");
-            _energyText.UpdateUI("99");
+            _healthText.UpdateUI(currentPlayerVitality.Health.ToString("0"));
+            _hungerText.UpdateUI(currentPlayerVitality.Hunger.ToString("0"));
+            _thirstText.UpdateUI(currentPlayerVitality.Thirst.ToString("0"));
+            _energyText.UpdateUI(currentPlayerVitality.Energy.ToString("0"));
         }
     }
 }
