@@ -3,20 +3,19 @@ using UnityEngine;
 
 namespace SurvivalIsland.Gameplay.Management
 {
-    public class DateTimeUIHandler : MonoBehaviour
+    internal class DateTimeUIHandler : MonoBehaviour
     {
-        private GameObject _canvas;
-        private GameObject _dateTimePanel;
-        private GameObject _dateTimeLabel;
+        private TMP_Text _text;
 
         private void Awake()
         {
-            _canvas = GameObject.Find("Canvas");
+            _text = GetComponentInChildren<TMP_Text>();
+
         }
 
-        public void UpdateUI(string dateTime)
+        public void UpdateUI(string datetime)
         {
-            _dateTimeLabel.GetComponent<TextMeshPro>().text = dateTime;
+            _text.text = datetime;
         }
     }
 }

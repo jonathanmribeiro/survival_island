@@ -35,7 +35,7 @@ namespace SurvivalIsland.Gameplay.Management
 
             _dayNightCycle = GetComponentInChildren<DayNightCycle>();
 
-            _uiManager = GetComponent<GameplayUIManager>();
+            _uiManager = GetComponentInChildren<GameplayUIManager>();
         }
 
         private void Start()
@@ -54,11 +54,15 @@ namespace SurvivalIsland.Gameplay.Management
         {
             _inputManager.UpdateInput();
             
-            _mainCharacterManager.UpdateInput(_inputManager.GetCurrentInput());
+            var currentInput = _inputManager.GetCurrentInput();
+            _mainCharacterManager.UpdateInput(currentInput);
             
             _cameraManager.UpdateCamera();
             
             _dayNightCycle.UpdateDayNightCycle();
+
+            var currentDateTime = _dayNightCycle.GetCurrentTime();
+            _uiManager.UpdateUI(currentDateTime);
         }
     }
 }

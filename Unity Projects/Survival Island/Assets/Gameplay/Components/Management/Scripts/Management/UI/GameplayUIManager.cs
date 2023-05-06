@@ -1,19 +1,21 @@
+using System;
 using UnityEngine;
 
 namespace SurvivalIsland.Gameplay.Management
 {
-    public class GameplayUIManager : MonoBehaviour
+    internal class GameplayUIManager : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+        private DateTimeUIHandler _dateTimeUIHandler;
 
+        private void Awake()
+        {
+            var canvas = GameObject.Find("Canvas");
+            _dateTimeUIHandler = canvas.GetComponentInChildren<DateTimeUIHandler>();
         }
 
-        // Update is called once per frame
-        void Update()
+        public void UpdateUI(DateTime datetime)
         {
-
+            _dateTimeUIHandler.UpdateUI(datetime.ToString("g"));
         }
     }
 }

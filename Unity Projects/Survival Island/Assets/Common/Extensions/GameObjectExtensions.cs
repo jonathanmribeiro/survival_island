@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameObjectExtensions : MonoBehaviour
+public static class GameObjectExtensions
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //public static GameObject FindChild(this GameObject parent, string name, out GameObject child)
+    //{
+    //    var childCound = parent.transform.childCount;
+    //    for (int i = 0; i < childCound; i++)
+    //    {
+    //        var currentChild = parent.transform.GetChild(i);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //        if (string.Compare(currentChild.gameObject.name, name))
+    //        {
+    //        }
+    //    }
+    //}
 }
