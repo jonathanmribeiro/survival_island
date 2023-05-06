@@ -121,7 +121,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 24
         width: 24
         height: 24
       alignment: 0
@@ -138,11 +138,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wooden_Borders
+      name: Wooden_Borders_01
       rect:
         serializedVersion: 2
         x: 24
-        y: 0
+        y: 24
         width: 24
         height: 24
       alignment: 0
@@ -154,6 +154,27 @@ TextureImporter:
       bones: []
       spriteID: f71b37da9bb23504e831b0411d8d3977
       internalID: -1227044851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wooden_Borders_02
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 8, y: 8, z: 8, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d879fd8f631f764a908ea5959a03b86
+      internalID: -323368274
       vertices: []
       indices: 
       edges: []
@@ -179,7 +200,8 @@ TextureImporter:
       GameplayUISpritesheet_7: -1968599628
       GameplayUISpritesheet_8: -353218914
       Paper_Background: 974871119
-      Wooden_Borders: -1227044851
+      Wooden_Borders_01: -1227044851
+      Wooden_Borders_02: 611861165
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

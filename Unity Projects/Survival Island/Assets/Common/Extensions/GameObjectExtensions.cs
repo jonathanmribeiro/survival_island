@@ -1,19 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public static class GameObjectExtensions
+namespace SurvivalIsland.Common.Extensions
 {
-    //public static GameObject FindChild(this GameObject parent, string name, out GameObject child)
-    //{
-    //    var childCound = parent.transform.childCount;
-    //    for (int i = 0; i < childCound; i++)
-    //    {
-    //        var currentChild = parent.transform.GetChild(i);
+    public static class GameObjectExtensions
+    {
+        public static GameObject FindChild(this GameObject self, string name)
+        {
+            var childCound = self.transform.childCount;
+            GameObject foundling = null;
 
-    //        if (string.Compare(currentChild.gameObject.name, name))
-    //        {
-    //        }
-    //    }
-    //}
+            for (int i = 0; i < childCound; i++)
+            {
+                var currentChild = self.transform.GetChild(i);
+
+                if (string.Equals(currentChild.name, name))
+                {
+                    foundling = currentChild.gameObject;
+                }
+
+                if (foundling != null)
+                {
+                    break;
+                }
+
+                if (currentChild.transform.childCount > 1)
+                {
+                    foundling = currentChild.gameObject.FindChild(name);
+                }
+            }
+
+            return foundling;
+        }
+    }
 }

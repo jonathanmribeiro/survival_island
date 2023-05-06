@@ -1,9 +1,9 @@
 using TMPro;
 using UnityEngine;
 
-namespace SurvivalIsland.Gameplay.Management
+namespace SurvivalIsland.Common.Utils
 {
-    internal class DateTimeUIHandler : MonoBehaviour
+    internal class ChildTextUpdater : MonoBehaviour
     {
         private TMP_Text _text;
 
