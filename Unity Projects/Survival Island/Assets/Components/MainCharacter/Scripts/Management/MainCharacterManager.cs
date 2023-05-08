@@ -1,5 +1,5 @@
-using SurvivalIsland.Common.Models;
-using System;
+using SurvivalIsland.Common.Management;
+using SurvivalIsland.Common.Utils;
 using UnityEngine;
 
 namespace SurvivalIsland.Components.MainCharacter
@@ -8,31 +8,29 @@ namespace SurvivalIsland.Components.MainCharacter
     {
         private MainCharacterMovementManager _movementManager;
         private MainCharacterAnimationManager _animationManager;
-        private MainCharacterVitalityManager _vitalityManager;
+        internal MainCharacterVitalityManager VitalityManager { get; private set; }
 
         private void Awake()
         {
             _movementManager = GetComponent<MainCharacterMovementManager>();
             _animationManager = GetComponent<MainCharacterAnimationManager>();
-            _vitalityManager = GetComponent<MainCharacterVitalityManager>();
+            VitalityManager = GetComponent<MainCharacterVitalityManager>();
         }
 
-        internal void Prepare()
+        internal void Prepare(InputManager inputManager, DayNightCycle dayNightCycle)
         {
-            _vitalityManager.Prepare();
+            _movementManager.Prepare(inputManager);
+            _animationManager.Prepare(inputManager);
+
+            VitalityManager.Prepare(dayNightCycle);
         }
 
-        internal void UpdateMainCharacter(InputModel inputModel, DateTime currentDateTime)
+        internal void UpdateMainCharacter()
         {
-            _movementManager.UpdateMovement(inputModel);
-            _animationManager.UpdateMovement(inputModel);
+            _movementManager.UpdateMovement();
+            _animationManager.UpdateMovement();
 
-            _vitalityManager.UpdateVitality(currentDateTime);
-        }
-
-        internal VitalitySystemModel GetVitalitySystem()
-        {
-            return _vitalityManager.VitalitySystem;
+            VitalityManager.UpdateVitality();
         }
     }
 }

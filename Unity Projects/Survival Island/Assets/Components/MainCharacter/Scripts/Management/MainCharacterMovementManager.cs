@@ -1,14 +1,23 @@
 using SurvivalIsland.Common.Constants;
-using SurvivalIsland.Common.Models;
+using SurvivalIsland.Common.Management;
 using UnityEngine;
 
 namespace SurvivalIsland.Components.MainCharacter
 {
     internal class MainCharacterMovementManager : MonoBehaviour
     {
-        internal void UpdateMovement(InputModel inputModel)
+        private InputManager _inputManager;
+
+        internal void Prepare(InputManager inputManager)
         {
-            var direction = new Vector3(inputModel.Horizontal, inputModel.Vertical);
+            _inputManager = inputManager;
+        }
+
+        internal void UpdateMovement()
+        {
+            var currentInput = _inputManager.GetCurrentInput();
+
+            var direction = new Vector3(currentInput.Horizontal, currentInput.Vertical);
             direction *= MainCharacterConstants.SPEED;
             direction *= Time.deltaTime;
 

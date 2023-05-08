@@ -56,8 +56,10 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Common\Components\Management\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Common\Models\VitalitySystemModel.cs" />
     <Compile Include="Assets\Common\Components\Management\Scripts\Input\Handlers\Base\InputHandlerBase.cs" />
-    <Compile Include="Assets\Gameplay\Components\Management\Scripts\Management\UI\GameplayUIManager.cs" />
+    <Compile Include="Assets\Gameplay\Components\Management\Scripts\UI\GameplayUIManager.cs" />
     <Compile Include="Assets\Main menu\Components\Management\Scripts\MainMenuUIManager.cs" />
     <Compile Include="Assets\Common\Constants\InputConstants.cs" />
     <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterMovementManager.cs" />
@@ -68,20 +70,20 @@
     <Compile Include="Assets\Common\Utils\DayNightCycle.cs" />
     <Compile Include="Assets\Common\Models\InputModel.cs" />
     <Compile Include="Assets\Common\Utils\SmoothFollow.cs" />
-    <Compile Include="Assets\Gameplay\Components\Management\Scripts\Management\GameplaySceneManager.cs" />
-    <Compile Include="Assets\Gameplay\Components\Management\Scripts\Management\CameraManager.cs" />
+    <Compile Include="Assets\Gameplay\Components\Management\Scripts\GameplaySceneManager.cs" />
+    <Compile Include="Assets\Gameplay\Components\Management\Scripts\CameraManager.cs" />
     <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterManager.cs" />
     <Compile Include="Assets\Common\Constants\SceneConstants.cs" />
     <Compile Include="Assets\Common\Components\Management\Scripts\Input\Handlers\AxisInputHandler.cs" />
+    <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterVitalityManager.cs" />
     <Compile Include="Assets\Common\Constants\TagConstants.cs" />
     <Compile Include="Assets\Main menu\Components\Management\Scripts\MainMenuSceneManager.cs" />
     <Compile Include="Assets\Common\Constants\AnimatorVariablesConstants.cs" />
     <Compile Include="Assets\Common\Extensions\GameObjectExtensions.cs" />
     <Compile Include="Assets\Common\Components\Management\Scripts\Input\InputManager.cs" />
     <Compile Include="Assets\Common\Constants\MainCharacterConstants.cs" />
-    <Compile Include="Assets\Common\Components\Management\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Common\Models\VitalitySystemModel.cs" />
-    <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterVitalityManager.cs" />
+    <Compile Include="Assets\Common\Models\InventoryItem.cs" />
+    <Compile Include="Assets\Gameplay\Components\Management\Scripts\InventoryManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -1,6 +1,5 @@
 ﻿using SurvivalIsland.Common.Constants;
-using SurvivalIsland.Common.Models;
-using System;
+using SurvivalIsland.Common.Management;
 using UnityEngine;
 
 namespace SurvivalIsland.Components.MainCharacter
@@ -8,18 +7,27 @@ namespace SurvivalIsland.Components.MainCharacter
     internal class MainCharacterAnimationManager : MonoBehaviour
     {
         private Animator _animator;
+        private InputManager _inputManager;
 
         private void Awake()
         {
             _animator = GetComponent<Animator>();
         }
 
-        internal void UpdateMovement(InputModel inputModel)
+        internal void Prepare(InputManager inputManager)
         {
-            _animator.SetBool(AnimatorVariablesConstants.MOVEEAST, inputModel.MovingEast);
-            _animator.SetBool(AnimatorVariablesConstants.MOVENORTH, inputModel.MovingNorth);
-            _animator.SetBool(AnimatorVariablesConstants.MOVESOUTH, inputModel.MovingSouth);
-            _animator.SetBool(AnimatorVariablesConstants.MOVEWEST, inputModel.MovingWest);
+            _inputManager = inputManager;
         }
+
+        internal void UpdateMovement()
+        {
+            var currentInput = _inputManager.GetCurrentInput();
+
+            _animator.SetBool(AnimatorVariablesConstants.MOVEEAST, currentInput.MovingEast);
+            _animator.SetBool(AnimatorVariablesConstants.MOVENORTH, currentInput.MovingNorth);
+            _animator.SetBool(AnimatorVariablesConstants.MOVESOUTH, currentInput.MovingSouth);
+            _animator.SetBool(AnimatorVariablesConstants.MOVEWEST, currentInput.MovingWest);
+        }
+
     }
 }
