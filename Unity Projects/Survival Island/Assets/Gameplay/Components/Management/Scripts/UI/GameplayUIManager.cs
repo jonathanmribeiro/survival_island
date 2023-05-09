@@ -16,6 +16,8 @@ namespace SurvivalIsland.Gameplay.Management
         private ChildTextUpdater _thirstText;
         private ChildTextUpdater _energyText;
 
+        private ChildButtonAction _openInventoryButton;
+
         private void Awake()
         {
             var canvas = GameObject.Find("Canvas");
@@ -39,12 +41,23 @@ namespace SurvivalIsland.Gameplay.Management
             _energyText = canvas
                 .FindChild("Energy")
                 .GetComponentInChildren<ChildTextUpdater>();
+
+            _openInventoryButton = canvas
+                .FindChild("InventoryPanel")
+                .GetComponentInChildren<ChildButtonAction>();
         }
         
-        internal void Prepare(MainCharacterManager mainCharacterManager, DayNightCycle dayNightCycle)
+        internal void Prepare
+        (
+            MainCharacterManager mainCharacterManager, 
+            DayNightCycle dayNightCycle,
+            MainCharacterInventoryUIManager mainCharacterInventoryUIHandler
+        )
         {
             _dayNightCycle = dayNightCycle;
             _mainCharacterManager = mainCharacterManager;
+
+            _openInventoryButton.Prepare(mainCharacterInventoryUIHandler.OnClick_OpenInventory);
         }
 
         public void UpdateUI()

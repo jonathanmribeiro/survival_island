@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 
 namespace SurvivalIsland.Common.Models
 {
-    public class InventoryItem
+    [Serializable]
+    public class InventoryItemModel
     {
         public string Name;
         public string Description;

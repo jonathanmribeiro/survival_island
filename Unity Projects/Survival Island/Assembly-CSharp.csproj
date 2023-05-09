@@ -82,8 +82,10 @@
     <Compile Include="Assets\Common\Extensions\GameObjectExtensions.cs" />
     <Compile Include="Assets\Common\Components\Management\Scripts\Input\InputManager.cs" />
     <Compile Include="Assets\Common\Constants\MainCharacterConstants.cs" />
-    <Compile Include="Assets\Common\Models\InventoryItem.cs" />
-    <Compile Include="Assets\Gameplay\Components\Management\Scripts\InventoryManager.cs" />
+    <Compile Include="Assets\Common\Models\InventoryItemModel.cs" />
+    <Compile Include="Assets\Common\Inventory\Inventory.cs" />
+    <Compile Include="Assets\Common\Utils\ChildButtonAction.cs" />
+    <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterInventoryUIManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

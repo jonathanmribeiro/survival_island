@@ -16,7 +16,7 @@ namespace SurvivalIsland.Gameplay.Management
         private CameraManager _cameraManager;
         private DayNightCycle _dayNightCycle;
         private GameplayUIManager _uiManager;
-        private InventoryManager _inventoryManager;
+        private MainCharacterInventoryUIManager _mainCharacterInventoryUIHandler;
 
         private void Awake()
         {
@@ -26,7 +26,7 @@ namespace SurvivalIsland.Gameplay.Management
 
             _mainCharacterManager = _mainCharacter.GetComponent<MainCharacterManager>();
 
-            _inventoryManager = GetComponent<InventoryManager>();
+            _mainCharacterInventoryUIHandler = _mainCharacter.GetComponent<MainCharacterInventoryUIManager>();
 
             _inputManager = GetComponent<InputManager>();
 
@@ -40,15 +40,12 @@ namespace SurvivalIsland.Gameplay.Management
         private void Start()
         {
             _cameraManager.SetFollowingTarget(_mainCharacter.transform);
-            Prepare();
-        }
 
-        private void Prepare()
-        {
             _inputManager.Prepare(InputType.Virtual);
+
             _mainCharacterManager.Prepare(_inputManager, _dayNightCycle);
-            _inventoryManager.Prepare();
-            _uiManager.Prepare(_mainCharacterManager, _dayNightCycle);
+
+            _uiManager.Prepare(_mainCharacterManager, _dayNightCycle, _mainCharacterInventoryUIHandler);
         }
 
         private void Update()
@@ -57,7 +54,6 @@ namespace SurvivalIsland.Gameplay.Management
             _cameraManager.UpdateCamera();
             _dayNightCycle.UpdateDayNightCycle();
             _mainCharacterManager.UpdateMainCharacter();
-            _inventoryManager.UpdateInventory();
             _uiManager.UpdateUI();
         }
     }

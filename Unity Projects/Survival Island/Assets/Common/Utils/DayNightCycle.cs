@@ -130,7 +130,7 @@ namespace SurvivalIsland.Common.Utils
                 _monthNumber,
                 _dayNumber,
                 timeSpan.Hours,
-                timeSpan.Minutes,
+                0,
                 timeSpan.Seconds);
         }
 
