@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace SurvivalIsland.Components.MainCharacter
 {
-    internal class MainCharacterInventoryUIManager : MonoBehaviour
+    public class MainCharacterInventoryUIManager : MonoBehaviour
     {
         public Inventory Inventory;
 
-        internal void Prepare()
+        public void Prepare()
         {
 
         }
 
-        internal void OnClick_OpenInventory()
+        public void OnClick_OpenInventory()
         {
             Debug.Log("irruia");
         }

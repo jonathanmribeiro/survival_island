@@ -4,9 +4,9 @@ using UnityEngine.SceneManagement;
 
 namespace SurvivalIsland.Common.Management
 {
-    internal class GameManager : MonoBehaviour
+    public class GameManager : MonoBehaviour
     {
-        internal static GameManager Instance { get; private set; }
+        public static GameManager Instance { get; private set; }
 
         private void Awake()
         {
@@ -19,7 +19,7 @@ namespace SurvivalIsland.Common.Management
             Instance = this;
         }
 
-        internal void EnterGameplay()
+        public void EnterGameplay()
         {
             SceneManager.LoadScene(SceneConstants.GAMEPLAY);
         }

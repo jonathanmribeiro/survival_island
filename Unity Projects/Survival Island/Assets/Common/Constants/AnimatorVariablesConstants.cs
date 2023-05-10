@@ -1,10 +1,10 @@
 ﻿namespace SurvivalIsland.Common.Constants
 {
-    internal static class AnimatorVariablesConstants
+    public static class AnimatorVariablesConstants
     {
-        internal const string MOVEEAST = "MoveEast";
-        internal const string MOVENORTH = "MoveNorth";
-        internal const string MOVESOUTH = "MoveSouth";
-        internal const string MOVEWEST = "MoveWest";
+        public const string MOVEEAST = "MoveEast";
+        public const string MOVENORTH = "MoveNorth";
+        public const string MOVESOUTH = "MoveSouth";
+        public const string MOVEWEST = "MoveWest";
     }
 }

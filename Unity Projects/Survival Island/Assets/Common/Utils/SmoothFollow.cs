@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SurvivalIsland.Common.Utils
 {
-    internal class SmoothFollow : MonoBehaviour
+    public class SmoothFollow : MonoBehaviour
     {
         public Transform Target;
 

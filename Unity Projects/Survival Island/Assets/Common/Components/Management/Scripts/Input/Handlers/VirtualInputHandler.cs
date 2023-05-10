@@ -3,13 +3,13 @@ using UnityEngine.EventSystems;
 
 namespace SurvivalIsland.Common.Management
 {
-    internal class VirtualInputHandler : InputHandlerBase
+    public class VirtualInputHandler : InputHandlerBase
     {
         private Vector2 _pointA;
         private Vector2 _pointB;
 
 
-        internal override void UpdateInput()
+        public override void UpdateInput()
         {
             if (!ShouldCheckInput())
             {

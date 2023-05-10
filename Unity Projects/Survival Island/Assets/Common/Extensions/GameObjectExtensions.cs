@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace SurvivalIsland.Common.Extensions
 {
-    public static class GameObjectExtensions
+    internal static class GameObjectExtensions
     {
-        public static GameObject FindChild(this GameObject self, string name)
+        internal static GameObject FindChild(this GameObject self, string name)
         {
             var childCound = self.transform.childCount;
             GameObject foundling = null;

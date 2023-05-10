@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SurvivalIsland.Common.Management
 {
-    internal class InputManager : MonoBehaviour
+    public class InputManager : MonoBehaviour
     {
         InputHandlerBase _inputHandler;
 

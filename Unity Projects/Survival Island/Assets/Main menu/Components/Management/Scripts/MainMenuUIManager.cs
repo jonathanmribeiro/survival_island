@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SurvivalIsland.MainMenu.Management
 {
-    internal class MainMenuUIManager : MonoBehaviour
+    public class MainMenuUIManager : MonoBehaviour
     {
         private GameManager _gameManager;
 
@@ -15,7 +15,7 @@ namespace SurvivalIsland.MainMenu.Management
                 .GetComponent<GameManager>();
         }
 
-        internal void EnterGameplay()
+        public void EnterGameplay()
         {
             _gameManager.EnterGameplay();
         }

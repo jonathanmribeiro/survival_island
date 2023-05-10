@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SurvivalIsland.Gameplay.Management
 {
-    internal class CameraManager : MonoBehaviour
+    public class CameraManager : MonoBehaviour
     {
         private SmoothFollow _cameraSmoothFollow;
 

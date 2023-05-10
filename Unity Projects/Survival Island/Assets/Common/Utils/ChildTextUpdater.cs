@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SurvivalIsland.Common.Utils
 {
-    internal class ChildTextUpdater : MonoBehaviour
+    public class ChildTextUpdater : MonoBehaviour
     {
         private TMP_Text _text;
 

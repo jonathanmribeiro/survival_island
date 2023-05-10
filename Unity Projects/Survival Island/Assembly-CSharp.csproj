@@ -82,10 +82,15 @@
     <Compile Include="Assets\Common\Extensions\GameObjectExtensions.cs" />
     <Compile Include="Assets\Common\Components\Management\Scripts\Input\InputManager.cs" />
     <Compile Include="Assets\Common\Constants\MainCharacterConstants.cs" />
-    <Compile Include="Assets\Common\Models\InventoryItemModel.cs" />
+    <Compile Include="Assets\Common\Models\Inventory\InventoryItemModel.cs" />
     <Compile Include="Assets\Common\Inventory\Inventory.cs" />
     <Compile Include="Assets\Common\Utils\ChildButtonAction.cs" />
     <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterInventoryUIManager.cs" />
+    <Compile Include="Assets\Components\Trees\Scripts\Management\TreeManager.cs" />
+    <Compile Include="Assets\Common\Constants\InventoryConstants.cs" />
+    <Compile Include="Assets\Common\Enums\InventoryItemType.cs" />
+    <Compile Include="Assets\Common\Models\Inventory\WoodModel.cs" />
+    <Compile Include="Assets\Common\Inventory\InventoryItemFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

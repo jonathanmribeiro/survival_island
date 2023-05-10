@@ -3,11 +3,12 @@ using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Management;
 using SurvivalIsland.Common.Utils;
 using SurvivalIsland.Components.MainCharacter;
+using SurvivalIsland.Components.Trees;
 using UnityEngine;
 
 namespace SurvivalIsland.Gameplay.Management
 {
-    internal class GameplaySceneManager : MonoBehaviour
+    public class GameplaySceneManager : MonoBehaviour
     {
         private GameManager _gameManager;
         private InputManager _inputManager;
@@ -46,6 +47,8 @@ namespace SurvivalIsland.Gameplay.Management
             _mainCharacterManager.Prepare(_inputManager, _dayNightCycle);
 
             _uiManager.Prepare(_mainCharacterManager, _dayNightCycle, _mainCharacterInventoryUIHandler);
+
+            PrepareTrees();
         }
 
         private void Update()
@@ -55,6 +58,16 @@ namespace SurvivalIsland.Gameplay.Management
             _dayNightCycle.UpdateDayNightCycle();
             _mainCharacterManager.UpdateMainCharacter();
             _uiManager.UpdateUI();
+        }
+
+        private void PrepareTrees()
+        {
+            var treeManagers = FindObjectsOfType<TreeManager>();
+
+            foreach(var treeManager in treeManagers)
+            {
+                treeManager.Prepare();
+            }
         }
     }
 }

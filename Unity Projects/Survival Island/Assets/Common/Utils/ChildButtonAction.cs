@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace SurvivalIsland.Common.Utils
 {
-    internal class ChildButtonAction : MonoBehaviour
+    public class ChildButtonAction : MonoBehaviour
     {
         private Action _action;
 
-        internal void Prepare(Action action)
+        public void Prepare(Action action)
         {
             _action = action;
         }

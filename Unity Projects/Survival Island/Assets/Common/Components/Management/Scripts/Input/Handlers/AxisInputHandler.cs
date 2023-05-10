@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace SurvivalIsland.Common.Management
 {
-    internal class AxisInputHandler : InputHandlerBase
+    public class AxisInputHandler : InputHandlerBase
     {
-        internal override void UpdateInput()
+        public override void UpdateInput()
         {
             InputModel.Vertical = Input.GetAxis(InputConstants.VERTICAL);
             InputModel.Horizontal = Input.GetAxis(InputConstants.HORIZONTAL);

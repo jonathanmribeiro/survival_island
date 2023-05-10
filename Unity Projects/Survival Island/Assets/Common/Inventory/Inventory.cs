@@ -1,27 +1,43 @@
+using Assets.Common.Inventory;
+using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SurvivalIsland.Common.Inventory
 {
     [Serializable]
-    internal class Inventory
+    public class Inventory
     {
-        public List<InventoryItemModel> Items;
+        public List<InventoryItemModel> Items = new();
 
-        internal virtual void AddItem(InventoryItemModel item)
+        public int MaxItems;
+        public float MaxWeight;
+
+        private int CurrentAmount => Items.Count;
+        private float CurrentTotalWeight => Items.Sum(x => x.Weight);
+
+        public void Prepare(int maxItems, float maxWeight)
         {
-            Items.Add(item);
+            MaxItems = maxItems;
+            MaxWeight = maxWeight;
         }
 
-        internal virtual void RemoveItem(InventoryItemModel item)
+        public virtual void AddItem(InventoryItemModel item)
         {
-            Items.Remove(item);
+            var futureWeight = CurrentTotalWeight + item.Weight;
+
+            if (CurrentAmount < MaxItems && futureWeight < MaxWeight)
+                Items.Add(item);
         }
 
-        internal virtual bool ContainsItem(InventoryItemModel item)
+        public void AddMultiple(InventoryItemType type, int amount)
         {
-            return Items.Contains(item);
+            for (int i = 0; i <= amount; i++)
+            {
+                AddItem(InventoryItemFactory.Obtain(type));
+            }
         }
     }
 }

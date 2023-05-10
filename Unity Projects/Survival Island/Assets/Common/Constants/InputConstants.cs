@@ -1,9 +1,9 @@
 ﻿namespace SurvivalIsland.Common.Constants
 {
-    internal static class InputConstants
+    public static class InputConstants
     {
-        internal const string VERTICAL = "Vertical";
-        internal const string HORIZONTAL = "Horizontal";
-        internal const float AXIS_TRESHOLD = 0.3f;
+        public const string VERTICAL = "Vertical";
+        public const string HORIZONTAL = "Horizontal";
+        public const float AXIS_TRESHOLD = 0.3f;
     }
 }

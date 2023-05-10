@@ -4,39 +4,39 @@ using UnityEngine.Rendering.Universal;
 
 namespace SurvivalIsland.Common.Utils
 {
-    internal class DayNightCycle : MonoBehaviour
+    public class DayNightCycle : MonoBehaviour
     {
         [Header("Time")]
         [Tooltip("Day length in minutes")]
         [SerializeField]
         private float _targetDayLength = 0.5f;
-        internal float TargetDayLength { get { return _targetDayLength; } }
+        public float TargetDayLength { get { return _targetDayLength; } }
 
         [SerializeField]
         [Range(0f, 1f)]
         private float _timeOfDay;
-        internal float TimeOfDay { get { return _timeOfDay; } }
+        public float TimeOfDay { get { return _timeOfDay; } }
 
         [SerializeField]
         private int _dayNumber = 1;
-        internal int DayNumber { get { return _dayNumber; } }
+        public int DayNumber { get { return _dayNumber; } }
 
         [SerializeField]
         private int _monthNumber = 1;
-        internal int MonthNumber { get { return _monthNumber; } }
+        public int MonthNumber { get { return _monthNumber; } }
 
         [SerializeField]
         private int _yearNumber = 1;
-        internal int YearNumber { get { return _yearNumber; } }
+        public int YearNumber { get { return _yearNumber; } }
 
         private float _timeScale = 100f;
 
         [SerializeField]
         private int _yearLength = 100;
-        internal float YearLength { get { return _yearLength; } }
+        public float YearLength { get { return _yearLength; } }
 
         [SerializeField]
-        internal Gradient LightColor;
+        public Gradient LightColor;
 
         public void UpdateDayNightCycle()
         {
@@ -104,7 +104,7 @@ namespace SurvivalIsland.Common.Utils
             return monthLength;
         }
 
-        internal void SetCurrentTime(DateTime currentTime)
+        public void SetCurrentTime(DateTime currentTime)
         {
             _yearNumber = currentTime.Year;
             _monthNumber = currentTime.Month;
@@ -116,7 +116,7 @@ namespace SurvivalIsland.Common.Utils
             _timeOfDay = (secondsFromHour + secondsFromMinutes + currentTime.Second) / 86400f; // seconds in a day
         }
 
-        internal DateTime GetCurrentTime()
+        public DateTime GetCurrentTime()
         {
             int seconds = Mathf.FloorToInt(_timeOfDay * 86400);
 
@@ -134,7 +134,7 @@ namespace SurvivalIsland.Common.Utils
                 timeSpan.Seconds);
         }
 
-        internal double GetTotalDays()
+        public double GetTotalDays()
         {
             int seconds = Mathf.FloorToInt(_timeOfDay * 86400);
             var timeSpan = TimeSpan.FromSeconds(seconds);

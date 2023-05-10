@@ -4,16 +4,16 @@ using UnityEngine;
 
 namespace SurvivalIsland.Components.MainCharacter
 {
-    internal class MainCharacterMovementManager : MonoBehaviour
+    public class MainCharacterMovementManager : MonoBehaviour
     {
         private InputManager _inputManager;
 
-        internal void Prepare(InputManager inputManager)
+        public void Prepare(InputManager inputManager)
         {
             _inputManager = inputManager;
         }
 
-        internal void UpdateMovement()
+        public void UpdateMovement()
         {
             var currentInput = _inputManager.GetCurrentInput();
 

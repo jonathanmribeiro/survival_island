@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SurvivalIsland.Components.MainCharacter
 {
-    internal class MainCharacterAnimationManager : MonoBehaviour
+    public class MainCharacterAnimationManager : MonoBehaviour
     {
         private Animator _animator;
         private InputManager _inputManager;
@@ -14,12 +14,12 @@ namespace SurvivalIsland.Components.MainCharacter
             _animator = GetComponent<Animator>();
         }
 
-        internal void Prepare(InputManager inputManager)
+        public void Prepare(InputManager inputManager)
         {
             _inputManager = inputManager;
         }
 
-        internal void UpdateMovement()
+        public void UpdateMovement()
         {
             var currentInput = _inputManager.GetCurrentInput();
 

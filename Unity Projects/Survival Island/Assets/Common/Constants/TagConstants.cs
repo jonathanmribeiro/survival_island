@@ -1,8 +1,8 @@
 namespace SurvivalIsland.Common.Constants
 {
-    internal static class TagConstants
+    public static class TagConstants
     {
-        internal const string GAMECONTROLLER = "GameController";
-        internal const string PLAYER = "Player";
+        public const string GAMECONTROLLER = "GameController";
+        public const string PLAYER = "Player";
     }
 }

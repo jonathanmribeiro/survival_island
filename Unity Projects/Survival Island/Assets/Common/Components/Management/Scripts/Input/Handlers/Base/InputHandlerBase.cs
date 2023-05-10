@@ -2,14 +2,14 @@
 
 namespace SurvivalIsland.Common.Management
 {
-    internal abstract class InputHandlerBase
+    public abstract class InputHandlerBase
     {
-        internal InputModel InputModel { get; set; }
+        public InputModel InputModel { get; set; }
 
         protected InputHandlerBase() {
             InputModel = new ();
         }
 
-        internal abstract void UpdateInput();
+        public abstract void UpdateInput();
     }
 }

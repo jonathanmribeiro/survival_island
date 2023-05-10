@@ -5,19 +5,19 @@ using UnityEngine;
 
 namespace SurvivalIsland.Components.MainCharacter
 {
-    internal class MainCharacterVitalityManager : MonoBehaviour
+    public class MainCharacterVitalityManager : MonoBehaviour
     {
         private DayNightCycle _dayNightCycle;
         private DateTime _lastDateTime;
-        internal VitalitySystemModel VitalitySystem { get; private set; }
+        public VitalitySystemModel VitalitySystem { get; private set; }
 
-        internal void Prepare(DayNightCycle dayNightCycle)
+        public void Prepare(DayNightCycle dayNightCycle)
         {
             VitalitySystem = new();
             _dayNightCycle = dayNightCycle;
         }
 
-        internal void UpdateVitality()
+        public void UpdateVitality()
         {
             var currentDateTime = _dayNightCycle.GetCurrentTime();
 

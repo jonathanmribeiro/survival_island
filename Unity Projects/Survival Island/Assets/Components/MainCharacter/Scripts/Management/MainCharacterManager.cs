@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace SurvivalIsland.Components.MainCharacter
 {
-    internal class MainCharacterManager : MonoBehaviour
+    public class MainCharacterManager : MonoBehaviour
     {
         private MainCharacterMovementManager _movementManager;
         private MainCharacterAnimationManager _animationManager;
-        internal MainCharacterVitalityManager VitalityManager { get; private set; }
+        public MainCharacterVitalityManager VitalityManager { get; private set; }
 
         private void Awake()
         {
@@ -17,7 +17,7 @@ namespace SurvivalIsland.Components.MainCharacter
             VitalityManager = GetComponent<MainCharacterVitalityManager>();
         }
 
-        internal void Prepare(InputManager inputManager, DayNightCycle dayNightCycle)
+        public void Prepare(InputManager inputManager, DayNightCycle dayNightCycle)
         {
             _movementManager.Prepare(inputManager);
             _animationManager.Prepare(inputManager);
@@ -25,7 +25,7 @@ namespace SurvivalIsland.Components.MainCharacter
             VitalityManager.Prepare(dayNightCycle);
         }
 
-        internal void UpdateMainCharacter()
+        public void UpdateMainCharacter()
         {
             _movementManager.UpdateMovement();
             _animationManager.UpdateMovement();

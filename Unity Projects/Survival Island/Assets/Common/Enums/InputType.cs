@@ -1,6 +1,6 @@
 ﻿namespace SurvivalIsland.Common.Enums
 {
-    internal enum InputType
+    public enum InputType
     {
         Axis,
         Virtual

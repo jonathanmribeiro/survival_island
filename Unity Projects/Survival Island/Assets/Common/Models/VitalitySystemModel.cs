@@ -1,13 +1,13 @@
 ﻿namespace SurvivalIsland.Common.Models
 {
-    internal class VitalitySystemModel
+    public class VitalitySystemModel
     {
-        internal float Health { get; set; }
-        internal float Hunger { get; set; }
-        internal float Thirst { get; set; }
-        internal float Energy { get; set; }
+        public float Health { get; set; }
+        public float Hunger { get; set; }
+        public float Thirst { get; set; }
+        public float Energy { get; set; }
 
-        internal VitalitySystemModel()
+        public VitalitySystemModel()
         {
             Health = 100.0f;
             Hunger = 100.0f;
@@ -15,7 +15,7 @@
             Energy = 100.0f;
         }
 
-        internal void IncreasePhysiologicalNeeds()
+        public void IncreasePhysiologicalNeeds()
         {
             Hunger -= (1.0f / (24 * 7)) * 100;
             if (Hunger < 0)

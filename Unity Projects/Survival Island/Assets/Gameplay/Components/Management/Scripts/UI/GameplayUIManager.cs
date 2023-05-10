@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SurvivalIsland.Gameplay.Management
 {
-    internal class GameplayUIManager : MonoBehaviour
+    public class GameplayUIManager : MonoBehaviour
     {
         private DayNightCycle _dayNightCycle;
         private MainCharacterManager _mainCharacterManager;
@@ -47,7 +47,7 @@ namespace SurvivalIsland.Gameplay.Management
                 .GetComponentInChildren<ChildButtonAction>();
         }
         
-        internal void Prepare
+        public void Prepare
         (
             MainCharacterManager mainCharacterManager, 
             DayNightCycle dayNightCycle,
