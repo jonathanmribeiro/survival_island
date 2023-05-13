@@ -35,5 +35,13 @@ namespace SurvivalIsland.Components.Trees
             if (collision.CompareTag(TagConstants.PLAYER))
                 _playerInRange = false;
         }
+
+        public void ExecuteAction()
+        {
+            if (!_playerInRange)
+                return;
+
+            Inventory.RemoveRandom(InventoryItemType.Wood);
+        }
     }
 }

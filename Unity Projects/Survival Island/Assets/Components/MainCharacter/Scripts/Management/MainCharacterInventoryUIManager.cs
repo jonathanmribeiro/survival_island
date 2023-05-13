@@ -14,7 +14,6 @@ namespace SurvivalIsland.Components.MainCharacter
 
         public void OnClick_OpenInventory()
         {
-            Debug.Log("irruia");
         }
     }
 }

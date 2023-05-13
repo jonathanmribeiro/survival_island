@@ -39,5 +39,12 @@ namespace SurvivalIsland.Common.Inventory
                 AddItem(InventoryItemFactory.Obtain(type));
             }
         }
+
+        public void RemoveRandom(InventoryItemType type)
+        {
+            var randomFound = Items.FirstOrDefault(x => x.Type == type);
+            if (randomFound != null)
+                Items.Remove(randomFound);
+        }
     }
 }

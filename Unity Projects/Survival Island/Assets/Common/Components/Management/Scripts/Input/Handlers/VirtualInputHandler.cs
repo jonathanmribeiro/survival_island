@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace SurvivalIsland.Common.Management
@@ -8,6 +9,10 @@ namespace SurvivalIsland.Common.Management
         private Vector2 _pointA;
         private Vector2 _pointB;
 
+        public VirtualInputHandler(Action actionToExecute)
+        {
+            ActionToExecute = actionToExecute;
+        }
 
         public override void UpdateInput()
         {
@@ -27,6 +32,7 @@ namespace SurvivalIsland.Common.Management
         {
             if (Input.GetMouseButtonUp(0))
             {
+                ActionCaptured();
                 return false;
             }
             
