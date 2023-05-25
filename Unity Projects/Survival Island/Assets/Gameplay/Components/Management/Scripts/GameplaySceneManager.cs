@@ -14,10 +14,10 @@ namespace SurvivalIsland.Gameplay.Management
         private InputManager _inputManager;
         private GameObject _mainCharacter;
         private MainCharacterManager _mainCharacterManager;
+        private MainCharacterActionsManager _mainCharacterActionsManager;
         private CameraManager _cameraManager;
         private DayNightCycle _dayNightCycle;
         private GameplayUIManager _uiManager;
-        private MainCharacterInventoryUIManager _mainCharacterInventoryUIHandler;
         
         private TreeManager[] _treeManagers;
 
@@ -26,7 +26,7 @@ namespace SurvivalIsland.Gameplay.Management
             _gameManager = GameObject.FindGameObjectWithTag(TagConstants.GAMECONTROLLER).GetComponent<GameManager>();
             _mainCharacter = GameObject.FindGameObjectWithTag(TagConstants.PLAYER);
             _mainCharacterManager = _mainCharacter.GetComponent<MainCharacterManager>();
-            _mainCharacterInventoryUIHandler = _mainCharacter.GetComponent<MainCharacterInventoryUIManager>();
+            _mainCharacterActionsManager = _mainCharacter.GetComponent<MainCharacterActionsManager>();
             _inputManager = GetComponent<InputManager>();
             _cameraManager = GetComponent<CameraManager>();
             _dayNightCycle = GetComponentInChildren<DayNightCycle>();
@@ -36,9 +36,9 @@ namespace SurvivalIsland.Gameplay.Management
         private void Start()
         {
             _cameraManager.SetFollowingTarget(_mainCharacter.transform);
-            _inputManager.Prepare(InputType.Virtual, PlayerHasFiredEvent);
+            _inputManager.Prepare(InputType.Virtual, EventPlayerAction);
             _mainCharacterManager.Prepare(_inputManager, _dayNightCycle);
-            _uiManager.Prepare(_mainCharacterManager, _dayNightCycle, _mainCharacterInventoryUIHandler);
+            _uiManager.Prepare(_mainCharacterManager, _dayNightCycle);
 
             PrepareTrees();
         }
@@ -47,19 +47,17 @@ namespace SurvivalIsland.Gameplay.Management
         {
             _inputManager.UpdateInput();
 
-            Debug.Log(_inputManager.GetCurrentInput().Vertical);
-
             _cameraManager.UpdateCamera();
             _dayNightCycle.UpdateDayNightCycle();
             _mainCharacterManager.UpdateMainCharacter();
             _uiManager.UpdateUI();
         }
 
-        private void PlayerHasFiredEvent()
+        private void EventPlayerAction()
         {
             foreach (var treeManager in _treeManagers)
             {
-                treeManager.ExecuteAction();
+                treeManager.ExecuteAction(_mainCharacterActionsManager.ExecuteAction);
             }
         }
 

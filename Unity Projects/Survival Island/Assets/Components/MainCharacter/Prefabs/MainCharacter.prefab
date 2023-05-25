@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 3046751617903003132}
   - component: {fileID: 9211523359116907999}
   - component: {fileID: 3868961509112801725}
-  - component: {fileID: 7112193725910792793}
+  - component: {fileID: 5635595336665786200}
+  - component: {fileID: 8752448290638635734}
   - component: {fileID: 713588182}
   - component: {fileID: 713588181}
   m_Layer: 0
@@ -161,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6699fb36a7506e24ab3b3845cebb60d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7112193725910792793
+--- !u!114 &5635595336665786200
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -170,11 +171,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 4684942993384997373}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d6a044a26f82c04b8dce0f11b240626, type: 3}
+  m_Script: {fileID: 11500000, guid: c394d82cdfbf2e943b02ba522e43f58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8752448290638635734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4684942993384997373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad5b843fc7b45b84289d637412a01e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Inventory:
     Items: []
+    MaxItems: 0
+    MaxWeight: 0
 --- !u!50 &713588182
 Rigidbody2D:
   serializedVersion: 4

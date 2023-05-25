@@ -24,27 +24,33 @@ namespace SurvivalIsland.Common.Inventory
             MaxWeight = maxWeight;
         }
 
-        public virtual void AddItem(InventoryItemModel item)
+        public bool TryAddItem(InventoryItemModel item)
         {
             var futureWeight = CurrentTotalWeight + item.Weight;
 
-            if (CurrentAmount < MaxItems && futureWeight < MaxWeight)
-                Items.Add(item);
+            if (CurrentAmount >= MaxItems || futureWeight >= MaxWeight)
+                return false;
+
+            Items.Add(item);
+
+            return true;
         }
 
         public void AddMultiple(InventoryItemType type, int amount)
         {
             for (int i = 0; i <= amount; i++)
             {
-                AddItem(InventoryItemFactory.Obtain(type));
+                var continueToAdd = TryAddItem(InventoryItemFactory.Obtain(type));
+
+                if (!continueToAdd)
+                    break;
             }
         }
 
-        public void RemoveRandom(InventoryItemType type)
-        {
-            var randomFound = Items.FirstOrDefault(x => x.Type == type);
-            if (randomFound != null)
-                Items.Remove(randomFound);
-        }
+        public InventoryItemModel ObtainRandom(InventoryItemType type)
+            => Items.FirstOrDefault(x => x.Type == type);
+
+        public void Remove(InventoryItemModel item)
+            => Items.Remove(item);
     }
 }

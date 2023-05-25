@@ -1,6 +1,8 @@
 using SurvivalIsland.Common.Constants;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Inventory;
+using SurvivalIsland.Common.Models;
+using System;
 using UnityEngine;
 
 namespace SurvivalIsland.Components.Trees
@@ -36,12 +38,20 @@ namespace SurvivalIsland.Components.Trees
                 _playerInRange = false;
         }
 
-        public void ExecuteAction()
+        public void ExecuteAction(Func<PlayerActionTypes, InventoryItemModel, bool> playerActionCallback)
         {
             if (!_playerInRange)
                 return;
 
-            Inventory.RemoveRandom(InventoryItemType.Wood);
+            var randomItem = Inventory.ObtainRandom(InventoryItemType.Wood);
+            
+            if (randomItem == null)
+                return;
+
+            var actionExecutedSuccessfully = playerActionCallback.Invoke(PlayerActionTypes.CollectingWood, randomItem);
+
+            if (actionExecutedSuccessfully)
+                Inventory.Remove(randomItem);
         }
     }
 }

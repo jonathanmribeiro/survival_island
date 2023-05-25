@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SurvivalIsland.Common.Constants;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,6 +9,7 @@ namespace SurvivalIsland.Common.Management
     {
         private Vector2 _pointA;
         private Vector2 _pointB;
+        private bool _isMoving;
 
         public VirtualInputHandler(Action actionToExecute)
         {
@@ -16,27 +18,32 @@ namespace SurvivalIsland.Common.Management
 
         public override void UpdateInput()
         {
-            if (!ShouldCheckInput())
+            VerifyAction();
+
+            if (IsPointerOverUI() || Input.GetMouseButtonUp(0))
             {
                 _pointA = Vector2.zero;
                 _pointB = Vector2.zero;
-
-                return;
+            }
+            else
+            {
+                CheckInput();
             }
 
-            CheckInput();
             UpdateDirection();
         }
 
-        private bool ShouldCheckInput()
+        private bool IsPointerOverUI()
         {
-            if (Input.GetMouseButtonUp(0))
+            return EventSystem.current.IsPointerOverGameObject();
+        }
+
+        private void VerifyAction()
+        {
+            if (!_isMoving && Input.GetMouseButtonUp(0) && !IsPointerOverUI())
             {
                 ActionCaptured();
-                return false;
             }
-            
-            return !EventSystem.current.IsPointerOverGameObject();
         }
 
         private void CheckInput()
@@ -56,6 +63,8 @@ namespace SurvivalIsland.Common.Management
         {
             Vector2 offset = _pointB - _pointA;
             var direction = Vector2.ClampMagnitude(offset, 1.0f);
+
+            _isMoving = Vector2.Distance(_pointB, _pointA) >= InputConstants.AXIS_THRESHOLD;
 
             InputModel.Vertical = direction.y;
             InputModel.Horizontal = direction.x;

@@ -6,6 +6,6 @@
         public const string HORIZONTAL = "Horizontal";
         public const string FIRE1 = "Fire1";
 
-        public const float AXIS_TRESHOLD = 0.3f;
+        public const float AXIS_THRESHOLD = 0.3f;
     }
 }
