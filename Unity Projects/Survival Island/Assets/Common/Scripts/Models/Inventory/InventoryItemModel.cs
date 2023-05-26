@@ -1,6 +1,8 @@
 using SurvivalIsland.Common.Enums;
+using SurvivalIsland.Common.Utils;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SurvivalIsland.Common.Models
 {
@@ -14,13 +16,19 @@ namespace SurvivalIsland.Common.Models
         public Sprite Icon;
 
         public InventoryItemModel
-            (string name, string description, InventoryItemType type, float weight, Sprite icon)
+            (string name, string description, InventoryItemType type, float weight)
         {
             Name = name;
             Description = description;
             Type = type;
             Weight = weight;
-            Icon = icon;
+
+            switch (Type)
+            {
+                case InventoryItemType.Wood:
+                    Icon = ResourceLoader.Load("UI/Icons/inventory_items");
+                    break;
+            }
         }
     }
 }

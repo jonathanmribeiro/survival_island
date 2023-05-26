@@ -65,6 +65,7 @@
     <Compile Include="Assets\Common\Scripts\Enums\InventoryItemType.cs" />
     <Compile Include="Assets\Main menu\Components\Management\Scripts\MainMenuUIManager.cs" />
     <Compile Include="Assets\Common\Scripts\Constants\InputConstants.cs" />
+    <Compile Include="Assets\Common\Scripts\Utils\ResourceLoader.cs" />
     <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterMovementManager.cs" />
     <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterAnimationManager.cs" />
     <Compile Include="Assets\Common\Scripts\Utils\ChildTextUpdater.cs" />
@@ -83,12 +84,14 @@
     <Compile Include="Assets\Components\Trees\Scripts\Management\TreeManager.cs" />
     <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterManager.cs" />
     <Compile Include="Assets\Common\Scripts\Constants\SceneConstants.cs" />
+    <Compile Include="Assets\Common\Scripts\Utils\ChildIconUpdater.cs" />
     <Compile Include="Assets\Common\Components\Management\Scripts\Input\Handlers\AxisInputHandler.cs" />
     <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterVitalityManager.cs" />
     <Compile Include="Assets\Common\Scripts\Constants\TagConstants.cs" />
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\UI\States\InventoryUIState.cs" />
     <Compile Include="Assets\Main menu\Components\Management\Scripts\MainMenuSceneManager.cs" />
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\UI\States\IGameplayUIState.cs" />
+    <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterInventoryManager.cs" />
     <Compile Include="Assets\Common\Scripts\Models\Inventory\WoodModel.cs" />
     <Compile Include="Assets\Common\Scripts\Constants\AnimatorVariablesConstants.cs" />
     <Compile Include="Assets\Common\Scripts\Extensions\GameObjectExtensions.cs" />
@@ -97,7 +100,6 @@
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\UI\States\JournalUIState.cs" />
     <Compile Include="Assets\Common\Scripts\Inventory\Inventory.cs" />
     <Compile Include="Assets\Common\Scripts\Constants\MainCharacterConstants.cs" />
-    <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterInventoryManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -22,5 +22,13 @@ namespace SurvivalIsland.Components.MainCharacter
         {
             return Inventory.TryAddItem(itemModel);
         }
+
+        public InventoryItemModel GetInventoryItem(int itemIndex)
+        {
+            if (itemIndex < Inventory.CurrentAmount)
+                return Inventory.Items[itemIndex];
+
+            return null;
+        }
     }
 }

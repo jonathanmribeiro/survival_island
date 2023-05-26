@@ -11,6 +11,8 @@ namespace SurvivalIsland.Gameplay.Management.UI
         private readonly MainCharacterManager _mainCharacterManager;
         private readonly GameplayUIManager _uiManager;
 
+        private GameObject _basicUI;
+
         private GameObject DateTimePanel;
         private ChildTextUpdater _datetimeText;
 
@@ -26,6 +28,22 @@ namespace SurvivalIsland.Gameplay.Management.UI
         private GameObject Energy;
         private ChildTextUpdater _energyText;
 
+        private GameObject QuickAction1;
+        private ChildIconUpdater _quickAction1Icon;
+        private ChildButtonAction _quickAction1Button;
+
+        private GameObject QuickAction2;
+        private ChildIconUpdater _quickAction2Icon;
+        private ChildButtonAction _quickAction2Button;
+
+        private GameObject QuickAction3;
+        private ChildIconUpdater _quickAction3Icon;
+        private ChildButtonAction _quickAction3Button;
+
+        private GameObject QuickAction4;
+        private ChildIconUpdater _quickAction4Icon;
+        private ChildButtonAction _quickAction4Button;
+
         private GameObject InventoryPanel;
         private ChildButtonAction _openInventoryButton;
 
@@ -37,33 +55,56 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _dayNightCycle = dayNightCycle;
             _uiManager = uiManager;
 
-            var canvas = GameObject.Find("Canvas");
+            _basicUI = GameObject.Find("Canvas").FindChild("BasicUI");
 
-            DateTimePanel = canvas.FindChild("DateTimePanel");
-            Health = canvas.FindChild("Health");
-            Hunger = canvas.FindChild("Hunger");
-            Thirst = canvas.FindChild("Thirst");
-            Energy = canvas.FindChild("Energy");
-            InventoryPanel = canvas.FindChild("InventoryPanel");
+            DateTimePanel = _basicUI.FindChild("DateTimePanel");
+            Health = _basicUI.FindChild("Health");
+            Hunger = _basicUI.FindChild("Hunger");
+            Thirst = _basicUI.FindChild("Thirst");
+            Energy = _basicUI.FindChild("Energy");
+
+            QuickAction1 = _basicUI.FindChild("QuickUsePanel").FindChild("QuickUseSlot01");
+            QuickAction2 = _basicUI.FindChild("QuickUsePanel").FindChild("QuickUseSlot02");
+            QuickAction3 = _basicUI.FindChild("QuickUsePanel").FindChild("QuickUseSlot03");
+            QuickAction4 = _basicUI.FindChild("QuickUsePanel").FindChild("QuickUseSlot04");
+
+            InventoryPanel = _basicUI.FindChild("InventoryPanel");
 
             _datetimeText = DateTimePanel.GetComponentInChildren<ChildTextUpdater>();
+
             _healthText = Health.GetComponentInChildren<ChildTextUpdater>();
             _hungerText = Hunger.GetComponentInChildren<ChildTextUpdater>();
             _thirstText = Thirst.GetComponentInChildren<ChildTextUpdater>();
             _energyText = Energy.GetComponentInChildren<ChildTextUpdater>();
+
+            _quickAction1Button = QuickAction1.GetComponentInChildren<ChildButtonAction>();
+            _quickAction2Button = QuickAction2.GetComponentInChildren<ChildButtonAction>();
+            _quickAction3Button = QuickAction3.GetComponentInChildren<ChildButtonAction>();
+            _quickAction4Button = QuickAction4.GetComponentInChildren<ChildButtonAction>();
+
+            _quickAction1Icon = QuickAction1.GetComponentInChildren<ChildIconUpdater>();
+            _quickAction2Icon = QuickAction2.GetComponentInChildren<ChildIconUpdater>();
+            _quickAction3Icon = QuickAction3.GetComponentInChildren<ChildIconUpdater>();
+            _quickAction4Icon = QuickAction4.GetComponentInChildren<ChildIconUpdater>();
+
             _openInventoryButton = InventoryPanel.GetComponentInChildren<ChildButtonAction>();
 
-            _openInventoryButton.Prepare(OnClick_InventoryPanel);
+            _basicUI.GetComponent<CanvasGroup>().alpha = 1.0f;
         }
 
         public void EnterState()
         {
-            DateTimePanel.GetComponent<CanvasGroup>().alpha = 1.0f;
-            Health.GetComponent<CanvasGroup>().alpha = 1.0f;
-            Hunger.GetComponent<CanvasGroup>().alpha = 1.0f;
-            Thirst.GetComponent<CanvasGroup>().alpha = 1.0f;
-            Energy.GetComponent<CanvasGroup>().alpha = 1.0f;
-            InventoryPanel.GetComponent<CanvasGroup>().alpha = 1.0f;
+            _openInventoryButton.Prepare(OnClick_InventoryPanel);
+
+            _quickAction1Button.Prepare(OnClick_QuickAction1Button);
+            _quickAction2Button.Prepare(OnClick_QuickAction2Button);
+            _quickAction3Button.Prepare(OnClick_QuickAction3Button);
+            _quickAction4Button.Prepare(OnClick_QuickAction4Button);
+
+            _quickAction1Icon.Prepare("QuickActionButton");
+            _quickAction2Icon.Prepare("QuickActionButton");
+            _quickAction3Icon.Prepare("QuickActionButton");
+            _quickAction4Icon.Prepare("QuickActionButton");
         }
 
         public void UpdateState()
@@ -77,21 +118,42 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _hungerText.UpdateUI(playerVitalitySystem.Hunger.ToString("0"));
             _thirstText.UpdateUI(playerVitalitySystem.Thirst.ToString("0"));
             _energyText.UpdateUI(playerVitalitySystem.Energy.ToString("0"));
+
+            _quickAction1Icon.UpdateUI(_mainCharacterManager.GetInventoryItem(0));
+            _quickAction2Icon.UpdateUI(_mainCharacterManager.GetInventoryItem(1));
+            _quickAction3Icon.UpdateUI(_mainCharacterManager.GetInventoryItem(2));
+            _quickAction4Icon.UpdateUI(_mainCharacterManager.GetInventoryItem(3));
         }
 
         public void ExitState()
         {
-            DateTimePanel.GetComponent<CanvasGroup>().alpha = 0.0f;
-            Health.GetComponent<CanvasGroup>().alpha = 0.0f;
-            Hunger.GetComponent<CanvasGroup>().alpha = 0.0f;
-            Thirst.GetComponent<CanvasGroup>().alpha = 0.0f;
-            Energy.GetComponent<CanvasGroup>().alpha = 0.0f;
-            InventoryPanel.GetComponent<CanvasGroup>().alpha = 0.0f;
+            _basicUI.GetComponent<CanvasGroup>().alpha = 0.0f;
         }
 
         private void OnClick_InventoryPanel()
         {
             _uiManager.EnterInventoryState();
         }
+
+        private void OnClick_QuickAction1Button()
+        {
+            _mainCharacterManager.OnClick_QuickAction1Button();
+        }
+
+        private void OnClick_QuickAction2Button()
+        {
+            _mainCharacterManager.OnClick_QuickAction2Button();
+        }
+
+        private void OnClick_QuickAction3Button()
+        {
+            _mainCharacterManager.OnClick_QuickAction3Button();
+        }
+
+        private void OnClick_QuickAction4Button()
+        {
+            _mainCharacterManager.OnClick_QuickAction4Button();
+        }
+
     }
 }

@@ -9,8 +9,7 @@ namespace SurvivalIsland.Common.Models
         public WoodModel() : base("Wood",
                                   "Wood good for everything",
                                   InventoryItemType.Wood,
-                                  UnityEngine.Random.Range(0.9f, 1.9f),
-                                  default)
+                                  UnityEngine.Random.Range(0.9f, 1.9f))
         { }
     }
 }

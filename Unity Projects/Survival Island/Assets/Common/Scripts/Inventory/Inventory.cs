@@ -10,16 +10,17 @@ namespace SurvivalIsland.Common.Inventory
     [Serializable]
     public class Inventory
     {
-        public List<InventoryItemModel> Items = new();
+        public List<InventoryItemModel> Items;
 
         public int MaxItems;
         public float MaxWeight;
 
-        private int CurrentAmount => Items.Count;
+        public int CurrentAmount => Items.Count;
         private float CurrentTotalWeight => Items.Sum(x => x.Weight);
 
         public void Prepare(int maxItems, float maxWeight)
         {
+            Items = new();
             MaxItems = maxItems;
             MaxWeight = maxWeight;
         }

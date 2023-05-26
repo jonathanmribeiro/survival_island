@@ -1,5 +1,7 @@
 
+using SurvivalIsland.Common.Extensions;
 using SurvivalIsland.Gameplay.Management.Enums;
+using UnityEngine;
 
 namespace SurvivalIsland.Gameplay.Management.UI
 {
@@ -10,6 +12,8 @@ namespace SurvivalIsland.Gameplay.Management.UI
         public InventoryUIState(GameplayUIManager uiManager)
         {
             _uiManager = uiManager;
+
+            var canvas = GameObject.Find("Canvas").FindChild("InventoryUI");
         }
 
         public void EnterState()

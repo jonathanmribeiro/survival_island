@@ -39,5 +39,42 @@ namespace SurvivalIsland.Components.MainCharacter
         {
             return _vitalityManager.VitalitySystem;
         }
+
+        public InventoryItemModel GetInventoryItem(int inventoryItemIndex)
+        {
+            return _inventoryManager.GetInventoryItem(inventoryItemIndex);
+        }
+
+        public void OnClick_QuickAction1Button()
+        {
+            var inventoryItem = GetInventoryItem(0);
+
+            if (inventoryItem == null)
+                return;
+        }
+
+        public void OnClick_QuickAction2Button()
+        {
+            var inventoryItem = GetInventoryItem(1);
+
+            if (inventoryItem == null)
+                return;
+        }
+
+        public void OnClick_QuickAction3Button()
+        {
+            var inventoryItem = GetInventoryItem(2);
+
+            if (inventoryItem == null)
+                return;
+        }
+
+        public void OnClick_QuickAction4Button()
+        {
+            var inventoryItem = GetInventoryItem(3);
+
+            if (inventoryItem == null)
+                return;
+        }
     }
 }
