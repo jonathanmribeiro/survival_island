@@ -7,7 +7,7 @@ namespace SurvivalIsland.Gameplay.Management
 {
     public class GameplayUIManager : MonoBehaviour
     {
-        private IGameplayUIState _currentState;
+        public IGameplayUIState CurrentState;
         private BasicUIState _basicUIState;
         private InventoryUIState _inventoryUIState;
         private JournalUIState _journalUIState;
@@ -19,7 +19,7 @@ namespace SurvivalIsland.Gameplay.Management
         )
         {
             _basicUIState = new(this, mainCharacterManager, dayNightCycle);
-            _inventoryUIState = new(this);
+            _inventoryUIState = new(this, mainCharacterManager);
             _journalUIState = new(this);
 
             EnterBasicUIState();
@@ -27,14 +27,14 @@ namespace SurvivalIsland.Gameplay.Management
 
         public void UpdateUI()
         {
-            _currentState.UpdateState();
+            CurrentState.UpdateState();
         }
 
         private void SwitchState(IGameplayUIState nextState)
         {
-            _currentState?.ExitState();
-            _currentState = nextState;
-            _currentState.EnterState();
+            CurrentState?.ExitState();
+            CurrentState = nextState;
+            CurrentState.EnterState();
         }
 
         public void EnterBasicUIState()

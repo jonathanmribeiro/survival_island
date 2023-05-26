@@ -4,6 +4,7 @@ using SurvivalIsland.Common.Management;
 using SurvivalIsland.Common.Utils;
 using SurvivalIsland.Components.MainCharacter;
 using SurvivalIsland.Components.Trees;
+using SurvivalIsland.Gameplay.Management.UI;
 using UnityEngine;
 
 namespace SurvivalIsland.Gameplay.Management
@@ -18,7 +19,7 @@ namespace SurvivalIsland.Gameplay.Management
         private CameraManager _cameraManager;
         private DayNightCycle _dayNightCycle;
         private GameplayUIManager _uiManager;
-        
+
         private TreeManager[] _treeManagers;
 
         private void Awake()
@@ -48,7 +49,10 @@ namespace SurvivalIsland.Gameplay.Management
             _inputManager.UpdateInput();
 
             _cameraManager.UpdateCamera();
-            _dayNightCycle.UpdateDayNightCycle();
+
+            if (_uiManager.CurrentState is BasicUIState)
+                _dayNightCycle.UpdateDayNightCycle();
+
             _mainCharacterManager.UpdateMainCharacter();
             _uiManager.UpdateUI();
         }
@@ -65,7 +69,7 @@ namespace SurvivalIsland.Gameplay.Management
         {
             _treeManagers = FindObjectsOfType<TreeManager>();
 
-            foreach(var treeManager in _treeManagers)
+            foreach (var treeManager in _treeManagers)
             {
                 treeManager.Prepare();
             }
