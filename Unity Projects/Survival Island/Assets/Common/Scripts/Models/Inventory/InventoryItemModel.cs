@@ -2,7 +2,6 @@ using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Utils;
 using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace SurvivalIsland.Common.Models
 {

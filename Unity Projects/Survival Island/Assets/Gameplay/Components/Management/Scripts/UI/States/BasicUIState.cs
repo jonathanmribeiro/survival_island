@@ -13,7 +13,6 @@ namespace SurvivalIsland.Gameplay.Management.UI
 
         private GameObject _basicUI;
 
-        private GameObject dateTimePanel;
         private ChildTextUpdater _datetimeText;
 
         private ChildTextUpdater _healthText;
@@ -63,20 +62,20 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _energyText = energy.GetComponentInChildren<ChildTextUpdater>();
 
             var quickAction1 = _basicUI.FindChild("QuickUsePanel").FindChild("QuickUseSlot01");
-            _quickAction1Button = quickAction1.GetComponentInChildren<ChildButtonAction>();
-            _quickAction1Icon = quickAction1.GetComponentInChildren<ChildIconUpdater>();
+            _quickAction1Button = quickAction1.GetComponent<ChildButtonAction>();
+            _quickAction1Icon = quickAction1.GetComponent<ChildIconUpdater>();
 
             var quickAction2 = _basicUI.FindChild("QuickUsePanel").FindChild("QuickUseSlot02");
-            _quickAction2Button = quickAction2.GetComponentInChildren<ChildButtonAction>();
-            _quickAction2Icon = quickAction2.GetComponentInChildren<ChildIconUpdater>();
+            _quickAction2Button = quickAction2.GetComponent<ChildButtonAction>();
+            _quickAction2Icon = quickAction2.GetComponent<ChildIconUpdater>();
 
             var quickAction3 = _basicUI.FindChild("QuickUsePanel").FindChild("QuickUseSlot03");
-            _quickAction3Button = quickAction3.GetComponentInChildren<ChildButtonAction>();
-            _quickAction3Icon = quickAction3.GetComponentInChildren<ChildIconUpdater>();
+            _quickAction3Button = quickAction3.GetComponent<ChildButtonAction>();
+            _quickAction3Icon = quickAction3.GetComponent<ChildIconUpdater>();
 
             var quickAction4 = _basicUI.FindChild("QuickUsePanel").FindChild("QuickUseSlot04");
-            _quickAction4Button = quickAction4.GetComponentInChildren<ChildButtonAction>();
-            _quickAction4Icon = quickAction4.GetComponentInChildren<ChildIconUpdater>();
+            _quickAction4Button = quickAction4.GetComponent<ChildButtonAction>();
+            _quickAction4Icon = quickAction4.GetComponent<ChildIconUpdater>();
 
             var inventoryPanel = _basicUI.FindChild("InventoryPanel");
             _openInventoryButton = inventoryPanel.GetComponentInChildren<ChildButtonAction>();

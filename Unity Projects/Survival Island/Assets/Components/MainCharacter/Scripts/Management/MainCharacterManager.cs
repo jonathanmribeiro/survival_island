@@ -45,6 +45,11 @@ namespace SurvivalIsland.Components.MainCharacter
             return _inventoryManager.GetInventoryItem(inventoryItemIndex);
         }
 
+        public InventoryItemModel GetCharacterItem(int inventoryItemIndex)
+        {
+            return _inventoryManager.GetCharacterItem(inventoryItemIndex);
+        }
+
         public void OnClick_QuickAction1Button()
         {
             var inventoryItem = GetInventoryItem(0);

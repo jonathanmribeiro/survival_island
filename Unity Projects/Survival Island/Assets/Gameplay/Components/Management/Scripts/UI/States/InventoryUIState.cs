@@ -21,6 +21,20 @@ namespace SurvivalIsland.Gameplay.Management.UI
         private ChildButtonAction _closeInventoryButton;
         private ChildButtonAction _openJournalButton;
 
+        private ChildIconUpdater _characterIcon1;
+        private ChildIconUpdater _characterIcon2;
+        private ChildIconUpdater _characterIcon3;
+        private ChildIconUpdater _characterIcon4;
+
+        private ChildIconUpdater _inventoryIcon1;
+        private ChildIconUpdater _inventoryIcon2;
+        private ChildIconUpdater _inventoryIcon3;
+        private ChildIconUpdater _inventoryIcon4;
+        private ChildIconUpdater _inventoryIcon5;
+        private ChildIconUpdater _inventoryIcon6;
+        private ChildIconUpdater _inventoryIcon7;
+        private ChildIconUpdater _inventoryIcon8;
+
         public InventoryUIState(GameplayUIManager uiManager,
                                 MainCharacterManager mainCharacterManager)
         {
@@ -45,12 +59,42 @@ namespace SurvivalIsland.Gameplay.Management.UI
             var middlePanel = _inventoryUI.FindChild("MiddlePanel");
             _closeInventoryButton = middlePanel.FindChild("Close").GetComponent<ChildButtonAction>();
             _openJournalButton = middlePanel.FindChild("Journal").GetComponent<ChildButtonAction>();
+
+            var characterPanel = _inventoryUI.FindChild("Character");
+            _characterIcon1 = characterPanel.FindChild("CharacterSlot1").GetComponent<ChildIconUpdater>();
+            _characterIcon2 = characterPanel.FindChild("CharacterSlot2").GetComponent<ChildIconUpdater>();
+            _characterIcon3 = characterPanel.FindChild("CharacterSlot3").GetComponent<ChildIconUpdater>();
+            _characterIcon4 = characterPanel.FindChild("CharacterSlot4").GetComponent<ChildIconUpdater>();
+
+            var inventoryPanel = _inventoryUI.FindChild("Inventory");
+            _inventoryIcon1 = inventoryPanel.FindChild("InventorySlot1").GetComponent<ChildIconUpdater>();
+            _inventoryIcon2 = inventoryPanel.FindChild("InventorySlot2").GetComponent<ChildIconUpdater>();
+            _inventoryIcon3 = inventoryPanel.FindChild("InventorySlot3").GetComponent<ChildIconUpdater>();
+            _inventoryIcon4 = inventoryPanel.FindChild("InventorySlot4").GetComponent<ChildIconUpdater>();
+            _inventoryIcon5 = inventoryPanel.FindChild("InventorySlot5").GetComponent<ChildIconUpdater>();
+            _inventoryIcon6 = inventoryPanel.FindChild("InventorySlot6").GetComponent<ChildIconUpdater>();
+            _inventoryIcon7 = inventoryPanel.FindChild("InventorySlot7").GetComponent<ChildIconUpdater>();
+            _inventoryIcon8 = inventoryPanel.FindChild("InventorySlot8").GetComponent<ChildIconUpdater>();
+
         }
 
         public void EnterState()
         {
             _closeInventoryButton.Prepare(OnClick_CloseInventory);
             _openJournalButton.Prepare(OnClick_OpenJournal);
+
+            _characterIcon1.Prepare("InventorySlotIcon");
+            _characterIcon2.Prepare("InventorySlotIcon");
+            _characterIcon3.Prepare("InventorySlotIcon");
+            _characterIcon4.Prepare("InventorySlotIcon");
+            _inventoryIcon1.Prepare("InventorySlotIcon");
+            _inventoryIcon2.Prepare("InventorySlotIcon");
+            _inventoryIcon3.Prepare("InventorySlotIcon");
+            _inventoryIcon4.Prepare("InventorySlotIcon");
+            _inventoryIcon5.Prepare("InventorySlotIcon");
+            _inventoryIcon6.Prepare("InventorySlotIcon");
+            _inventoryIcon7.Prepare("InventorySlotIcon");
+            _inventoryIcon8.Prepare("InventorySlotIcon");
 
             _inventoryUI.SetActive(true);
             _inventoryUI.GetComponent<CanvasGroup>().alpha = 1.0f;
@@ -64,6 +108,20 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _hungerText.UpdateUI(playerVitalitySystem.Hunger.ToString("0"));
             _thirstText.UpdateUI(playerVitalitySystem.Thirst.ToString("0"));
             _energyText.UpdateUI(playerVitalitySystem.Energy.ToString("0"));
+
+            _characterIcon1.UpdateUI(_mainCharacterManager.GetCharacterItem(0));
+            _characterIcon2.UpdateUI(_mainCharacterManager.GetCharacterItem(1));
+            _characterIcon3.UpdateUI(_mainCharacterManager.GetCharacterItem(2));
+            _characterIcon4.UpdateUI(_mainCharacterManager.GetCharacterItem(3));
+
+            _inventoryIcon1.UpdateUI(_mainCharacterManager.GetInventoryItem(0));
+            _inventoryIcon2.UpdateUI(_mainCharacterManager.GetInventoryItem(1));
+            _inventoryIcon3.UpdateUI(_mainCharacterManager.GetInventoryItem(2));
+            _inventoryIcon4.UpdateUI(_mainCharacterManager.GetInventoryItem(3));
+            _inventoryIcon5.UpdateUI(_mainCharacterManager.GetInventoryItem(4));
+            _inventoryIcon6.UpdateUI(_mainCharacterManager.GetInventoryItem(5));
+            _inventoryIcon7.UpdateUI(_mainCharacterManager.GetInventoryItem(6));
+            _inventoryIcon8.UpdateUI(_mainCharacterManager.GetInventoryItem(7));
         }
 
         public void ExitState()
