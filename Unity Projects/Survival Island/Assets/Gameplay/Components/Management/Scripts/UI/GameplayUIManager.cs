@@ -37,19 +37,8 @@ namespace SurvivalIsland.Gameplay.Management
             CurrentState.EnterState();
         }
 
-        public void EnterBasicUIState()
-        {
-            SwitchState(_basicUIState);
-        }
-
-        public void EnterInventoryState()
-        {
-            SwitchState(_inventoryUIState);
-        }
-
-        public void EnterJournalState()
-        {
-            SwitchState(_journalUIState);
-        }
+        public void EnterBasicUIState() => SwitchState(_basicUIState);
+        public void EnterInventoryState() => SwitchState(_inventoryUIState);
+        public void EnterJournalState() => SwitchState(_journalUIState);
     }
 }

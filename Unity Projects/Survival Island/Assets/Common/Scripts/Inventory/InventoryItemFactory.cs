@@ -9,6 +9,7 @@ namespace Assets.Common.Inventory
             type switch
             {
                 InventoryItemType.Wood => new WoodModel(),
+                InventoryItemType.Apple => new AppleModel(),
                 _ => null,
             };
     }

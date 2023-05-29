@@ -25,6 +25,7 @@ namespace SurvivalIsland.Common.Inventory
             MaxWeight = maxWeight;
         }
 
+        public bool TryAddItem(InventoryItemType type) => TryAddItem(InventoryItemFactory.Obtain(type));
         public bool TryAddItem(InventoryItemModel item)
         {
             var futureWeight = CurrentTotalWeight + item.Weight;
@@ -48,10 +49,8 @@ namespace SurvivalIsland.Common.Inventory
             }
         }
 
-        public InventoryItemModel ObtainRandom(InventoryItemType type)
-            => Items.FirstOrDefault(x => x.Type == type);
-
-        public void Remove(InventoryItemModel item)
-            => Items.Remove(item);
+        public InventoryItemModel ObtainRandom(InventoryItemType type) => Items.FirstOrDefault(x => x.Type == type);
+        public List<InventoryItemModel> ObtainAll(InventoryItemType type) => Items.Where(x => x.Type == type).ToList();
+        public void Remove(InventoryItemModel item) => Items.Remove(item);
     }
 }

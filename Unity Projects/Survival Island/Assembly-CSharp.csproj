@@ -57,11 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Common\Components\Management\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Common\Scripts\Models\Inventory\InventoryItemModel.cs" />
+    <Compile Include="Assets\Common\Scripts\Models\Inventory\Base\InventoryItemModel.cs" />
     <Compile Include="Assets\Common\Scripts\Models\VitalitySystemModel.cs" />
     <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterActionsManager.cs" />
     <Compile Include="Assets\Common\Components\Management\Scripts\Input\Handlers\Base\InputHandlerBase.cs" />
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\UI\GameplayUIManager.cs" />
+    <Compile Include="Assets\Components\Trees\Scripts\Management\States\ITreeState.cs" />
     <Compile Include="Assets\Common\Scripts\Enums\InventoryItemType.cs" />
     <Compile Include="Assets\Main menu\Components\Management\Scripts\MainMenuUIManager.cs" />
     <Compile Include="Assets\Common\Scripts\Constants\InputConstants.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterAnimationManager.cs" />
     <Compile Include="Assets\Common\Scripts\Utils\ChildTextUpdater.cs" />
     <Compile Include="Assets\Common\Components\Management\Scripts\Input\Handlers\VirtualInputHandler.cs" />
+    <Compile Include="Assets\Components\Trees\Scripts\Management\States\FruitfullState.cs" />
     <Compile Include="Assets\Common\Scripts\Enums\InputType.cs" />
     <Compile Include="Assets\Common\Scripts\Utils\DayNightCycle.cs" />
     <Compile Include="Assets\Common\Scripts\Models\InputModel.cs" />
@@ -77,10 +79,15 @@
     <Compile Include="Assets\Common\Scripts\Utils\SmoothFollow.cs" />
     <Compile Include="Assets\Common\Scripts\Inventory\InventoryItemFactory.cs" />
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\Enums\GameplayUIStates.cs" />
+    <Compile Include="Assets\Components\Trees\Scripts\Management\States\HarvestingState.cs" />
+    <Compile Include="Assets\Components\Trees\Scripts\Management\TreeProps.cs" />
     <Compile Include="Assets\Common\Scripts\Constants\InventoryConstants.cs" />
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\GameplaySceneManager.cs" />
+    <Compile Include="Assets\Components\Trees\Scripts\Management\States\TrunkState.cs" />
+    <Compile Include="Assets\Common\Scripts\Extensions\PolygonCollider2DExtensions.cs" />
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\CameraManager.cs" />
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\UI\States\BasicUIState.cs" />
+    <Compile Include="Assets\Common\Scripts\Models\Inventory\AppleModel.cs" />
     <Compile Include="Assets\Components\Trees\Scripts\Management\TreeManager.cs" />
     <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterManager.cs" />
     <Compile Include="Assets\Common\Scripts\Constants\SceneConstants.cs" />
@@ -96,6 +103,7 @@
     <Compile Include="Assets\Common\Scripts\Constants\AnimatorVariablesConstants.cs" />
     <Compile Include="Assets\Common\Scripts\Extensions\GameObjectExtensions.cs" />
     <Compile Include="Assets\Common\Components\Management\Scripts\Input\InputManager.cs" />
+    <Compile Include="Assets\Components\Trees\Scripts\Management\States\RevitalizationState.cs" />
     <Compile Include="Assets\Common\Scripts\Utils\ChildButtonAction.cs" />
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\UI\States\JournalUIState.cs" />
     <Compile Include="Assets\Common\Scripts\Inventory\Inventory.cs" />
