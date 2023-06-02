@@ -1,5 +1,6 @@
 ﻿using SurvivalIsland.Common.Constants;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,6 +11,7 @@ namespace SurvivalIsland.Common.Management
         private Vector2 _pointA;
         private Vector2 _pointB;
         private bool _isMoving;
+        private bool _actionOverUI;
 
         public VirtualInputHandler(Action actionToExecute)
         {
@@ -20,29 +22,39 @@ namespace SurvivalIsland.Common.Management
         {
             VerifyAction();
 
-            if (IsPointerOverUI() || Input.GetMouseButtonUp(0))
-            {
-                _pointA = Vector2.zero;
-                _pointB = Vector2.zero;
-            }
-            else
-            {
-                CheckInput();
-            }
+            CheckInput();
 
             UpdateDirection();
         }
 
         private bool IsPointerOverUI()
         {
-            return EventSystem.current.IsPointerOverGameObject();
+            var eventDataCurrentPosition = new PointerEventData(EventSystem.current)
+            {
+                position = new Vector2(Input.mousePosition.x, Input.mousePosition.y)
+            };
+
+            var results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+
+            return results.Count > 0;
         }
 
         private void VerifyAction()
         {
-            if (!_isMoving && Input.GetMouseButtonUp(0) && !IsPointerOverUI())
+            if (Input.GetMouseButtonDown(0))
             {
-                ActionCaptured();
+                _actionOverUI = true;
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                _actionOverUI = IsPointerOverUI();
+
+                if (!_actionOverUI && !_isMoving)
+                {
+                    ActionCaptured();
+                }
             }
         }
 
@@ -56,6 +68,12 @@ namespace SurvivalIsland.Common.Management
             if (Input.GetMouseButton(0))
             {
                 _pointB = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                _pointA = Vector2.zero;
+                _pointB = Vector2.zero;
             }
         }
 
