@@ -40,7 +40,7 @@ namespace SurvivalIsland.Common.Inventory
 
         public void AddMultiple(InventoryItemType type, int amount)
         {
-            for (int i = 0; i <= amount; i++)
+            for (int i = 0; i < amount; i++)
             {
                 var continueToAdd = TryAddItem(InventoryItemFactory.Obtain(type));
 

@@ -3,7 +3,8 @@
     public enum InventoryItemType
     {
         None,
-        Wood,
-        Apple
+        Apple,
+        Leaf,
+        Wood
     }
 }

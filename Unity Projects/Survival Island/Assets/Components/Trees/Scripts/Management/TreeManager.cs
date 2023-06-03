@@ -14,12 +14,13 @@ namespace SurvivalIsland.Components.Trees
 
         private FruitfullState _fruitfullState;
         private HarvestingState _harvestingState;
-        private RevitalizationState _revitalizationState;
+        private GrowingState _revitalizationState;
         private TrunkState _trunkState;
 
         public Inventory Inventory;
 
         public TreeProps TreeProps;
+
 
         private void Awake()
         {
@@ -49,8 +50,10 @@ namespace SurvivalIsland.Components.Trees
                 (InventoryConstants.TREE_MAX_ITEMS, InventoryConstants.TREE_MAX_WEIGHT);
 
             //TODO receive the proper initial props for the tree
-            Inventory.AddMultiple(InventoryItemType.Wood, 10);
+            Inventory.AddMultiple(InventoryItemType.Wood, TreeProps.MaxWoodAmount);
             Inventory.AddMultiple(TreeProps.FruitType, TreeProps.MaxFruitAmount);
+            Inventory.AddMultiple(InventoryItemType.Leaf, TreeProps.MaxLeavesAmount);
+
             EnterFruitfullState();
         }
 

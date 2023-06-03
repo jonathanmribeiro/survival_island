@@ -1,15 +1,16 @@
-﻿using SurvivalIsland.Common.Enums;
+﻿using SurvivalIsland.Common.Bases;
+using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Models;
 using System;
 using UnityEngine;
 
 namespace SurvivalIsland.Components.Trees
 {
-    public class RevitalizationState : ITreeState
+    public class GrowingState : PlayerDetectionBase, ITreeState
     {
         private TreeManager _treeManager;
 
-        public RevitalizationState(TreeManager treeManager, TreeProps treeProps)
+        public GrowingState(TreeManager treeManager, TreeProps treeProps)
         {
             _treeManager = treeManager;
         }
@@ -29,19 +30,10 @@ namespace SurvivalIsland.Components.Trees
             throw new System.NotImplementedException();
         }
 
-        public void OnTriggerStay2D(Collider2D collision)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnTriggerExit2D(Collider2D collision)
-        {
-            throw new NotImplementedException();
-        }
-
         public void ExecuteAction(Func<PlayerActionTypes, InventoryItemModel, bool> playerActionCallback)
         {
-            throw new NotImplementedException();
+            if (!_playerInRange)
+                return;
         }
     }
 }

@@ -1,7 +1,8 @@
-﻿using SurvivalIsland.Common.Constants;
+﻿using SurvivalIsland.Common.Bases;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
 using SurvivalIsland.Common.Models;
+using SurvivalIsland.Common.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,11 @@ using UnityEngine;
 
 namespace SurvivalIsland.Components.Trees
 {
-    public class FruitfullState : ITreeState
+    public class FruitfullState : PlayerDetectionBase, ITreeState
     {
         private readonly GameObject _canopy;
         private readonly GameObject _trunk;
         private readonly TreeManager _manager;
-
-        private bool _playerInRange;
 
         private readonly PolygonCollider2D _fruitArea;
         private readonly TreeProps _treeProps;
@@ -50,14 +49,6 @@ namespace SurvivalIsland.Components.Trees
         {
         }
 
-        public void OnTriggerStay2D(Collider2D collision) => _playerInRange = collision.CompareTag(TagConstants.PLAYER);
-
-        public void OnTriggerExit2D(Collider2D collision)
-        {
-            if (collision.CompareTag(TagConstants.PLAYER))
-                _playerInRange = false;
-        }
-
         public void ExecuteAction(Func<PlayerActionTypes, InventoryItemModel, bool> playerActionCallback)
         {
             if (!_playerInRange)
@@ -88,19 +79,8 @@ namespace SurvivalIsland.Components.Trees
         {
             foreach (var _ in _manager.ObtainAll(_treeProps.FruitType))
             {
-                Spawn();
+                _fruitInstances.Add(AreaInstantiator.Instantiate(_fruitArea, _canopy.transform, _treeProps.FruitPrefab));
             }
-        }
-
-        private void Spawn()
-        {
-            var position = _fruitArea.GetPointWithinArea(_canopy.transform);
-
-            var rotation = Quaternion.Euler(Vector3.zero);
-
-            var newInstance = UnityEngine.Object.Instantiate(_treeProps.FruitPrefab, position, rotation, _canopy.transform);
-
-            _fruitInstances.Add(newInstance);
         }
     }
 }

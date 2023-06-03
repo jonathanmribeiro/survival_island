@@ -10,6 +10,7 @@ namespace Assets.Common.Inventory
             {
                 InventoryItemType.Wood => new WoodModel(),
                 InventoryItemType.Apple => new AppleModel(),
+                InventoryItemType.Leaf => new LeafModel(),
                 _ => null,
             };
     }

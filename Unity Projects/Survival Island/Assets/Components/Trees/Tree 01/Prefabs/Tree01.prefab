@@ -95,6 +95,25 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -117,6 +136,7 @@ PolygonCollider2D:
       - {x: 0.125, y: 0.8125}
       - {x: 0.4375, y: 0.4375}
       - {x: 0.5, y: -0.4375}
+  m_UseDelaunayMesh: 0
 --- !u!1 &2573872785774393837
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,7 +170,7 @@ Transform:
   - {fileID: 4834482715849953991}
   - {fileID: 1698650355652369447}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1844913909285714632
 MonoBehaviour:
@@ -169,8 +189,10 @@ MonoBehaviour:
     MaxItems: 0
     MaxWeight: 0
   TreeProps:
-    FruitType: 2
-    MaxFruitAmount: 5
+    FruitType: 1
+    MaxFruitAmount: 3
+    MaxLeavesAmount: 2
+    MaxWoodAmount: 4
     FruitPrefab: {fileID: 142732497648774650, guid: 106f2343a766ebe48a2cc6cd72fbe93f, type: 3}
 --- !u!58 &4801657766981027979
 CircleCollider2D:
@@ -182,6 +204,25 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -283,6 +324,25 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -306,3 +366,4 @@ PolygonCollider2D:
       - {x: 1.3065681, y: -0.3621608}
       - {x: 1.0374455, y: 0.72972625}
       - {x: 0.41359675, y: 1.2801868}
+  m_UseDelaunayMesh: 0

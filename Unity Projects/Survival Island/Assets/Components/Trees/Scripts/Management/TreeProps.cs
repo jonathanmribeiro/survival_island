@@ -8,7 +8,11 @@ namespace SurvivalIsland.Components.Trees
 	public class TreeProps
 	{
 		public InventoryItemType FruitType;
+
 		public int MaxFruitAmount;
-		public Transform FruitPrefab;
+		public int MaxLeavesAmount;
+		public int MaxWoodAmount;
+
+        public Transform FruitPrefab;
 	}
 }

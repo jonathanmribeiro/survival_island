@@ -22,7 +22,7 @@ namespace SurvivalIsland.Common.Models
             Type = type;
             Weight = weight;
 
-            Icon = ResourceLoader.LoadAll("UI/Icons/inventory_items", type.ToString());
+            Icon = ResourceLoader.Load("UI/Icons/inventory_items", type.ToString());
         }
     }
 }
