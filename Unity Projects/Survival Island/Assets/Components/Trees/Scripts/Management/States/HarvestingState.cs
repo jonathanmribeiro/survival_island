@@ -33,12 +33,10 @@ namespace SurvivalIsland.Components.Trees
 
         public void ExitState()
         {
-            throw new System.NotImplementedException();
         }
 
         public void UpdateState()
         {
-            throw new System.NotImplementedException();
         }
 
         public void ExecuteAction(Func<PlayerActionTypes, InventoryItemModel, bool> playerActionCallback)

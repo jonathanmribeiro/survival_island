@@ -26,17 +26,16 @@ namespace SurvivalIsland.Components.Trees
 
         public void EnterState()
         {
-            throw new System.NotImplementedException();
+            _canopy.SetActive(false);
+            _trunk.SetActive(true);
         }
 
         public void ExitState()
         {
-            throw new System.NotImplementedException();
         }
 
         public void UpdateState()
         {
-            throw new System.NotImplementedException();
         }
 
         public void ExecuteAction(Func<PlayerActionTypes, InventoryItemModel, bool> playerActionCallback)
