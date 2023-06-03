@@ -69,7 +69,7 @@ namespace SurvivalIsland.Components.Trees
                 _fruitInstances.Remove(instanceToRemove);
             }
 
-            if (_fruitInstances.Count == 0)
+            if (!_fruitInstances.Any())
             {
                 _manager.EnterHarvestingState();
             }

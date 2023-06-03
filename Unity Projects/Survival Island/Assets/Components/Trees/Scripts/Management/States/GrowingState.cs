@@ -1,5 +1,6 @@
 ﻿using SurvivalIsland.Common.Bases;
 using SurvivalIsland.Common.Enums;
+using SurvivalIsland.Common.Extensions;
 using SurvivalIsland.Common.Models;
 using System;
 using UnityEngine;
@@ -8,11 +9,19 @@ namespace SurvivalIsland.Components.Trees
 {
     public class GrowingState : PlayerDetectionBase, ITreeState
     {
-        private TreeManager _treeManager;
+        private readonly GameObject _canopy;
+        private readonly GameObject _trunk;
+        private readonly TreeManager _manager;
 
-        public GrowingState(TreeManager treeManager, TreeProps treeProps)
+        private readonly TreeProps _treeProps;
+
+        public GrowingState(TreeManager manager, TreeProps treeProps)
         {
-            _treeManager = treeManager;
+            _manager = manager;
+            _treeProps = treeProps;
+
+            _canopy = _manager.gameObject.FindChild("Canopy");
+            _trunk = _manager.gameObject.FindChild("Trunk");
         }
 
         public void EnterState()

@@ -20,6 +20,7 @@ namespace SurvivalIsland.Components.MainCharacter
         public bool ExecuteAction(PlayerActionTypes performedAction, InventoryItemModel itemModel = null)
             => performedAction switch
             {
+                PlayerActionTypes.CollectingLeaves => _inventoryManager.TryAddItem(itemModel),
                 PlayerActionTypes.CollectingWood => _inventoryManager.TryAddItem(itemModel),
                 _ => false,
             };
