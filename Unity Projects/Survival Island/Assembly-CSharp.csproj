@@ -85,6 +85,7 @@
     <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterMovementManager.cs" />
     <Compile Include="Assets\Common\Scripts\Constants\AnimatorVariablesConstants.cs" />
     <Compile Include="Assets\Common\Scripts\Utils\ChildButtonAction.cs" />
+    <Compile Include="Assets\Components\Trees\Scripts\Management\States\GoneState.cs" />
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\UI\States\InventoryUIState.cs" />
     <Compile Include="Assets\Common\Scripts\Models\Inventory\Base\InventoryItemModel.cs" />
     <Compile Include="Assets\Common\Scripts\Constants\InputConstants.cs" />

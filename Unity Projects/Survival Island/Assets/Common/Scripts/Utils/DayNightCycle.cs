@@ -38,6 +38,8 @@ namespace SurvivalIsland.Common.Utils
         [SerializeField]
         public Gradient LightColor;
 
+        public DateTime CurrentTime => GetCurrentTime();
+
         public void UpdateDayNightCycle()
         {
             UpdateTimeScale();
@@ -104,19 +106,7 @@ namespace SurvivalIsland.Common.Utils
             return monthLength;
         }
 
-        public void SetCurrentTime(DateTime currentTime)
-        {
-            _yearNumber = currentTime.Year;
-            _monthNumber = currentTime.Month;
-            _dayNumber = currentTime.Day;
-
-            var secondsFromHour = currentTime.Hour * 60 * 60;
-            var secondsFromMinutes = currentTime.Minute * 60;
-
-            _timeOfDay = (secondsFromHour + secondsFromMinutes + currentTime.Second) / 86400f; // seconds in a day
-        }
-
-        public DateTime GetCurrentTime()
+        private DateTime GetCurrentTime()
         {
             int seconds = Mathf.FloorToInt(_timeOfDay * 86400);
 
@@ -132,6 +122,18 @@ namespace SurvivalIsland.Common.Utils
                 timeSpan.Hours,
                 0,
                 timeSpan.Seconds);
+        }
+
+        public void SetCurrentTime(DateTime currentTime)
+        {
+            _yearNumber = currentTime.Year;
+            _monthNumber = currentTime.Month;
+            _dayNumber = currentTime.Day;
+
+            var secondsFromHour = currentTime.Hour * 60 * 60;
+            var secondsFromMinutes = currentTime.Minute * 60;
+
+            _timeOfDay = (secondsFromHour + secondsFromMinutes + currentTime.Second) / 86400f; // seconds in a day
         }
 
         public double GetTotalDays()

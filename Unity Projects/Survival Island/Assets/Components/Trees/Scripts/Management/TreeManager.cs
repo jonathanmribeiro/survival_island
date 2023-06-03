@@ -2,6 +2,7 @@ using SurvivalIsland.Common.Constants;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Inventory;
 using SurvivalIsland.Common.Models;
+using SurvivalIsland.Common.Utils;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,8 +15,9 @@ namespace SurvivalIsland.Components.Trees
 
         private FruitfullState _fruitfullState;
         private HarvestingState _harvestingState;
-        private GrowingState _revitalizationState;
+        private GrowingState _growingState;
         private TrunkState _trunkState;
+        private GoneState _goneState;
 
         public Inventory Inventory;
 
@@ -25,17 +27,13 @@ namespace SurvivalIsland.Components.Trees
         private void Awake()
         {
             gameObject.name = $"{gameObject.name}_{transform.position}";
-
-            _fruitfullState = new(this, TreeProps);
-            _harvestingState = new(this, TreeProps);
-            _revitalizationState = new(this, TreeProps);
-            _trunkState = new(this, TreeProps);
         }
 
         public void EnterFruitfullState() => SwitchState(_fruitfullState);
         public void EnterHarvestingState() => SwitchState(_harvestingState);
-        public void EnterRevitalizationState() => SwitchState(_revitalizationState);
+        public void EnterGrowingState() => SwitchState(_growingState);
         public void EnterTrunkState() => SwitchState(_trunkState);
+        public void EnterGoneState() => SwitchState(_goneState);
 
         private void SwitchState(ITreeState nextState)
         {
@@ -44,7 +42,7 @@ namespace SurvivalIsland.Components.Trees
             CurrentState.EnterState();
         }
 
-        public void Prepare()
+        public void Prepare(DayNightCycle dayNightCycle)
         {
             Inventory.Prepare
                 (InventoryConstants.TREE_MAX_ITEMS, InventoryConstants.TREE_MAX_WEIGHT);
@@ -54,7 +52,18 @@ namespace SurvivalIsland.Components.Trees
             Inventory.AddMultiple(TreeProps.FruitType, TreeProps.MaxFruitAmount);
             Inventory.AddMultiple(InventoryItemType.Leaf, TreeProps.MaxLeavesAmount);
 
+            _fruitfullState = new(this, TreeProps, dayNightCycle);
+            _harvestingState = new(this, TreeProps, dayNightCycle);
+            _growingState = new(this, TreeProps, dayNightCycle);
+            _trunkState = new(this, TreeProps, dayNightCycle);
+            _goneState = new(this, TreeProps, dayNightCycle);
+
             EnterFruitfullState();
+        }
+
+        public void UpdateTree()
+        {
+            CurrentState.UpdateState();
         }
 
         private void OnTriggerStay2D(Collider2D collision)
@@ -67,6 +76,7 @@ namespace SurvivalIsland.Components.Trees
             => CurrentState.ExecuteAction(playerActionCallback);
 
         public bool TryAddItem(InventoryItemType itemType) => Inventory.TryAddItem(itemType);
+        public void AddMultiple(InventoryItemType itemType, int amount) => Inventory.AddMultiple(itemType, amount);
         public InventoryItemModel ObtainRandom(InventoryItemType itemType) => Inventory.ObtainRandom(itemType);
         public List<InventoryItemModel> ObtainAll(InventoryItemType itemType) => Inventory.ObtainAll(itemType);
         public void Remove(InventoryItemModel item) => Inventory.Remove(item);

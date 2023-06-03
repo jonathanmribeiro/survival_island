@@ -55,6 +55,11 @@ namespace SurvivalIsland.Gameplay.Management
 
             _mainCharacterManager.UpdateMainCharacter();
             _uiManager.UpdateUI();
+
+            foreach (var treeManager in _treeManagers)
+            {
+                treeManager.UpdateTree();
+            }
         }
 
         private void EventPlayerAction()
@@ -71,7 +76,7 @@ namespace SurvivalIsland.Gameplay.Management
 
             foreach (var treeManager in _treeManagers)
             {
-                treeManager.Prepare();
+                treeManager.Prepare(_dayNightCycle);
             }
         }
     }
