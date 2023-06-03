@@ -53,10 +53,10 @@ namespace SurvivalIsland.Components.Trees
             Inventory.AddMultiple(InventoryItemType.Leaf, TreeProps.MaxLeavesAmount);
 
             _fruitfullState = new(this, TreeProps, dayNightCycle);
-            _harvestingState = new(this, TreeProps, dayNightCycle);
-            _growingState = new(this, TreeProps, dayNightCycle);
-            _trunkState = new(this, TreeProps, dayNightCycle);
             _goneState = new(this, TreeProps, dayNightCycle);
+            _growingState = new(this, TreeProps, dayNightCycle);
+            _harvestingState = new(this, TreeProps, dayNightCycle);
+            _trunkState = new(this, TreeProps);
 
             EnterFruitfullState();
         }

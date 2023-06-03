@@ -2,7 +2,6 @@
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
 using SurvivalIsland.Common.Models;
-using SurvivalIsland.Common.Utils;
 using System;
 using UnityEngine;
 
@@ -15,16 +14,14 @@ namespace SurvivalIsland.Components.Trees
         private readonly GameObject _sapling;
 
         private readonly TreeManager _manager;
-        private readonly DayNightCycle _dayNightCycle;
 
         private readonly TreeProps _treeProps;
 
 
-        public TrunkState(TreeManager manager, TreeProps treeProps, DayNightCycle dayNightCycle)
+        public TrunkState(TreeManager manager, TreeProps treeProps)
         {
             _manager = manager;
             _treeProps = treeProps;
-            _dayNightCycle = dayNightCycle;
 
             _canopy = _manager.gameObject.FindChild("Canopy");
             _trunk = _manager.gameObject.FindChild("Trunk");
