@@ -18,6 +18,9 @@ namespace SurvivalIsland.Components.Trees
         private readonly DayNightCycle _dayNightCycle;
 
         private readonly TreeProps _treeProps;
+        private readonly ParticleSystem _leavesParticleSystem;
+        private readonly ParticleSystem _woodParticleSystem;
+
 
         public HarvestingState(TreeManager manager, TreeProps treeProps, DayNightCycle dayNightCycle)
         {
@@ -28,6 +31,9 @@ namespace SurvivalIsland.Components.Trees
             _canopy = _manager.gameObject.FindChild("Canopy");
             _trunk = _manager.gameObject.FindChild("Trunk");
             _sapling = _manager.gameObject.FindChild("Sapling");
+
+            _leavesParticleSystem = _canopy.GetComponent<ParticleSystem>();
+            _woodParticleSystem = _trunk.GetComponent<ParticleSystem>();
         }
 
         public void EnterState()
@@ -65,12 +71,21 @@ namespace SurvivalIsland.Components.Trees
 
             if (randomItem != null)
             {
-                var actionToExecute = randomItem.Type switch
+                PlayerActionTypes actionToExecute = PlayerActionTypes.None;
+
+                switch (randomItem.Type)
                 {
-                    InventoryItemType.Leaf => PlayerActionTypes.CollectingLeaves,
-                    InventoryItemType.Wood => PlayerActionTypes.CollectingWood,
-                    _ => PlayerActionTypes.None
-                };
+                    case InventoryItemType.Leaf:
+                        actionToExecute = PlayerActionTypes.CollectingLeaves;
+                        if (!_leavesParticleSystem.isPlaying)
+                            _leavesParticleSystem.Play();
+                        break;
+                    case InventoryItemType.Wood:
+                        actionToExecute = PlayerActionTypes.CollectingWood;
+                        if (!_woodParticleSystem.isPlaying)
+                            _woodParticleSystem.Play();
+                        break;
+                }
 
                 var actionExecutedSuccessfully = playerActionCallback.Invoke(actionToExecute, randomItem);
 
@@ -83,7 +98,7 @@ namespace SurvivalIsland.Components.Trees
 
             randomItem = _manager.ObtainRandom(InventoryItemType.Leaf)
                 ?? _manager.ObtainRandom(InventoryItemType.Wood);
-            
+
             if (randomItem == null)
                 _manager.EnterTrunkState();
         }

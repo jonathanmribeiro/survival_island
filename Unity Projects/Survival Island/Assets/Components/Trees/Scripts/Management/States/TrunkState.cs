@@ -17,6 +17,7 @@ namespace SurvivalIsland.Components.Trees
 
         private readonly TreeProps _treeProps;
 
+        private readonly ParticleSystem _woodParticleSystem;
 
         public TrunkState(TreeManager manager, TreeProps treeProps)
         {
@@ -26,6 +27,8 @@ namespace SurvivalIsland.Components.Trees
             _canopy = _manager.gameObject.FindChild("Canopy");
             _trunk = _manager.gameObject.FindChild("Trunk");
             _sapling = _manager.gameObject.FindChild("Sapling");
+
+            _woodParticleSystem = _trunk.GetComponent<ParticleSystem>();
         }
 
         public void EnterState()
@@ -47,6 +50,9 @@ namespace SurvivalIsland.Components.Trees
                 return;
 
             var randomItem = _manager.ObtainRandom(InventoryItemType.Wood);
+            
+            if (!_woodParticleSystem.isPlaying)
+                _woodParticleSystem.Play();
 
             if (randomItem != null)
             {
