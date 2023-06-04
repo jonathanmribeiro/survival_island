@@ -25,6 +25,8 @@ namespace SurvivalIsland.Components.Trees
         private readonly List<Transform> _fruitInstances;
         private bool _hasMaximumAmountOfFruits;
 
+        private ParticleSystem _leavesParticleSystem;
+
         public FruitfullState(TreeManager manager, TreeProps treeProps, DayNightCycle dayNightCycle)
         {
             _manager = manager;
@@ -34,6 +36,8 @@ namespace SurvivalIsland.Components.Trees
             _canopy = _manager.gameObject.FindChild("Canopy");
             _trunk = _manager.gameObject.FindChild("Trunk");
             _sapling = _manager.gameObject.FindChild("Sapling");
+
+            _leavesParticleSystem = _canopy.GetComponent<ParticleSystem>();
 
             _fruitArea = _canopy.GetComponent<PolygonCollider2D>();
             _fruitInstances = new();
@@ -77,6 +81,8 @@ namespace SurvivalIsland.Components.Trees
         {
             if (!_playerInRange)
                 return;
+
+            _leavesParticleSystem.Play();
 
             var randomItem = _manager.ObtainRandom(_treeProps.FruitType);
 
