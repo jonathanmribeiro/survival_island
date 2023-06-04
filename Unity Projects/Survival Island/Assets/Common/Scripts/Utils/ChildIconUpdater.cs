@@ -1,5 +1,6 @@
 using SurvivalIsland.Common.Extensions;
 using SurvivalIsland.Common.Models;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,14 +16,14 @@ namespace SurvivalIsland.Common.Utils
             _icon.enabled = false;
         }
 
-        public void UpdateUI(InventoryItemModel inventoryItem)
+        public void UpdateUI(InventoryItemSlot inventorySlot)
         {
-            _icon.enabled = inventoryItem != null;
+            _icon.enabled = inventorySlot.Type != Enums.InventoryItemType.None;
 
-            if (inventoryItem == null)
+            if (!_icon.enabled)
                 return;
 
-            _icon.sprite = inventoryItem.Icon;
+            _icon.sprite = inventorySlot.Items.First().Icon;
         }
     }
 }

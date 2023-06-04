@@ -114,14 +114,14 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _characterIcon3.UpdateUI(_mainCharacterManager.GetCharacterItem(2));
             _characterIcon4.UpdateUI(_mainCharacterManager.GetCharacterItem(3));
 
-            _inventoryIcon1.UpdateUI(_mainCharacterManager.GetInventoryItem(0));
-            _inventoryIcon2.UpdateUI(_mainCharacterManager.GetInventoryItem(1));
-            _inventoryIcon3.UpdateUI(_mainCharacterManager.GetInventoryItem(2));
-            _inventoryIcon4.UpdateUI(_mainCharacterManager.GetInventoryItem(3));
-            _inventoryIcon5.UpdateUI(_mainCharacterManager.GetInventoryItem(4));
-            _inventoryIcon6.UpdateUI(_mainCharacterManager.GetInventoryItem(5));
-            _inventoryIcon7.UpdateUI(_mainCharacterManager.GetInventoryItem(6));
-            _inventoryIcon8.UpdateUI(_mainCharacterManager.GetInventoryItem(7));
+            _inventoryIcon1.UpdateUI(_mainCharacterManager.GetInventorySlot(0));
+            _inventoryIcon2.UpdateUI(_mainCharacterManager.GetInventorySlot(1));
+            _inventoryIcon3.UpdateUI(_mainCharacterManager.GetInventorySlot(2));
+            _inventoryIcon4.UpdateUI(_mainCharacterManager.GetInventorySlot(3));
+            _inventoryIcon5.UpdateUI(_mainCharacterManager.GetInventorySlot(4));
+            _inventoryIcon6.UpdateUI(_mainCharacterManager.GetInventorySlot(5));
+            _inventoryIcon7.UpdateUI(_mainCharacterManager.GetInventorySlot(6));
+            _inventoryIcon8.UpdateUI(_mainCharacterManager.GetInventorySlot(7));
         }
 
         public void ExitState()

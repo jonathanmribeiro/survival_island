@@ -10,17 +10,23 @@ namespace SurvivalIsland.Common.Inventory
     [Serializable]
     public class Inventory
     {
-        public List<InventoryItemModel> Items;
+        public List<InventoryItemSlot> Slots;
 
         public int MaxItems;
         public float MaxWeight;
 
-        public int CurrentAmount => Items.Count;
-        private float CurrentTotalWeight => Items.Sum(x => x.Weight);
+        public int CurrentAmount => Slots?.Count(x => x.Type != InventoryItemType.None) ?? 0;
+        private float CurrentTotalWeight => Slots?.Sum(x => x.CurrentWeight) ?? 0;
 
         public void Prepare(int maxItems, float maxWeight)
         {
-            Items = new();
+            Slots = new();
+
+            for (int i = 0; i < maxItems; i++)
+            {
+                Slots.Add(new(InventoryItemType.None, i));
+            }
+
             MaxItems = maxItems;
             MaxWeight = maxWeight;
         }
@@ -33,7 +39,24 @@ namespace SurvivalIsland.Common.Inventory
             if (CurrentAmount >= MaxItems || futureWeight >= MaxWeight)
                 return false;
 
-            Items.Add(item);
+            var slot = Slots.FirstOrDefault(x => x.Type == item.Type);
+
+            if (slot != null)
+            {
+                slot.Items.Add(item);
+            }
+            else
+            {
+                var emptySlot = Slots
+                    .OrderBy(x => x.SlotNumber)
+                    .FirstOrDefault(x => x.Type == InventoryItemType.None);
+
+                if (emptySlot == null)
+                    return false;
+
+                emptySlot.Type = item.Type;
+                emptySlot.Items.Add(item);
+            }
 
             return true;
         }
@@ -49,8 +72,21 @@ namespace SurvivalIsland.Common.Inventory
             }
         }
 
-        public InventoryItemModel ObtainRandom(InventoryItemType type) => Items.FirstOrDefault(x => x.Type == type);
-        public List<InventoryItemModel> ObtainAll(InventoryItemType type) => Items.Where(x => x.Type == type).ToList();
-        public void Remove(InventoryItemModel item) => Items.Remove(item);
+        public InventoryItemModel ObtainRandom(InventoryItemType type) => Slots.FirstOrDefault(x => x.Type == type)?.Items.FirstOrDefault();
+        public List<InventoryItemModel> ObtainAll(InventoryItemType type) => Slots.FirstOrDefault(x => x.Type == type)?.Items;
+        public void Remove(InventoryItemModel item)
+        {
+            var slot = Slots.FirstOrDefault(x => x.Type == item.Type);
+
+            if (slot != null)
+            {
+                slot.Items.Remove(item);
+
+                if (slot.Items.Count.Equals(0))
+                {
+                    slot.Type = InventoryItemType.None;
+                }
+            }
+        }
     }
 }

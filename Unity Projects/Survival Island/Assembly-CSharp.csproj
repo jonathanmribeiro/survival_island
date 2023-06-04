@@ -62,6 +62,7 @@
     <Compile Include="Assets\Main menu\Components\Management\Scripts\MainMenuSceneManager.cs" />
     <Compile Include="Assets\Common\Scripts\Extensions\PolygonCollider2DExtensions.cs" />
     <Compile Include="Assets\Common\Scripts\Models\InputModel.cs" />
+    <Compile Include="Assets\Common\Scripts\Models\Inventory\InventoryItemSlot.cs" />
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\GameplaySceneManager.cs" />
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\UI\States\BasicUIState.cs" />
     <Compile Include="Assets\Common\Scripts\Constants\SceneConstants.cs" />

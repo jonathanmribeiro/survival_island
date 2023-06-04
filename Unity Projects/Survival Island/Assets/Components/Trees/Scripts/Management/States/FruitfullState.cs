@@ -120,6 +120,6 @@ namespace SurvivalIsland.Components.Trees
         }
 
         private void VerifyMaximumAmountOfFruit()
-            => _hasMaximumAmountOfFruits = _manager.ObtainAll(_treeProps.FruitType).Count.Equals(_treeProps.MaxFruitAmount);
+            => _hasMaximumAmountOfFruits = _manager.ObtainAll(_treeProps.FruitType)?.Count.Equals(_treeProps.MaxFruitAmount) ?? false;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using SurvivalIsland.Common.Inventory;
 using SurvivalIsland.Common.Models;
+using System.Linq;
 using UnityEngine;
 
 namespace SurvivalIsland.Components.MainCharacter
@@ -24,20 +25,14 @@ namespace SurvivalIsland.Components.MainCharacter
             return Inventory.TryAddItem(itemModel);
         }
 
-        public InventoryItemModel GetInventoryItem(int itemIndex)
+        public InventoryItemSlot GetInventorySlot(int itemIndex)
         {
-            if (itemIndex < Inventory.CurrentAmount)
-                return Inventory.Items[itemIndex];
-
-            return null;
+            return Inventory.Slots.First(x => x.SlotNumber == itemIndex);
         }
 
-        public InventoryItemModel GetCharacterItem(int itemIndex)
+        public InventoryItemSlot GetCharacterItem(int itemIndex)
         {
-            if (itemIndex < CharacterInventory.CurrentAmount)
-                return CharacterInventory.Items[itemIndex];
-
-            return null;
+            return CharacterInventory.Slots.First(x => x.SlotNumber == itemIndex);
         }
     }
 }
