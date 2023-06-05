@@ -111,6 +111,7 @@
     <Compile Include="Assets\Common\Management\Scripts\GameManager.cs" />
     <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterManager.cs" />
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\UI\States\IGameplayUIState.cs" />
+    <Compile Include="Assets\Components\Selector\Scripts\SelectorManager.cs" />
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\UI\States\JournalUIState.cs" />
     <Compile Include="Assets\Common\Scripts\Constants\TagConstants.cs" />
     <Compile Include="Assets\Common\Management\Scripts\Input\Handlers\VirtualInputHandler.cs" />

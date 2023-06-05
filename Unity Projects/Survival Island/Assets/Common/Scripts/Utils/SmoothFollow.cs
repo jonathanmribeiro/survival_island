@@ -7,19 +7,19 @@ namespace SurvivalIsland.Common.Utils
     {
         public Transform Target;
 
-        private Vector3 _velocity = Vector3.zero;
+        public Vector3 Velocity = Vector3.zero;
+        private float SelfZPosition => transform.position.z;
 
         public void UpdateSmoothFollow()
         {
             if (Target == null) return;
 
-            var selfPositionZ = transform.position.z;
-            var newPosition = new Vector3(Target.position.x, Target.position.y, selfPositionZ);
+            var newPosition = new Vector3(Target.position.x, Target.position.y, SelfZPosition);
 
             transform.position = Vector3.SmoothDamp(
                 transform.position,
                 newPosition,
-                ref _velocity,
+                ref Velocity,
                 SceneConstants.CAMERA_FOLLOW_SMOOTH_TIME);
         }
     }

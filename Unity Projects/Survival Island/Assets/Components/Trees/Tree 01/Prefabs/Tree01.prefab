@@ -5103,6 +5103,7 @@ Transform:
   - {fileID: 4834482715849953991}
   - {fileID: 7365980615655969264}
   - {fileID: 1698650355652369447}
+  - {fileID: 6145655300625378053}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5118,8 +5119,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8bccd18708451439f17e9038e98858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SelectorLocation: {fileID: 0}
+  SelectorSize: {x: 1.783954, y: 1}
   Inventory:
-    Items: []
+    Slots: []
     MaxItems: 0
     MaxWeight: 0
   TreeProps:
@@ -10101,3 +10104,34 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &5299086897674847029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6145655300625378053}
+  m_Layer: 0
+  m_Name: SelectorLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6145655300625378053
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5299086897674847029}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.0175, y: -2.17, z: -0.024475046}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4020631296000718587}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -11,6 +11,7 @@ namespace SurvivalIsland.Components.MainCharacter
         private MainCharacterAnimationManager _animationManager;
         private MainCharacterInventoryManager _inventoryManager;
         private MainCharacterVitalityManager _vitalityManager;
+        private MainCharacterActionsManager _actionsManager;
 
         private void Awake()
         {
@@ -18,6 +19,7 @@ namespace SurvivalIsland.Components.MainCharacter
             _animationManager = GetComponent<MainCharacterAnimationManager>();
             _inventoryManager = GetComponent<MainCharacterInventoryManager>();
             _vitalityManager = GetComponent<MainCharacterVitalityManager>();
+            _actionsManager = GetComponent<MainCharacterActionsManager>();
         }
 
         public void Prepare(InputManager inputManager, DayNightCycle dayNightCycle)
@@ -26,6 +28,7 @@ namespace SurvivalIsland.Components.MainCharacter
             _animationManager.Prepare(inputManager);
             _vitalityManager.Prepare(dayNightCycle);
             _inventoryManager.Prepare();
+            _actionsManager.Prepare();
         }
 
         public void UpdateMainCharacter()
@@ -33,6 +36,7 @@ namespace SurvivalIsland.Components.MainCharacter
             _movementManager.UpdateMovement();
             _animationManager.UpdateMovement();
             _vitalityManager.UpdateVitality();
+            _actionsManager.UpdateActions();
         }
 
         public VitalitySystemModel GetVitalitySystem()

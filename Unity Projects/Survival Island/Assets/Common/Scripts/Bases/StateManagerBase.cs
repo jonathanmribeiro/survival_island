@@ -9,6 +9,8 @@ namespace SurvivalIsland.Common.Bases
     public class StateManagerBase : MonoBehaviour
     {
         public IState CurrentState;
+        public Transform SelectorLocation;
+        public Vector2 SelectorSize;
 
         public void SwitchState(IState nextState)
         {

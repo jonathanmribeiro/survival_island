@@ -1,6 +1,7 @@
 using SurvivalIsland.Common.Bases;
 using SurvivalIsland.Common.Constants;
 using SurvivalIsland.Common.Enums;
+using SurvivalIsland.Common.Extensions;
 using SurvivalIsland.Common.Inventory;
 using SurvivalIsland.Common.Models;
 using SurvivalIsland.Common.Utils;
@@ -22,6 +23,7 @@ namespace SurvivalIsland.Components.Trees
         private void Awake()
         {
             gameObject.name = $"{gameObject.name}_{transform.position}";
+            SelectorLocation = gameObject.FindChild("SelectorLocation").transform;
         }
 
         public void EnterFruitfullState() => SwitchState(_fruitfullState);
