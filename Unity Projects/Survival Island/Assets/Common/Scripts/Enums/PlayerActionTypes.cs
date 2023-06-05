@@ -3,7 +3,7 @@ namespace SurvivalIsland.Common.Enums
 	public enum PlayerActionTypes
 	{
 		None,
-		CollectingWood,
-        CollectingLeaves
+		Collecting,
+		Chopping
     }
 }

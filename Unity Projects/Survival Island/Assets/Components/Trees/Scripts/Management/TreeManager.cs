@@ -1,18 +1,15 @@
+using SurvivalIsland.Common.Bases;
 using SurvivalIsland.Common.Constants;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Inventory;
 using SurvivalIsland.Common.Models;
 using SurvivalIsland.Common.Utils;
-using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace SurvivalIsland.Components.Trees
 {
-    public class TreeManager : MonoBehaviour
+    public class TreeManager : StateManagerBase
     {
-        public ITreeState CurrentState;
-
         private FruitfullState _fruitfullState;
         private HarvestingState _harvestingState;
         private GrowingState _growingState;
@@ -20,9 +17,7 @@ namespace SurvivalIsland.Components.Trees
         private GoneState _goneState;
 
         public Inventory Inventory;
-
         public TreeProps TreeProps;
-
 
         private void Awake()
         {
@@ -34,13 +29,6 @@ namespace SurvivalIsland.Components.Trees
         public void EnterGrowingState() => SwitchState(_growingState);
         public void EnterTrunkState() => SwitchState(_trunkState);
         public void EnterGoneState() => SwitchState(_goneState);
-
-        private void SwitchState(ITreeState nextState)
-        {
-            CurrentState?.ExitState();
-            CurrentState = nextState;
-            CurrentState.EnterState();
-        }
 
         public void Prepare(DayNightCycle dayNightCycle)
         {
@@ -65,15 +53,6 @@ namespace SurvivalIsland.Components.Trees
         {
             CurrentState.UpdateState();
         }
-
-        private void OnTriggerStay2D(Collider2D collision)
-            => CurrentState.OnTriggerStay2D(collision);
-
-        private void OnTriggerExit2D(Collider2D collision)
-            => CurrentState.OnTriggerExit2D(collision);
-
-        public void ExecuteAction(Func<PlayerActionTypes, InventoryItemModel, bool> playerActionCallback)
-            => CurrentState.ExecuteAction(playerActionCallback);
 
         public bool TryAddItem(InventoryItemType itemType) => Inventory.TryAddItem(itemType);
         public void AddMultiple(InventoryItemType itemType, int amount) => Inventory.AddMultiple(itemType, amount);

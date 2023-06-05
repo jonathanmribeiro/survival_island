@@ -1,6 +1,7 @@
 ﻿using SurvivalIsland.Common.Bases;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
+using SurvivalIsland.Common.Interfaces;
 using SurvivalIsland.Common.Models;
 using SurvivalIsland.Common.Utils;
 using System;
@@ -8,7 +9,7 @@ using UnityEngine;
 
 namespace SurvivalIsland.Components.Trees
 {
-    public class HarvestingState : PlayerDetectionBase, ITreeState
+    public class HarvestingState : PlayerDetectionBase, IState
     {
         private readonly GameObject _canopy;
         private readonly GameObject _trunk;
@@ -21,6 +22,7 @@ namespace SurvivalIsland.Components.Trees
         private readonly ParticleSystem _leavesParticleSystem;
         private readonly ParticleSystem _woodParticleSystem;
 
+        private PlayerActionTypes _playerActionToExecute;
 
         public HarvestingState(TreeManager manager, TreeProps treeProps, DayNightCycle dayNightCycle)
         {
@@ -46,11 +48,6 @@ namespace SurvivalIsland.Components.Trees
                 _treeProps.TimeEnteredHarvestingState = _dayNightCycle.CurrentTime;
         }
 
-        public void ExitState()
-        {
-            _treeProps.TimeEnteredHarvestingState = null;
-        }
-
         public void UpdateState()
         {
             DateTime nextStateTime = _treeProps.TimeEnteredHarvestingState.Value.Add(_treeProps.TimeNeededInHarvestingState);
@@ -60,6 +57,13 @@ namespace SurvivalIsland.Components.Trees
                 _manager.EnterFruitfullState();
             }
         }
+
+        public void ExitState()
+        {
+            _treeProps.TimeEnteredHarvestingState = null;
+        }
+
+        public PlayerActionTypes GetAction() => _playerActionToExecute;
 
         public void ExecuteAction(Func<PlayerActionTypes, InventoryItemModel, bool> playerActionCallback)
         {
@@ -71,23 +75,21 @@ namespace SurvivalIsland.Components.Trees
 
             if (randomItem != null)
             {
-                PlayerActionTypes actionToExecute = PlayerActionTypes.None;
-
                 switch (randomItem.Type)
                 {
                     case InventoryItemType.Leaf:
-                        actionToExecute = PlayerActionTypes.CollectingLeaves;
+                        _playerActionToExecute = PlayerActionTypes.Collecting;
                         if (!_leavesParticleSystem.isPlaying)
                             _leavesParticleSystem.Play();
                         break;
                     case InventoryItemType.Wood:
-                        actionToExecute = PlayerActionTypes.CollectingWood;
+                        _playerActionToExecute = PlayerActionTypes.Chopping;
                         if (!_woodParticleSystem.isPlaying)
                             _woodParticleSystem.Play();
                         break;
                 }
 
-                var actionExecutedSuccessfully = playerActionCallback.Invoke(actionToExecute, randomItem);
+                var actionExecutedSuccessfully = playerActionCallback.Invoke(_playerActionToExecute, randomItem);
 
                 if (actionExecutedSuccessfully)
                 {

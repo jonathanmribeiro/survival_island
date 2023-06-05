@@ -1,13 +1,14 @@
 ﻿using SurvivalIsland.Common.Bases;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
+using SurvivalIsland.Common.Interfaces;
 using SurvivalIsland.Common.Models;
 using System;
 using UnityEngine;
 
 namespace SurvivalIsland.Components.Trees
 {
-    public class TrunkState : PlayerDetectionBase, ITreeState
+    public class TrunkState : PlayerDetectionBase, IState
     {
         private readonly GameObject _canopy;
         private readonly GameObject _trunk;
@@ -40,9 +41,11 @@ namespace SurvivalIsland.Components.Trees
             _manager.AddMultiple(InventoryItemType.Wood, _treeProps.MaxWoodAmount / 3);
         }
 
+        public void UpdateState() {  /*Left empty on purpose*/ }
+
         public void ExitState() {  /*Left empty on purpose*/ }
 
-        public void UpdateState() {  /*Left empty on purpose*/ }
+        public PlayerActionTypes GetAction() => PlayerActionTypes.Chopping;
 
         public void ExecuteAction(Func<PlayerActionTypes, InventoryItemModel, bool> playerActionCallback)
         {
@@ -56,7 +59,7 @@ namespace SurvivalIsland.Components.Trees
 
             if (randomItem != null)
             {
-                var actionExecutedSuccessfully = playerActionCallback.Invoke(PlayerActionTypes.CollectingWood, randomItem);
+                var actionExecutedSuccessfully = playerActionCallback.Invoke(PlayerActionTypes.Collecting, randomItem);
 
                 if (actionExecutedSuccessfully)
                 {

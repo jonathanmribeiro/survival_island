@@ -1,6 +1,7 @@
 ﻿using SurvivalIsland.Common.Bases;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
+using SurvivalIsland.Common.Interfaces;
 using SurvivalIsland.Common.Models;
 using SurvivalIsland.Common.Utils;
 using System;
@@ -8,7 +9,7 @@ using UnityEngine;
 
 namespace SurvivalIsland.Components.Trees
 {
-    public class GoneState : PlayerDetectionBase, ITreeState
+    public class GoneState : PlayerDetectionBase, IState
     {
         private readonly GameObject _canopy;
         private readonly GameObject _trunk;
@@ -40,11 +41,6 @@ namespace SurvivalIsland.Components.Trees
                 _treeProps.TimeEnteredGoneState = _dayNightCycle.CurrentTime;
         }
 
-        public void ExitState()
-        {
-            _treeProps.TimeEnteredGoneState = null;
-        }
-
         public void UpdateState()
         {
             DateTime nextStateTime = _treeProps.TimeEnteredGoneState.Value.Add(_treeProps.TimeNeededInGoneState);
@@ -54,6 +50,13 @@ namespace SurvivalIsland.Components.Trees
                 _manager.EnterGrowingState();
             }
         }
+
+        public void ExitState()
+        {
+            _treeProps.TimeEnteredGoneState = null;
+        }
+        
+        public PlayerActionTypes GetAction() => PlayerActionTypes.None;
 
         public void ExecuteAction(Func<PlayerActionTypes, InventoryItemModel, bool> playerActionCallback) {/*Left empty on purpose*/}
     }

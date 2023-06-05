@@ -1,6 +1,7 @@
 ﻿using SurvivalIsland.Common.Bases;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
+using SurvivalIsland.Common.Interfaces;
 using SurvivalIsland.Common.Models;
 using SurvivalIsland.Common.Utils;
 using System;
@@ -10,7 +11,7 @@ using UnityEngine;
 
 namespace SurvivalIsland.Components.Trees
 {
-    public class FruitfullState : PlayerDetectionBase, ITreeState
+    public class FruitfullState : PlayerDetectionBase, IState
     {
         private readonly GameObject _canopy;
         private readonly GameObject _trunk;
@@ -56,11 +57,6 @@ namespace SurvivalIsland.Components.Trees
             PopulateFruitArea();
         }
 
-        public void ExitState()
-        {
-            _treeProps.TimeEnteredFruitfullState = null;
-        }
-
         public void UpdateState()
         {
             if (_hasMaximumAmountOfFruits)
@@ -77,6 +73,13 @@ namespace SurvivalIsland.Components.Trees
             }
         }
 
+        public void ExitState()
+        {
+            _treeProps.TimeEnteredFruitfullState = null;
+        }
+
+        public PlayerActionTypes GetAction() => PlayerActionTypes.Collecting;
+
         public void ExecuteAction(Func<PlayerActionTypes, InventoryItemModel, bool> playerActionCallback)
         {
             if (!_playerInRange)
@@ -90,7 +93,7 @@ namespace SurvivalIsland.Components.Trees
             if (randomItem == null)
                 return;
 
-            var actionExecutedSuccessfully = playerActionCallback.Invoke(PlayerActionTypes.CollectingWood, randomItem);
+            var actionExecutedSuccessfully = playerActionCallback.Invoke(PlayerActionTypes.Collecting, randomItem);
 
             if (actionExecutedSuccessfully)
             {

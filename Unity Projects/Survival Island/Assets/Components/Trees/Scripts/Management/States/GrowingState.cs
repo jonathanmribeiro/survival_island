@@ -1,6 +1,7 @@
 ﻿using SurvivalIsland.Common.Bases;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
+using SurvivalIsland.Common.Interfaces;
 using SurvivalIsland.Common.Models;
 using SurvivalIsland.Common.Utils;
 using System;
@@ -8,7 +9,7 @@ using UnityEngine;
 
 namespace SurvivalIsland.Components.Trees
 {
-    public class GrowingState : PlayerDetectionBase, ITreeState
+    public class GrowingState : PlayerDetectionBase, IState
     {
         private readonly GameObject _canopy;
         private readonly GameObject _trunk;
@@ -46,11 +47,6 @@ namespace SurvivalIsland.Components.Trees
                 _treeProps.TimeEnteredGrowingState = _dayNightCycle.CurrentTime;
         }
 
-        public void ExitState()
-        {
-            _treeProps.TimeEnteredGrowingState = null;
-        }
-
         public void UpdateState()
         {
             DateTime nextStateTime = _treeProps.TimeEnteredGrowingState.Value.Add(_treeProps.TimeNeededInGoneState);
@@ -60,6 +56,13 @@ namespace SurvivalIsland.Components.Trees
                 _manager.EnterHarvestingState();
             }
         }
+
+        public void ExitState()
+        {
+            _treeProps.TimeEnteredGrowingState = null;
+        }
+
+        public PlayerActionTypes GetAction() => PlayerActionTypes.Chopping;
 
         public void ExecuteAction(Func<PlayerActionTypes, InventoryItemModel, bool> playerActionCallback)
         {
@@ -71,7 +74,7 @@ namespace SurvivalIsland.Components.Trees
 
             if (randomItem != null)
             {
-                var actionExecutedSuccessfully = playerActionCallback.Invoke(PlayerActionTypes.CollectingWood, randomItem);
+                var actionExecutedSuccessfully = playerActionCallback.Invoke(PlayerActionTypes.Collecting, randomItem);
 
                 if (actionExecutedSuccessfully)
                 {

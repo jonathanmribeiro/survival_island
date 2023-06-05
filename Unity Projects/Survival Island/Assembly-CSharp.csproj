@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Assets\Common\Scripts\Constants\MainCharacterConstants.cs" />
     <Compile Include="Assets\Main menu\Components\Management\Scripts\MainMenuSceneManager.cs" />
+    <Compile Include="Assets\Common\Scripts\Bases\StateManagerBase.cs" />
     <Compile Include="Assets\Common\Scripts\Extensions\PolygonCollider2DExtensions.cs" />
     <Compile Include="Assets\Common\Scripts\Models\InputModel.cs" />
     <Compile Include="Assets\Common\Scripts\Models\Inventory\InventoryItemSlot.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\UI\States\BasicUIState.cs" />
     <Compile Include="Assets\Common\Scripts\Constants\SceneConstants.cs" />
     <Compile Include="Assets\Common\Scripts\Utils\DayNightCycle.cs" />
+    <Compile Include="Assets\Common\Scripts\Interfaces\IState.cs" />
     <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterInventoryManager.cs" />
     <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterAnimationManager.cs" />
     <Compile Include="Assets\Main menu\Components\Management\Scripts\MainMenuUIManager.cs" />
@@ -103,7 +105,6 @@
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\UI\GameplayUIManager.cs" />
     <Compile Include="Assets\Components\Trees\Scripts\Management\States\GrowingState.cs" />
     <Compile Include="Assets\Common\Scripts\Models\Inventory\WoodModel.cs" />
-    <Compile Include="Assets\Components\Trees\Scripts\Management\States\Interfaces\ITreeState.cs" />
     <Compile Include="Assets\Common\Scripts\Inventory\Inventory.cs" />
     <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterActionsManager.cs" />
     <Compile Include="Assets\Common\Scripts\Utils\ChildIconUpdater.cs" />
