@@ -2,6 +2,7 @@ using SurvivalIsland.Common.Constants;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Management;
 using SurvivalIsland.Common.Utils;
+using SurvivalIsland.Components.Campfire;
 using SurvivalIsland.Components.MainCharacter;
 using SurvivalIsland.Components.Trees;
 using SurvivalIsland.Gameplay.Management.UI;
@@ -22,6 +23,7 @@ namespace SurvivalIsland.Gameplay.Management
         private GameplayUIManager _uiManager;
 
         private TreeManager[] _treeManagers;
+        private CampfireManager[] _campfireManagers;
 
         private void Awake()
         {
@@ -45,6 +47,7 @@ namespace SurvivalIsland.Gameplay.Management
             _dayNightCycle.SetCurrentTime(DateTime.Now);
 
             PrepareTrees();
+            PrepareCampfires();
         }
 
         private void Update()
@@ -67,9 +70,14 @@ namespace SurvivalIsland.Gameplay.Management
 
         private void EventPlayerAction()
         {
-            foreach (var treeManager in _treeManagers)
+            foreach (var manager in _treeManagers)
             {
-                treeManager.ExecuteAction(_mainCharacterActionsManager.ExecuteAction);
+                manager.ExecuteAction(_mainCharacterActionsManager.ExecuteAction);
+            }
+
+            foreach (var manager in _campfireManagers)
+            {
+                manager.ExecuteAction(_mainCharacterActionsManager.ExecuteAction);
             }
         }
 
@@ -77,9 +85,19 @@ namespace SurvivalIsland.Gameplay.Management
         {
             _treeManagers = FindObjectsOfType<TreeManager>();
 
-            foreach (var treeManager in _treeManagers)
+            foreach (var manager in _treeManagers)
             {
-                treeManager.Prepare(_dayNightCycle);
+                manager.Prepare(_dayNightCycle);
+            }
+        }
+
+        private void PrepareCampfires()
+        {
+            _campfireManagers = FindObjectsOfType<CampfireManager>();
+
+            foreach (var manager in _campfireManagers)
+            {
+                manager.Prepare();
             }
         }
     }
