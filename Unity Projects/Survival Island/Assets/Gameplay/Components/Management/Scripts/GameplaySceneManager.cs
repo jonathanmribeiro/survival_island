@@ -5,6 +5,7 @@ using SurvivalIsland.Common.Utils;
 using SurvivalIsland.Components.MainCharacter;
 using SurvivalIsland.Components.Trees;
 using SurvivalIsland.Gameplay.Management.UI;
+using System;
 using UnityEngine;
 
 namespace SurvivalIsland.Gameplay.Management
@@ -40,6 +41,8 @@ namespace SurvivalIsland.Gameplay.Management
             _inputManager.Prepare(InputType.Virtual, EventPlayerAction);
             _mainCharacterManager.Prepare(_inputManager, _dayNightCycle);
             _uiManager.Prepare(_mainCharacterManager, _dayNightCycle);
+
+            _dayNightCycle.SetCurrentTime(DateTime.Now);
 
             PrepareTrees();
         }

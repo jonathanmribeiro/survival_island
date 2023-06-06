@@ -14,6 +14,7 @@ namespace SurvivalIsland.Components.Trees
         private readonly GameObject _canopy;
         private readonly GameObject _trunk;
         private readonly GameObject _sapling;
+        private readonly CircleCollider2D _circleCollider;
 
         private readonly TreeManager _manager;
         private readonly DayNightCycle _dayNightCycle;
@@ -29,6 +30,7 @@ namespace SurvivalIsland.Components.Trees
             _canopy = _manager.gameObject.FindChild("Canopy");
             _trunk = _manager.gameObject.FindChild("Trunk");
             _sapling = _manager.gameObject.FindChild("Sapling");
+            _circleCollider = _manager.GetComponent<CircleCollider2D>();
         }
 
         public void EnterState()
@@ -36,6 +38,7 @@ namespace SurvivalIsland.Components.Trees
             _canopy.SetActive(false);
             _trunk.SetActive(false);
             _sapling.SetActive(false);
+            _circleCollider.enabled = false;
 
             if (!_treeProps.TimeEnteredGoneState.HasValue)
                 _treeProps.TimeEnteredGoneState = _dayNightCycle.CurrentTime;
@@ -54,6 +57,7 @@ namespace SurvivalIsland.Components.Trees
         public void ExitState()
         {
             _treeProps.TimeEnteredGoneState = null;
+            _circleCollider.enabled = true;
         }
         
         public PlayerActionTypes GetAction() => PlayerActionTypes.None;

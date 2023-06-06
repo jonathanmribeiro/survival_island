@@ -390,6 +390,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4801657766981027979, guid: a82cd6242ee31c34da18220d7a2a6780, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4922,6 +4926,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 179064746731291183, guid: 5b5866bca35904140bc110b6611523de, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 179064746731291183, guid: 5b5866bca35904140bc110b6611523de, type: 3}
       propertyPath: m_SortingOrder
       value: 999
@@ -25422,6 +25430,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 551550585975779361, guid: 7671191dc571b9343a941b7770940754, type: 3}
+      propertyPath: _targetDayLength
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 551550585975779361, guid: 7671191dc571b9343a941b7770940754, type: 3}
       propertyPath: LightColor.ctime0
       value: 0
       objectReference: {fileID: 0}
@@ -27073,7 +27085,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -37.69995, y: -144.76001}
+  m_AnchoredPosition: {x: -37.699966, y: -144.76001}
   m_SizeDelta: {x: -171.84, y: 213.97}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2138222000
