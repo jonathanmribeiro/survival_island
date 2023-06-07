@@ -3,7 +3,7 @@ using SurvivalIsland.Common.Extensions;
 
 namespace SurvivalIsland.Components.Campfire
 {
-    public class CampfireManager : StateManagerBase
+    public class CampfireManager : PlayerActionStateManagerBase
     {
         private ExtinguishedState _extinguishedState;
         private LitState _litState;

@@ -1,17 +1,21 @@
-
 using SurvivalIsland.Common.Extensions;
+using SurvivalIsland.Common.Interfaces;
 using SurvivalIsland.Common.Utils;
 using SurvivalIsland.Components.MainCharacter;
 using UnityEngine;
 
 namespace SurvivalIsland.Gameplay.Management.UI
 {
-    public class InventoryUIState : IGameplayUIState
+    public class InventoryUIState : IState
     {
         private readonly GameplayUIManager _uiManager;
+
         private readonly MainCharacterManager _mainCharacterManager;
 
+        private GameObject _basicUI;
         private GameObject _inventoryUI;
+        private GameObject _journalUI;
+        private GameObject _craftingUI;
 
         private ChildTextUpdater _healthText;
         private ChildTextUpdater _hungerText;
@@ -39,10 +43,13 @@ namespace SurvivalIsland.Gameplay.Management.UI
                                 MainCharacterManager mainCharacterManager)
         {
             _uiManager = uiManager;
+
             _mainCharacterManager = mainCharacterManager;
 
+            _basicUI = GameObject.Find("Canvas").FindChild("BasicUI");
+            _craftingUI = GameObject.Find("Canvas").FindChild("CraftingUI");
             _inventoryUI = GameObject.Find("Canvas").FindChild("InventoryUI");
-            _inventoryUI.SetActive(false);
+            _journalUI = GameObject.Find("Canvas").FindChild("JournalUI");
 
             var health = _inventoryUI.FindChild("Health");
             _healthText = health.GetComponentInChildren<ChildTextUpdater>();
@@ -96,8 +103,10 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _inventoryIcon7.Prepare("InventorySlotIcon");
             _inventoryIcon8.Prepare("InventorySlotIcon");
 
+            _basicUI.SetActive(false);
             _inventoryUI.SetActive(true);
-            _inventoryUI.GetComponent<CanvasGroup>().alpha = 1.0f;
+            _journalUI.SetActive(false);
+            _craftingUI.SetActive(false);
         }
 
         public void UpdateState()
@@ -124,12 +133,7 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _inventoryIcon8.UpdateUI(_mainCharacterManager.GetInventorySlot(7));
         }
 
-        public void ExitState()
-        {
-            _inventoryUI.GetComponent<CanvasGroup>().alpha = 0.0f;
-            _inventoryUI.SetActive(false);
-        }
-
+        public void ExitState() { }
         public void OnClick_CloseInventory() => _uiManager.EnterBasicUIState();
         public void OnClick_OpenJournal() => _uiManager.EnterJournalState();
     }

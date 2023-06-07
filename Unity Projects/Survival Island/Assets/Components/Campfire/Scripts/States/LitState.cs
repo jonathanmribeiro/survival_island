@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace SurvivalIsland.Components.Campfire
 {
-    public class LitState : PlayerDetectionBase, IState
+    public class LitState : PlayerDetectionBase, IPlayerActionState
     {
         private CampfireManager _manager;
 

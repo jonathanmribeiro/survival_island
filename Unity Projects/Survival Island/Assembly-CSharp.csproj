@@ -67,6 +67,7 @@
     <Compile Include="Assets\Common\Scripts\Models\Inventory\InventoryItemSlot.cs" />
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\GameplaySceneManager.cs" />
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\UI\States\BasicUIState.cs" />
+    <Compile Include="Assets\Common\Scripts\Bases\PlayerActionStateManagerBase.cs" />
     <Compile Include="Assets\Components\Trees\Scripts\States\HarvestingState.cs" />
     <Compile Include="Assets\Common\Scripts\Constants\SceneConstants.cs" />
     <Compile Include="Assets\Common\Scripts\Utils\DayNightCycle.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Assets\Components\Trees\Scripts\States\TrunkState.cs" />
     <Compile Include="Assets\Components\Trees\Scripts\States\GoneState.cs" />
     <Compile Include="Assets\Common\Scripts\Extensions\GameObjectExtensions.cs" />
+    <Compile Include="Assets\Common\Scripts\Interfaces\IPlayerActionState.cs" />
     <Compile Include="Assets\Common\Scripts\Inventory\InventoryItemFactory.cs" />
     <Compile Include="Assets\Components\Trees\Scripts\TreeProps.cs" />
     <Compile Include="Assets\Common\Scripts\Constants\InventoryConstants.cs" />
@@ -92,8 +94,8 @@
     <Compile Include="Assets\Components\Trees\Scripts\States\GrowingState.cs" />
     <Compile Include="Assets\Common\Scripts\Utils\ChildTextUpdater.cs" />
     <Compile Include="Assets\Common\Scripts\Bases\PlayerDetectionBase.cs" />
-    <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterMovementManager.cs" />
     <Compile Include="Assets\Components\Signs\Scripts\States\InactiveState.cs" />
+    <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterMovementManager.cs" />
     <Compile Include="Assets\Common\Scripts\Constants\AnimatorVariablesConstants.cs" />
     <Compile Include="Assets\Components\Campfire\Scripts\States\ExtinguishedState.cs" />
     <Compile Include="Assets\Common\Scripts\Utils\ChildButtonAction.cs" />
@@ -112,6 +114,7 @@
     <Compile Include="Assets\Components\Signs\Scripts\SignManager.cs" />
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\UI\GameplayUIManager.cs" />
     <Compile Include="Assets\Common\Scripts\Models\Inventory\WoodModel.cs" />
+    <Compile Include="Assets\Gameplay\Components\Management\Scripts\UI\States\CraftingUIState.cs" />
     <Compile Include="Assets\Components\Trees\Scripts\TreeManager.cs" />
     <Compile Include="Assets\Common\Scripts\Inventory\Inventory.cs" />
     <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterActionsManager.cs" />
@@ -120,7 +123,6 @@
     <Compile Include="Assets\Common\Management\Scripts\GameManager.cs" />
     <Compile Include="Assets\Components\Campfire\Scripts\CampfireProps.cs" />
     <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterManager.cs" />
-    <Compile Include="Assets\Gameplay\Components\Management\Scripts\UI\States\IGameplayUIState.cs" />
     <Compile Include="Assets\Components\Selector\Scripts\SelectorManager.cs" />
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\UI\States\JournalUIState.cs" />
     <Compile Include="Assets\Common\Scripts\Constants\TagConstants.cs" />

@@ -1,14 +1,14 @@
+using SurvivalIsland.Common.Bases;
 using SurvivalIsland.Common.Utils;
 using SurvivalIsland.Components.MainCharacter;
 using SurvivalIsland.Gameplay.Management.UI;
-using UnityEngine;
 
 namespace SurvivalIsland.Gameplay.Management
 {
-    public class GameplayUIManager : MonoBehaviour
+    public class GameplayUIManager : StateManagerBase
     {
-        public IGameplayUIState CurrentState;
         private BasicUIState _basicUIState;
+        private CraftingUIState _craftingUIState;
         private InventoryUIState _inventoryUIState;
         private JournalUIState _journalUIState;
 
@@ -18,26 +18,17 @@ namespace SurvivalIsland.Gameplay.Management
             DayNightCycle dayNightCycle
         )
         {
-            _basicUIState = new(this, mainCharacterManager, dayNightCycle);
+            _basicUIState = new(this, dayNightCycle, mainCharacterManager);
+            _craftingUIState = new(this);
             _inventoryUIState = new(this, mainCharacterManager);
             _journalUIState = new(this);
 
             EnterBasicUIState();
         }
 
-        public void UpdateUI()
-        {
-            CurrentState.UpdateState();
-        }
-
-        private void SwitchState(IGameplayUIState nextState)
-        {
-            CurrentState?.ExitState();
-            CurrentState = nextState;
-            CurrentState.EnterState();
-        }
-
+        public void UpdateUI() => CurrentState.UpdateState();
         public void EnterBasicUIState() => SwitchState(_basicUIState);
+        public void EnterCraftingUIState() => SwitchState(_craftingUIState);
         public void EnterInventoryState() => SwitchState(_inventoryUIState);
         public void EnterJournalState() => SwitchState(_journalUIState);
     }

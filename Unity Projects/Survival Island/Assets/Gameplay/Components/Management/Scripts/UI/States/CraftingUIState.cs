@@ -1,11 +1,10 @@
 using SurvivalIsland.Common.Extensions;
 using SurvivalIsland.Common.Interfaces;
-using SurvivalIsland.Gameplay.Management.Enums;
 using UnityEngine;
 
 namespace SurvivalIsland.Gameplay.Management.UI
 {
-    public class JournalUIState : IState
+    public class CraftingUIState : IState
     {
         private readonly GameplayUIManager _uiManager;
 
@@ -14,7 +13,7 @@ namespace SurvivalIsland.Gameplay.Management.UI
         private GameObject _journalUI;
         private GameObject _craftingUI;
 
-        public JournalUIState(GameplayUIManager uiManager)
+        public CraftingUIState(GameplayUIManager uiManager)
         {
             _uiManager = uiManager;
 
@@ -22,19 +21,19 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _craftingUI = GameObject.Find("Canvas").FindChild("CraftingUI");
             _inventoryUI = GameObject.Find("Canvas").FindChild("InventoryUI");
             _journalUI = GameObject.Find("Canvas").FindChild("JournalUI");
+
+            _basicUI.SetActive(false);
+            _inventoryUI.SetActive(false);
+            _journalUI.SetActive(false);
+            _craftingUI.SetActive(false);
         }
 
         public void EnterState()
         {
             _basicUI.SetActive(false);
             _inventoryUI.SetActive(false);
-            _journalUI.SetActive(true);
-            _craftingUI.SetActive(false);
-        }
-
-        public void UpdateState()
-        {
-
+            _journalUI.SetActive(false);
+            _craftingUI.SetActive(true);
         }
 
         public void ExitState()
@@ -42,7 +41,7 @@ namespace SurvivalIsland.Gameplay.Management.UI
             throw new System.NotImplementedException();
         }
 
-        public void SwitchState(GameplayUIStates state)
+        public void UpdateState()
         {
             throw new System.NotImplementedException();
         }

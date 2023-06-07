@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace SurvivalIsland.Components.Trees
 {
-    public class TreeManager : StateManagerBase
+    public class TreeManager : PlayerActionStateManagerBase
     {
         private FruitfullState _fruitfullState;
         private HarvestingState _harvestingState;

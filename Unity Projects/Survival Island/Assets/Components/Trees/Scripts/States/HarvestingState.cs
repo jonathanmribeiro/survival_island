@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace SurvivalIsland.Components.Trees
 {
-    public class HarvestingState : PlayerDetectionBase, IState
+    public class HarvestingState : PlayerDetectionBase, IPlayerActionState
     {
         private readonly GameObject _canopy;
         private readonly GameObject _trunk;

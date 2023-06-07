@@ -20,11 +20,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -63,6 +64,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -75,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -87,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -99,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -111,6 +116,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -121,7 +127,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 40
+        y: 56
         width: 24
         height: 24
       alignment: 0
@@ -142,7 +148,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 25
-        y: 44
+        y: 60
         width: 20
         height: 20
       alignment: 0
@@ -163,7 +169,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 25
-        y: 24
+        y: 40
         width: 20
         height: 19
       alignment: 0
@@ -184,7 +190,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4
-        y: 24
+        y: 40
         width: 16
         height: 16
       alignment: 0
@@ -205,7 +211,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 46
-        y: 24
+        y: 40
         width: 40
         height: 40
       alignment: 0
@@ -226,7 +232,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 55
-        y: 33
+        y: 49
         width: 22
         height: 22
       alignment: 0
@@ -247,7 +253,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 16
         width: 24
         height: 24
       alignment: 0
@@ -268,7 +274,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 24
-        y: 18
+        y: 34
         width: 22
         height: 6
       alignment: 0
@@ -289,7 +295,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 24
-        y: 0
+        y: 16
         width: 22
         height: 6
       alignment: 0
@@ -310,7 +316,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 47
-        y: 1
+        y: 17
         width: 22
         height: 22
       alignment: 0
@@ -327,11 +333,53 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Button_Close
+      name: Button_Close_Up
       rect:
         serializedVersion: 2
-        x: 70
-        y: 4
+        x: 0
+        y: 0
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e8f0d8738d467b48af00404b947fabb
+      internalID: 1281217777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button_Close_Down
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e24505b6298aed0499702d80616dbda7
+      internalID: -1910034401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button_Confirm_Up
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 0
         width: 15
         height: 16
       alignment: 0
@@ -341,8 +389,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e8f0d8738d467b48af00404b947fabb
-      internalID: 1281217777
+      spriteID: ae22356e36af03e498639c89af307a65
+      internalID: 626108238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Button_Confirm_Down
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 0
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e20c761c2197b1549914bf771168c8cc
+      internalID: -309648488
       vertices: []
       indices: 
       edges: []
@@ -360,7 +429,10 @@ TextureImporter:
     nameFileIdTable:
       Brown_Filling_01: 821204153
       Brown_Filling_02: -13284915
-      Button_Close: 1281217777
+      Button_Close_Down: -1910034401
+      Button_Close_Up: 1281217777
+      Button_Confirm_Down: -309648488
+      Button_Confirm_Up: 626108238
       GameplayUISpritesheet_0: 733633928
       GameplayUISpritesheet_1: 762704391
       GameplayUISpritesheet_2: -115449821
@@ -378,9 +450,8 @@ TextureImporter:
       Wooden_Borders_01: -1227044851
       Wooden_Borders_02: 611861165
       Wooden_Borders_03: -1825829432
-  spritePackingTag: 
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

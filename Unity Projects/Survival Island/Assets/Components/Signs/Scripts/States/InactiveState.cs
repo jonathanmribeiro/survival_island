@@ -6,7 +6,7 @@ using System;
 
 namespace SurvivalIsland.Components.Signs
 {
-    public class InactiveState : PlayerDetectionBase, IState
+    public class InactiveState : PlayerDetectionBase, IPlayerActionState
     {
         private SignManager _manager;
 

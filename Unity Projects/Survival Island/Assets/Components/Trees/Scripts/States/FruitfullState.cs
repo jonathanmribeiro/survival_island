@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace SurvivalIsland.Components.Trees
 {
-    public class FruitfullState : PlayerDetectionBase, IState
+    public class FruitfullState : PlayerDetectionBase, IPlayerActionState
     {
         private readonly GameObject _canopy;
         private readonly GameObject _trunk;

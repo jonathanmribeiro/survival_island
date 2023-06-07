@@ -3,7 +3,7 @@ using SurvivalIsland.Common.Extensions;
 
 namespace SurvivalIsland.Components.Signs
 {
-    public class SignManager : StateManagerBase
+    public class SignManager : PlayerActionStateManagerBase
     {
         private ActiveState _activeState;
         private InactiveState _inactiveState;

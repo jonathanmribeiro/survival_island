@@ -10,7 +10,7 @@ namespace SurvivalIsland.Components.MainCharacter
     public class MainCharacterActionsManager : MonoBehaviour
     {
         private MainCharacterInventoryManager _inventoryManager;
-        private StateManagerBase _managerInteracting;
+        private PlayerActionStateManagerBase _managerInteracting;
 
         private GameObject _actionBalloon;
         private Animator _actionBalloonAnimator;
