@@ -15,14 +15,10 @@ namespace SurvivalIsland.Components.Signs
             _manager = manager;
         }
 
-        public void EnterState()
-        {
-            _manager.gameObject.SetActive(true);
-        }
-
-        public void ExecuteAction(Func<PlayerActionTypes, InventoryItemModel, bool> playerActionCallback) {/*Left empty on purpose*/}
+        public void EnterState() => _manager.gameObject.SetActive(true);
+        public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback) {/*Left empty on purpose*/}
         public void ExitState() {/*Left empty on purpose*/}
-        public PlayerActionTypes GetAction() => PlayerActionTypes.None;
+        public PlayerActionTypes GetAction() => _playerInRange ? PlayerActionTypes.OpenConstructionUI : PlayerActionTypes.None;
         public void UpdateState() {/*Left empty on purpose*/}
     }
 }

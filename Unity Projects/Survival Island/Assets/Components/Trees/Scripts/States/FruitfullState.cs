@@ -80,7 +80,7 @@ namespace SurvivalIsland.Components.Trees
 
         public PlayerActionTypes GetAction() => PlayerActionTypes.Collecting;
 
-        public void ExecuteAction(Func<PlayerActionTypes, InventoryItemModel, bool> playerActionCallback)
+        public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
         {
             if (!_playerInRange)
                 return;

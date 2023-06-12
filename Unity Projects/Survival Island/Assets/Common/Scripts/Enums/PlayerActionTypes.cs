@@ -4,6 +4,7 @@ namespace SurvivalIsland.Common.Enums
 	{
 		None,
 		Collecting,
-		Chopping
+		Chopping,
+        OpenConstructionUI
     }
 }

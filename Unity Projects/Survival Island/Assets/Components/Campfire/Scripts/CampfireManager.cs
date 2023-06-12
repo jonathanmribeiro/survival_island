@@ -1,5 +1,8 @@
 using SurvivalIsland.Common.Bases;
+using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
+using SurvivalIsland.Common.Inventory;
+using SurvivalIsland.Gameplay.Management;
 
 namespace SurvivalIsland.Components.Campfire
 {
@@ -10,26 +13,38 @@ namespace SurvivalIsland.Components.Campfire
         private PendingConstructionState _pendingConstructionState;
         private UnlitState _unlitState;
 
+        private GameplayUIManager _gameplayUIManager;
+        public Inventory CampfireInventory;
+        public Inventory RecipeInventory;
+
         private void Awake()
         {
             _extinguishedState = new(this);
             _litState = new(this);
             _pendingConstructionState = new(this);
             _unlitState = new(this);
-
         }
 
-        public void Prepare()
+        public void Prepare(GameplayUIManager gameplayUIManager)
         {
             gameObject.name = $"{gameObject.name}_{transform.position}";
             SelectorLocation = gameObject.FindChild("SelectorLocation").transform;
+
+            _gameplayUIManager = gameplayUIManager;
+
+            CampfireInventory.Prepare(8);
+            RecipeInventory.Prepare(3);
+
+            RecipeInventory.AddMultiple(InventoryItemType.Leaf, 5);
+            RecipeInventory.AddMultiple(InventoryItemType.Wood, 4);
 
             EnterPendingConstructionState();
         }
 
         public void EnterExtinguishedState() => SwitchState(_extinguishedState);
-        public void EnterLitState() => SwitchState(_litState );
-        public void EnterPendingConstructionState() => SwitchState(_pendingConstructionState );
-        public void EnterUnlitState() => SwitchState(_unlitState );
+        public void EnterLitState() => SwitchState(_litState);
+        public void EnterPendingConstructionState() => SwitchState(_pendingConstructionState);
+        public void EnterUnlitState() => SwitchState(_unlitState);
+        public void OpenCraftingUI() => _gameplayUIManager.EnterCraftingUIState(RecipeInventory);
     }
 }

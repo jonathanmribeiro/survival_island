@@ -9,7 +9,6 @@ namespace SurvivalIsland.Gameplay.Management.UI
     public class InventoryUIState : IState
     {
         private readonly GameplayUIManager _uiManager;
-
         private readonly MainCharacterManager _mainCharacterManager;
 
         private GameObject _basicUI;
@@ -38,6 +37,15 @@ namespace SurvivalIsland.Gameplay.Management.UI
         private ChildIconUpdater _inventoryIcon6;
         private ChildIconUpdater _inventoryIcon7;
         private ChildIconUpdater _inventoryIcon8;
+
+        private ChildTextUpdater _inventoryText1;
+        private ChildTextUpdater _inventoryText2;
+        private ChildTextUpdater _inventoryText3;
+        private ChildTextUpdater _inventoryText4;
+        private ChildTextUpdater _inventoryText5;
+        private ChildTextUpdater _inventoryText6;
+        private ChildTextUpdater _inventoryText7;
+        private ChildTextUpdater _inventoryText8;
 
         public InventoryUIState(GameplayUIManager uiManager,
                                 MainCharacterManager mainCharacterManager)
@@ -83,6 +91,14 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _inventoryIcon7 = inventoryPanel.FindChild("InventorySlot7").GetComponent<ChildIconUpdater>();
             _inventoryIcon8 = inventoryPanel.FindChild("InventorySlot8").GetComponent<ChildIconUpdater>();
 
+            _inventoryText1 = inventoryPanel.FindChild("InventorySlot1").GetComponent<ChildTextUpdater>();
+            _inventoryText2 = inventoryPanel.FindChild("InventorySlot2").GetComponent<ChildTextUpdater>();
+            _inventoryText3 = inventoryPanel.FindChild("InventorySlot3").GetComponent<ChildTextUpdater>();
+            _inventoryText4 = inventoryPanel.FindChild("InventorySlot4").GetComponent<ChildTextUpdater>();
+            _inventoryText5 = inventoryPanel.FindChild("InventorySlot5").GetComponent<ChildTextUpdater>();
+            _inventoryText6 = inventoryPanel.FindChild("InventorySlot6").GetComponent<ChildTextUpdater>();
+            _inventoryText7 = inventoryPanel.FindChild("InventorySlot7").GetComponent<ChildTextUpdater>();
+            _inventoryText8 = inventoryPanel.FindChild("InventorySlot8").GetComponent<ChildTextUpdater>();
         }
 
         public void EnterState()
@@ -131,6 +147,15 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _inventoryIcon6.UpdateUI(_mainCharacterManager.GetInventorySlot(5));
             _inventoryIcon7.UpdateUI(_mainCharacterManager.GetInventorySlot(6));
             _inventoryIcon8.UpdateUI(_mainCharacterManager.GetInventorySlot(7));
+
+            _inventoryText1.UpdateUI(_mainCharacterManager.GetInventorySlot(0).CurrentAmount.ToString());
+            _inventoryText2.UpdateUI(_mainCharacterManager.GetInventorySlot(1).CurrentAmount.ToString());
+            _inventoryText3.UpdateUI(_mainCharacterManager.GetInventorySlot(2).CurrentAmount.ToString());
+            _inventoryText4.UpdateUI(_mainCharacterManager.GetInventorySlot(3).CurrentAmount.ToString());
+            _inventoryText5.UpdateUI(_mainCharacterManager.GetInventorySlot(4).CurrentAmount.ToString());
+            _inventoryText6.UpdateUI(_mainCharacterManager.GetInventorySlot(5).CurrentAmount.ToString());
+            _inventoryText7.UpdateUI(_mainCharacterManager.GetInventorySlot(6).CurrentAmount.ToString());
+            _inventoryText8.UpdateUI(_mainCharacterManager.GetInventorySlot(7).CurrentAmount.ToString());
         }
 
         public void ExitState() { }

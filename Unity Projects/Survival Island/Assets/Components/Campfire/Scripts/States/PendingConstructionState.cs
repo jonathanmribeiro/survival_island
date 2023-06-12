@@ -2,7 +2,6 @@ using SurvivalIsland.Common.Bases;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
 using SurvivalIsland.Common.Interfaces;
-using SurvivalIsland.Common.Models;
 using SurvivalIsland.Components.Signs;
 using System;
 using UnityEngine;
@@ -51,9 +50,12 @@ namespace SurvivalIsland.Components.Campfire
             _signAlert.Prepare(SignStates.ActiveState);
         }
 
-        public void ExecuteAction(Func<PlayerActionTypes, InventoryItemModel, bool> playerActionCallback)
+        public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
         {
-            Debug.Log("Vamo que vamo");
+            if (!_signAlert.GetAction().Equals(PlayerActionTypes.OpenConstructionUI))
+                return;
+
+            _manager.OpenCraftingUI();
         }
 
         public void ExitState()

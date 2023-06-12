@@ -62,6 +62,6 @@ namespace SurvivalIsland.Components.Trees
         
         public PlayerActionTypes GetAction() => PlayerActionTypes.None;
 
-        public void ExecuteAction(Func<PlayerActionTypes, InventoryItemModel, bool> playerActionCallback) {/*Left empty on purpose*/}
+        public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback) {/*Left empty on purpose*/}
     }
 }

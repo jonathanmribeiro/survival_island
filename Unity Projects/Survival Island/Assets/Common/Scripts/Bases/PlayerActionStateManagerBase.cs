@@ -1,6 +1,5 @@
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Interfaces;
-using SurvivalIsland.Common.Models;
 using System;
 using UnityEngine;
 
@@ -23,7 +22,7 @@ namespace SurvivalIsland.Common.Bases
 
         private void OnTriggerExit2D(Collider2D collision) => CurrentState.OnTriggerExit2D(collision);
 
-        public void ExecuteAction(Func<PlayerActionTypes, InventoryItemModel, bool> playerActionCallback)
+        public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
             => CurrentState.ExecuteAction(playerActionCallback);
 
         public PlayerActionTypes GetAction() => CurrentState.GetAction();

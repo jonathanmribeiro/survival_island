@@ -51,7 +51,7 @@ namespace SurvivalIsland.Components.Campfire
             _signAlert.Prepare(SignStates.InactiveState);
         }
 
-        public void ExecuteAction(Func<PlayerActionTypes, InventoryItemModel, bool> playerActionCallback)
+        public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
         {
             throw new NotImplementedException();
         }

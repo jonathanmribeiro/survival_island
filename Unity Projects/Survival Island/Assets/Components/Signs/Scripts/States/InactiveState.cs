@@ -20,7 +20,7 @@ namespace SurvivalIsland.Components.Signs
             _manager.gameObject.SetActive(false);
         }
 
-        public void ExecuteAction(Func<PlayerActionTypes, InventoryItemModel, bool> playerActionCallback) {/*Left empty on purpose*/}
+        public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback) {/*Left empty on purpose*/}
         public void ExitState() {/*Left empty on purpose*/}
         public PlayerActionTypes GetAction() => PlayerActionTypes.None;
         public void UpdateState() {/*Left empty on purpose*/}

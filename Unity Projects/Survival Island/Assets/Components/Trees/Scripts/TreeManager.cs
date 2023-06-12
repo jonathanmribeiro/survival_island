@@ -34,8 +34,7 @@ namespace SurvivalIsland.Components.Trees
 
         public void Prepare(DayNightCycle dayNightCycle)
         {
-            Inventory.Prepare
-                (InventoryConstants.TREE_MAX_ITEMS, InventoryConstants.TREE_MAX_WEIGHT);
+            Inventory.Prepare();
 
             //TODO receive the proper initial props for the tree
             Inventory.AddMultiple(InventoryItemType.Wood, TreeProps.MaxWoodAmount);

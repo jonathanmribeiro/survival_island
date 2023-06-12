@@ -4,6 +4,7 @@ using SurvivalIsland.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace SurvivalIsland.Common.Inventory
 {
@@ -18,7 +19,7 @@ namespace SurvivalIsland.Common.Inventory
         public int CurrentAmount => Slots?.Count(x => x.Type != InventoryItemType.None) ?? 0;
         private float CurrentTotalWeight => Slots?.Sum(x => x.CurrentWeight) ?? 0;
 
-        public void Prepare(int maxItems, float maxWeight)
+        public void Prepare(int maxItems = 999, float maxWeight = 999)
         {
             Slots = new();
 
@@ -60,7 +61,6 @@ namespace SurvivalIsland.Common.Inventory
 
             return true;
         }
-
         public void AddMultiple(InventoryItemType type, int amount)
         {
             for (int i = 0; i < amount; i++)
@@ -74,6 +74,7 @@ namespace SurvivalIsland.Common.Inventory
 
         public InventoryItemModel ObtainRandom(InventoryItemType type) => Slots.FirstOrDefault(x => x.Type == type)?.Items.FirstOrDefault();
         public List<InventoryItemModel> ObtainAll(InventoryItemType type) => Slots.FirstOrDefault(x => x.Type == type)?.Items;
+        public InventoryItemSlot ObtainSlot(int index) => index < Slots.Count - 1 ? Slots[index] : default;
         public void Remove(InventoryItemModel item)
         {
             var slot = Slots.FirstOrDefault(x => x.Type == item.Type);

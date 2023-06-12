@@ -97,7 +97,7 @@ namespace SurvivalIsland.Gameplay.Management
 
             foreach (var manager in _campfireManagers)
             {
-                manager.Prepare();
+                manager.Prepare(_uiManager);
             }
         }
     }

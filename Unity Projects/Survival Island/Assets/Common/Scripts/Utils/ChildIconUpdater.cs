@@ -18,12 +18,12 @@ namespace SurvivalIsland.Common.Utils
 
         public void UpdateUI(InventoryItemSlot inventorySlot)
         {
-            _icon.enabled = inventorySlot.Type != Enums.InventoryItemType.None;
+            _icon.enabled = inventorySlot != null && inventorySlot.Type != Enums.InventoryItemType.None;
 
             if (!_icon.enabled)
                 return;
 
-            _icon.sprite = inventorySlot.Items.First().Icon;
+            _icon.sprite = inventorySlot?.Items.First().Icon;
         }
     }
 }

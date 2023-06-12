@@ -31,11 +31,11 @@ namespace SurvivalIsland.Components.MainCharacter
             _selectorManager.Prepare();
         }
 
-        public bool ExecuteAction(PlayerActionTypes performedAction, InventoryItemModel itemModel = null)
+        public bool ExecuteAction(PlayerActionTypes performedAction, object itemModel = null)
             => performedAction switch
             {
-                PlayerActionTypes.Chopping => _inventoryManager.TryAddItem(itemModel),
-                PlayerActionTypes.Collecting => _inventoryManager.TryAddItem(itemModel),
+                PlayerActionTypes.Chopping => _inventoryManager.TryAddItem(itemModel as InventoryItemModel),
+                PlayerActionTypes.Collecting => _inventoryManager.TryAddItem(itemModel as InventoryItemModel),
                 _ => false,
             };
 

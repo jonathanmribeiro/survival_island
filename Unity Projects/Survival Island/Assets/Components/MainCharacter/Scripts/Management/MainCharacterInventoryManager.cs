@@ -13,7 +13,7 @@ namespace SurvivalIsland.Components.MainCharacter
         public void Prepare()
         {
             Inventory.Prepare(8, 25);
-            CharacterInventory.Prepare(4, 999);
+            CharacterInventory.Prepare(4);
         }
 
         public void OnClick_OpenInventory()
