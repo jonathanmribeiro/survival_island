@@ -13,9 +13,6 @@ namespace SurvivalIsland.Gameplay.Management.UI
         private readonly GameplayUIManager _uiManager;
         private readonly MainCharacterManager _mainCharacterManager;
 
-        private GameObject _basicUI;
-        private GameObject _inventoryUI;
-        private GameObject _journalUI;
         private GameObject _craftingUI;
 
         private ChildIconUpdater _craftableIcon1;
@@ -46,6 +43,10 @@ namespace SurvivalIsland.Gameplay.Management.UI
         private ChildTextUpdater _inventoryText7;
         private ChildTextUpdater _inventoryText8;
 
+        private ChildButtonAction _openJournalButton;
+        private ChildButtonAction _confirmCraftingButton;
+        private ChildButtonAction _closeCraftingButton;
+
         private Inventory _recipeInventory;
 
         public CraftingUIState(GameplayUIManager uiManager, MainCharacterManager mainCharacterManager)
@@ -53,14 +54,7 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _uiManager = uiManager;
             _mainCharacterManager = mainCharacterManager;
 
-            _basicUI = GameObject.Find("Canvas").FindChild("BasicUI");
             _craftingUI = GameObject.Find("Canvas").FindChild("CraftingUI");
-            _inventoryUI = GameObject.Find("Canvas").FindChild("InventoryUI");
-            _journalUI = GameObject.Find("Canvas").FindChild("JournalUI");
-
-            _basicUI.SetActive(false);
-            _inventoryUI.SetActive(false);
-            _journalUI.SetActive(false);
             _craftingUI.SetActive(false);
 
             var craftablePanel = _craftingUI.FindChild("CraftablePanel");
@@ -92,13 +86,15 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _inventoryText6 = inventoryPanel.FindChild("InventorySlot6").GetComponent<ChildTextUpdater>();
             _inventoryText7 = inventoryPanel.FindChild("InventorySlot7").GetComponent<ChildTextUpdater>();
             _inventoryText8 = inventoryPanel.FindChild("InventorySlot8").GetComponent<ChildTextUpdater>();
+
+            var middlePanel = _craftingUI.FindChild("MiddlePanel");
+            _openJournalButton = middlePanel.FindChild("Journal").GetComponent<ChildButtonAction>();
+            _confirmCraftingButton = middlePanel.FindChild("Craft").GetComponent<ChildButtonAction>();
+            _closeCraftingButton = middlePanel.FindChild("Close").GetComponent<ChildButtonAction>();
         }
 
         public void EnterState()
         {
-            _basicUI.SetActive(false);
-            _inventoryUI.SetActive(false);
-            _journalUI.SetActive(false);
             _craftingUI.SetActive(true);
 
             _craftableIcon1.Prepare("InventorySlotIcon");
@@ -114,12 +110,13 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _inventoryIcon6.Prepare("InventorySlotIcon");
             _inventoryIcon7.Prepare("InventorySlotIcon");
             _inventoryIcon8.Prepare("InventorySlotIcon");
+
+            _openJournalButton.Prepare(() => { });
+            _confirmCraftingButton.Prepare(OnClick_ConfirmCrafting);
+            _closeCraftingButton.Prepare(OnClick_CloseCrafting);
         }
 
-        public void ExitState()
-        {
-            throw new System.NotImplementedException();
-        }
+        public void ExitState() => _craftingUI.SetActive(false);
 
         public void UpdateState()
         {
@@ -149,10 +146,14 @@ namespace SurvivalIsland.Gameplay.Management.UI
             {
                 iconUpdater.UpdateUI(slot);
                 textUpdater.UpdateUI(slot.CurrentAmount.ToString());
-            } else
+            }
+            else
             {
                 textUpdater.UpdateUI("");
             }
         }
+
+        public void OnClick_CloseCrafting() => _uiManager.EnterBasicUIState();
+        public void OnClick_ConfirmCrafting() => _uiManager.EnterBasicUIState();
     }
 }

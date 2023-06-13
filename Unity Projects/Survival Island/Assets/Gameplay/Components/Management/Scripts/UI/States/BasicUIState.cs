@@ -13,9 +13,6 @@ namespace SurvivalIsland.Gameplay.Management.UI
         private readonly MainCharacterManager _mainCharacterManager;
 
         private GameObject _basicUI;
-        private GameObject _inventoryUI;
-        private GameObject _journalUI;
-        private GameObject _craftingUI;
 
         private ChildTextUpdater _datetimeText;
 
@@ -52,9 +49,7 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _mainCharacterManager = mainCharacterManager;
 
             _basicUI = GameObject.Find("Canvas").FindChild("BasicUI");
-            _craftingUI = GameObject.Find("Canvas").FindChild("CraftingUI");
-            _inventoryUI = GameObject.Find("Canvas").FindChild("InventoryUI");
-            _journalUI = GameObject.Find("Canvas").FindChild("JournalUI");
+            _basicUI.SetActive(false);
 
             var dateTimePanel = _basicUI.FindChild("DateTimePanel");
             _datetimeText = dateTimePanel.GetComponentInChildren<ChildTextUpdater>();
@@ -110,9 +105,6 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _quickAction4Icon.Prepare("QuickActionButton");
 
             _basicUI.SetActive(true);
-            _inventoryUI.SetActive(false);
-            _journalUI.SetActive(false);
-            _craftingUI.SetActive(false);
         }
 
         public void UpdateState()
@@ -138,7 +130,7 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _quickAction4Text.UpdateUI(_mainCharacterManager.GetInventorySlot(3).CurrentAmount.ToString());
         }
 
-        public void ExitState() { }
+        public void ExitState() => _basicUI.SetActive(false);
         private void OnClick_OpenInventory() => _uiManager.EnterInventoryState();
         private void OnClick_QuickAction1Button() => _mainCharacterManager.OnClick_QuickAction1Button();
         private void OnClick_QuickAction2Button() => _mainCharacterManager.OnClick_QuickAction2Button();

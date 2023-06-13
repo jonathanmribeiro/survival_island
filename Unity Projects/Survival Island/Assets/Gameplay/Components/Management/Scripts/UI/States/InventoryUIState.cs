@@ -11,10 +11,7 @@ namespace SurvivalIsland.Gameplay.Management.UI
         private readonly GameplayUIManager _uiManager;
         private readonly MainCharacterManager _mainCharacterManager;
 
-        private GameObject _basicUI;
         private GameObject _inventoryUI;
-        private GameObject _journalUI;
-        private GameObject _craftingUI;
 
         private ChildTextUpdater _healthText;
         private ChildTextUpdater _hungerText;
@@ -54,10 +51,8 @@ namespace SurvivalIsland.Gameplay.Management.UI
 
             _mainCharacterManager = mainCharacterManager;
 
-            _basicUI = GameObject.Find("Canvas").FindChild("BasicUI");
-            _craftingUI = GameObject.Find("Canvas").FindChild("CraftingUI");
             _inventoryUI = GameObject.Find("Canvas").FindChild("InventoryUI");
-            _journalUI = GameObject.Find("Canvas").FindChild("JournalUI");
+            _inventoryUI.SetActive(false);
 
             var health = _inventoryUI.FindChild("Health");
             _healthText = health.GetComponentInChildren<ChildTextUpdater>();
@@ -119,10 +114,7 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _inventoryIcon7.Prepare("InventorySlotIcon");
             _inventoryIcon8.Prepare("InventorySlotIcon");
 
-            _basicUI.SetActive(false);
             _inventoryUI.SetActive(true);
-            _journalUI.SetActive(false);
-            _craftingUI.SetActive(false);
         }
 
         public void UpdateState()
@@ -158,7 +150,7 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _inventoryText8.UpdateUI(_mainCharacterManager.GetInventorySlot(7).CurrentAmount.ToString());
         }
 
-        public void ExitState() { }
+        public void ExitState() => _inventoryUI.SetActive(false);
         public void OnClick_CloseInventory() => _uiManager.EnterBasicUIState();
         public void OnClick_OpenJournal() => _uiManager.EnterJournalState();
     }
