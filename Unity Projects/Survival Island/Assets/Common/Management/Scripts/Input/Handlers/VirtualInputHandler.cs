@@ -44,12 +44,12 @@ namespace SurvivalIsland.Common.Management
         {
             if (Input.GetMouseButtonDown(0))
             {
-                _actionOverUI = true;
+                _actionOverUI = IsPointerOverUI();
             }
 
             if (Input.GetMouseButtonUp(0))
             {
-                _actionOverUI = IsPointerOverUI();
+                _actionOverUI &= IsPointerOverUI();
 
                 if (!_actionOverUI && !_isMoving)
                 {
@@ -70,7 +70,7 @@ namespace SurvivalIsland.Common.Management
                 _pointB = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             }
 
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0) || _actionOverUI)
             {
                 _pointA = Vector2.zero;
                 _pointB = Vector2.zero;

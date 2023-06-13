@@ -52,12 +52,13 @@ namespace SurvivalIsland.Gameplay.Management
 
         private void Update()
         {
-            _inputManager.UpdateInput();
-
             _cameraManager.UpdateCamera();
 
             if (_uiManager.CurrentState is BasicUIState)
+            {
+                _inputManager.UpdateInput();
                 _dayNightCycle.UpdateDayNightCycle();
+            }
 
             _mainCharacterManager.UpdateMainCharacter();
             _uiManager.UpdateUI();
