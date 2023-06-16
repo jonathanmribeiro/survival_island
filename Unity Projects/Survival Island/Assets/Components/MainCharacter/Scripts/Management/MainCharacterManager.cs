@@ -2,7 +2,6 @@ using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Management;
 using SurvivalIsland.Common.Models;
 using SurvivalIsland.Common.Utils;
-using System;
 using UnityEngine;
 
 namespace SurvivalIsland.Components.MainCharacter

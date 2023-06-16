@@ -5,7 +5,6 @@ using SurvivalIsland.Common.Models;
 using SurvivalIsland.Common.Utils;
 using SurvivalIsland.Components.MainCharacter;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace SurvivalIsland.Gameplay.Management.UI
 {
