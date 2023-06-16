@@ -45,6 +45,15 @@ namespace SurvivalIsland.Gameplay.Management.UI
         private ChildTextUpdater _inventoryText7;
         private ChildTextUpdater _inventoryText8;
 
+        private ChildButtonAction _inventoryButton1;
+        private ChildButtonAction _inventoryButton2;
+        private ChildButtonAction _inventoryButton3;
+        private ChildButtonAction _inventoryButton4;
+        private ChildButtonAction _inventoryButton5;
+        private ChildButtonAction _inventoryButton6;
+        private ChildButtonAction _inventoryButton7;
+        private ChildButtonAction _inventoryButton8;
+
         private ChildButtonAction _openJournalButton;
         private ChildButtonAction _confirmCraftingButton;
         private ChildButtonAction _closeCraftingButton;
@@ -92,6 +101,15 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _inventoryText7 = inventoryPanel.FindChild("InventorySlot7").GetComponent<ChildTextUpdater>();
             _inventoryText8 = inventoryPanel.FindChild("InventorySlot8").GetComponent<ChildTextUpdater>();
 
+            _inventoryButton1 = inventoryPanel.FindChild("InventorySlot1").GetComponent<ChildButtonAction>();
+            _inventoryButton2 = inventoryPanel.FindChild("InventorySlot2").GetComponent<ChildButtonAction>();
+            _inventoryButton3 = inventoryPanel.FindChild("InventorySlot3").GetComponent<ChildButtonAction>();
+            _inventoryButton4 = inventoryPanel.FindChild("InventorySlot4").GetComponent<ChildButtonAction>();
+            _inventoryButton5 = inventoryPanel.FindChild("InventorySlot5").GetComponent<ChildButtonAction>();
+            _inventoryButton6 = inventoryPanel.FindChild("InventorySlot6").GetComponent<ChildButtonAction>();
+            _inventoryButton7 = inventoryPanel.FindChild("InventorySlot7").GetComponent<ChildButtonAction>();
+            _inventoryButton8 = inventoryPanel.FindChild("InventorySlot8").GetComponent<ChildButtonAction>();
+
             var middlePanel = _craftingUI.FindChild("MiddlePanel");
             _openJournalButton = middlePanel.FindChild("Journal").GetComponent<ChildButtonAction>();
             _confirmCraftingButton = middlePanel.FindChild("Craft").GetComponent<ChildButtonAction>();
@@ -115,6 +133,15 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _inventoryIcon6.Prepare("InventorySlotIcon");
             _inventoryIcon7.Prepare("InventorySlotIcon");
             _inventoryIcon8.Prepare("InventorySlotIcon");
+
+            _inventoryButton1.Prepare(_sceneManager, OnClick_InventoryButton1);
+            _inventoryButton2.Prepare(_sceneManager, OnClick_InventoryButton2);
+            _inventoryButton3.Prepare(_sceneManager, OnClick_InventoryButton3);
+            _inventoryButton4.Prepare(_sceneManager, OnClick_InventoryButton4);
+            _inventoryButton5.Prepare(_sceneManager, OnClick_InventoryButton5);
+            _inventoryButton6.Prepare(_sceneManager, OnClick_InventoryButton6);
+            _inventoryButton7.Prepare(_sceneManager, OnClick_InventoryButton7);
+            _inventoryButton8.Prepare(_sceneManager, OnClick_InventoryButton8);
 
             _openJournalButton.Prepare(_sceneManager, () => { });
             _confirmCraftingButton.Prepare(_sceneManager, OnClick_ConfirmCrafting);
@@ -147,18 +174,40 @@ namespace SurvivalIsland.Gameplay.Management.UI
 
         private void UpdateIconAndText(ChildIconUpdater iconUpdater, ChildTextUpdater textUpdater, InventoryItemSlot slot)
         {
-            if (slot != default)
+            if (slot != default && slot.CurrentAmount > 0)
             {
                 iconUpdater.UpdateUI(slot);
                 textUpdater.UpdateUI(slot.CurrentAmount.ToString());
             }
             else
             {
+                iconUpdater.UpdateUI(null);
                 textUpdater.UpdateUI("");
             }
         }
 
         public void OnClick_CloseCrafting() => _uiManager.EnterBasicUIState();
         public void OnClick_ConfirmCrafting() => _uiManager.EnterBasicUIState();
+
+        private void OnClick_InventoryButton1() => HandleInventoryClick(0);
+        private void OnClick_InventoryButton2() => HandleInventoryClick(1);
+        private void OnClick_InventoryButton3() => HandleInventoryClick(2);
+        private void OnClick_InventoryButton4() => HandleInventoryClick(3);
+        private void OnClick_InventoryButton5() => HandleInventoryClick(4);
+        private void OnClick_InventoryButton6() => HandleInventoryClick(5);
+        private void OnClick_InventoryButton7() => HandleInventoryClick(6);
+        private void OnClick_InventoryButton8() => HandleInventoryClick(7);
+
+        private void HandleInventoryClick(int index)
+        {
+            InventoryItemSlot slot = _mainCharacterManager.GetInventorySlot(index);
+            InventoryItemModel item = _recipeInventory.ObtainRandom(slot.Type);
+
+            if (item == null)
+                return;
+
+            _recipeInventory.Remove(item);
+            _mainCharacterManager.RemoveInventoryItem(slot.Type);
+        }
     }
 }

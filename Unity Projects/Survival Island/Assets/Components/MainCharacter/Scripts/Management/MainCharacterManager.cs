@@ -1,6 +1,8 @@
+using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Management;
 using SurvivalIsland.Common.Models;
 using SurvivalIsland.Common.Utils;
+using System;
 using UnityEngine;
 
 namespace SurvivalIsland.Components.MainCharacter
@@ -40,19 +42,11 @@ namespace SurvivalIsland.Components.MainCharacter
         }
 
         public VitalitySystemModel GetVitalitySystem()
-        {
-            return _vitalityManager.VitalitySystem;
-        }
-
+            => _vitalityManager.VitalitySystem;
         public InventoryItemSlot GetInventorySlot(int inventoryItemIndex)
-        {
-            return _inventoryManager.GetInventorySlot(inventoryItemIndex);
-        }
-
+            => _inventoryManager.GetInventorySlot(inventoryItemIndex);
         public InventoryItemSlot GetCharacterItem(int inventoryItemIndex)
-        {
-            return _inventoryManager.GetCharacterItem(inventoryItemIndex);
-        }
+            => _inventoryManager.GetCharacterItem(inventoryItemIndex);
 
         public void OnClick_QuickAction1Button()
         {
@@ -84,6 +78,11 @@ namespace SurvivalIsland.Components.MainCharacter
 
             if (inventorySlot == null)
                 return;
+        }
+
+        public void RemoveInventoryItem(InventoryItemType type)
+        {
+            _inventoryManager.RemoveInventoryItemByType(type);
         }
     }
 }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 namespace SurvivalIsland.Common.Inventory
 {
@@ -86,6 +87,26 @@ namespace SurvivalIsland.Common.Inventory
                 if (slot.Items.Count.Equals(0))
                 {
                     slot.Type = InventoryItemType.None;
+                    RearrangeInventory();
+                }
+            }
+        }
+
+
+        private void RearrangeInventory()
+        {
+            for (int i = 0; i < Slots.Count - 2; i++)
+            {
+                var currentSlot = Slots[i];
+                var nextSlot = Slots[i + 1];
+
+                if (currentSlot.Type == InventoryItemType.None)
+                {
+                    Slots[i].Items = nextSlot.Items;
+                    Slots[i].Type = nextSlot.Type;
+
+                    Slots[i + 1].Items = new();
+                    Slots[i + 1].Type = InventoryItemType.None;
                 }
             }
         }
