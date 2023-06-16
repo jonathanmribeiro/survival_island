@@ -15,14 +15,15 @@ namespace SurvivalIsland.Gameplay.Management
 
         public void Prepare
         (
+            GameplaySceneManager gameplaySceneManager,
             MainCharacterManager mainCharacterManager,
             DayNightCycle dayNightCycle
         )
         {
-            _basicUIState = new(this, dayNightCycle, mainCharacterManager);
-            _craftingUIState = new(this, mainCharacterManager);
-            _inventoryUIState = new(this, mainCharacterManager);
-            _journalUIState = new(this);
+            _basicUIState = new(this, gameplaySceneManager, dayNightCycle, mainCharacterManager);
+            _craftingUIState = new(this, gameplaySceneManager, mainCharacterManager);
+            _inventoryUIState = new(this, gameplaySceneManager, mainCharacterManager);
+            _journalUIState = new(this, gameplaySceneManager);
 
             EnterBasicUIState();
         }

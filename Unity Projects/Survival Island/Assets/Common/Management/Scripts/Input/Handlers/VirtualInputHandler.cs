@@ -1,4 +1,5 @@
 ﻿using SurvivalIsland.Common.Constants;
+using SurvivalIsland.Gameplay.Management;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,10 +13,12 @@ namespace SurvivalIsland.Common.Management
         private Vector2 _pointB;
         private bool _isMoving;
         private bool _actionOverUI;
+        GameplaySceneManager _sceneManager;
 
-        public VirtualInputHandler(Action actionToExecute)
+        public VirtualInputHandler(GameplaySceneManager gameplaySceneManager, Action actionToExecute)
         {
             ActionToExecute = actionToExecute;
+            _sceneManager = gameplaySceneManager;
         }
 
         public override void UpdateInput()
@@ -51,10 +54,12 @@ namespace SurvivalIsland.Common.Management
             {
                 _actionOverUI &= IsPointerOverUI();
 
-                if (!_actionOverUI && !_isMoving)
+                if (!_actionOverUI && !_isMoving && !_sceneManager.InputIsLocked)
                 {
                     ActionCaptured();
                 }
+
+                _sceneManager.ReleaseInput();
             }
         }
 

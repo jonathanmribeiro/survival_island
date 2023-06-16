@@ -5,6 +5,7 @@ using SurvivalIsland.Common.Models;
 using SurvivalIsland.Common.Utils;
 using SurvivalIsland.Components.MainCharacter;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace SurvivalIsland.Gameplay.Management.UI
 {
@@ -12,6 +13,7 @@ namespace SurvivalIsland.Gameplay.Management.UI
     {
         private readonly GameplayUIManager _uiManager;
         private readonly MainCharacterManager _mainCharacterManager;
+        private readonly GameplaySceneManager _sceneManager;
 
         private GameObject _craftingUI;
 
@@ -49,10 +51,13 @@ namespace SurvivalIsland.Gameplay.Management.UI
 
         private Inventory _recipeInventory;
 
-        public CraftingUIState(GameplayUIManager uiManager, MainCharacterManager mainCharacterManager)
+        public CraftingUIState(GameplayUIManager uiManager,
+                               GameplaySceneManager gameplaySceneManager,
+                               MainCharacterManager mainCharacterManager)
         {
             _uiManager = uiManager;
             _mainCharacterManager = mainCharacterManager;
+            _sceneManager = gameplaySceneManager;
 
             _craftingUI = GameObject.Find("Canvas").FindChild("CraftingUI");
             _craftingUI.SetActive(false);
@@ -111,9 +116,9 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _inventoryIcon7.Prepare("InventorySlotIcon");
             _inventoryIcon8.Prepare("InventorySlotIcon");
 
-            _openJournalButton.Prepare(() => { });
-            _confirmCraftingButton.Prepare(OnClick_ConfirmCrafting);
-            _closeCraftingButton.Prepare(OnClick_CloseCrafting);
+            _openJournalButton.Prepare(_sceneManager, () => { });
+            _confirmCraftingButton.Prepare(_sceneManager, OnClick_ConfirmCrafting);
+            _closeCraftingButton.Prepare(_sceneManager, OnClick_CloseCrafting);
         }
 
         public void ExitState() => _craftingUI.SetActive(false);

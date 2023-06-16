@@ -10,6 +10,7 @@ namespace SurvivalIsland.Gameplay.Management.UI
     {
         private readonly GameplayUIManager _uiManager;
         private readonly MainCharacterManager _mainCharacterManager;
+        private readonly GameplaySceneManager _sceneManager;
 
         private GameObject _inventoryUI;
 
@@ -45,11 +46,12 @@ namespace SurvivalIsland.Gameplay.Management.UI
         private ChildTextUpdater _inventoryText8;
 
         public InventoryUIState(GameplayUIManager uiManager,
+                                GameplaySceneManager gameplaySceneManager,
                                 MainCharacterManager mainCharacterManager)
         {
             _uiManager = uiManager;
-
             _mainCharacterManager = mainCharacterManager;
+            _sceneManager = gameplaySceneManager;
 
             _inventoryUI = GameObject.Find("Canvas").FindChild("InventoryUI");
             _inventoryUI.SetActive(false);
@@ -98,8 +100,8 @@ namespace SurvivalIsland.Gameplay.Management.UI
 
         public void EnterState()
         {
-            _closeInventoryButton.Prepare(OnClick_CloseInventory);
-            _openJournalButton.Prepare(OnClick_OpenJournal);
+            _closeInventoryButton.Prepare(_sceneManager, OnClick_CloseInventory);
+            _openJournalButton.Prepare(_sceneManager, OnClick_OpenJournal);
 
             _characterIcon1.Prepare("InventorySlotIcon");
             _characterIcon2.Prepare("InventorySlotIcon");

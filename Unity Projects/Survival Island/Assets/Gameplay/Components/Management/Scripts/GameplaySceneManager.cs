@@ -25,6 +25,8 @@ namespace SurvivalIsland.Gameplay.Management
         private TreeManager[] _treeManagers;
         private CampfireManager[] _campfireManagers;
 
+        public bool InputIsLocked;
+
         private void Awake()
         {
             _gameManager = GameObject.FindGameObjectWithTag(TagConstants.GAMECONTROLLER).GetComponent<GameManager>();
@@ -40,9 +42,9 @@ namespace SurvivalIsland.Gameplay.Management
         private void Start()
         {
             _cameraManager.SetFollowingTarget(_mainCharacter.transform);
-            _inputManager.Prepare(InputType.Virtual, EventPlayerAction);
+            _inputManager.Prepare(this, InputType.Virtual, EventPlayerAction);
             _mainCharacterManager.Prepare(_inputManager, _dayNightCycle);
-            _uiManager.Prepare(_mainCharacterManager, _dayNightCycle);
+            _uiManager.Prepare(this, _mainCharacterManager, _dayNightCycle);
 
             _dayNightCycle.SetCurrentTime(DateTime.Now);
 
@@ -56,11 +58,12 @@ namespace SurvivalIsland.Gameplay.Management
 
             if (_uiManager.CurrentState is BasicUIState)
             {
-                _inputManager.UpdateInput();
                 _dayNightCycle.UpdateDayNightCycle();
+                _mainCharacterManager.UpdateMainCharacter();
             }
 
-            _mainCharacterManager.UpdateMainCharacter();
+            _inputManager.UpdateInput();
+
             _uiManager.UpdateUI();
 
             foreach (var treeManager in _treeManagers)
@@ -101,5 +104,8 @@ namespace SurvivalIsland.Gameplay.Management
                 manager.Prepare(_uiManager);
             }
         }
+
+        public void BlockInput() => InputIsLocked = true;
+        public void ReleaseInput() => InputIsLocked = false;
     }
 }

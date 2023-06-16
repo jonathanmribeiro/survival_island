@@ -11,6 +11,7 @@ namespace SurvivalIsland.Gameplay.Management.UI
         private readonly GameplayUIManager _uiManager;
         private readonly DayNightCycle _dayNightCycle;
         private readonly MainCharacterManager _mainCharacterManager;
+        private readonly GameplaySceneManager _sceneManager;
 
         private GameObject _basicUI;
 
@@ -40,13 +41,14 @@ namespace SurvivalIsland.Gameplay.Management.UI
         private ChildButtonAction _openInventoryButton;
 
         public BasicUIState(GameplayUIManager uiManager,
+                            GameplaySceneManager gameplaySceneManager,
                             DayNightCycle dayNightCycle,
                             MainCharacterManager mainCharacterManager)
         {
             _uiManager = uiManager;
             _dayNightCycle = dayNightCycle;
-
             _mainCharacterManager = mainCharacterManager;
+            _sceneManager = gameplaySceneManager;
 
             _basicUI = GameObject.Find("Canvas").FindChild("BasicUI");
             _basicUI.SetActive(false);
@@ -92,12 +94,12 @@ namespace SurvivalIsland.Gameplay.Management.UI
 
         public void EnterState()
         {
-            _openInventoryButton.Prepare(OnClick_OpenInventory);
+            _openInventoryButton.Prepare(_sceneManager, OnClick_OpenInventory);
 
-            _quickAction1Button.Prepare(OnClick_QuickAction1Button);
-            _quickAction2Button.Prepare(OnClick_QuickAction2Button);
-            _quickAction3Button.Prepare(OnClick_QuickAction3Button);
-            _quickAction4Button.Prepare(OnClick_QuickAction4Button);
+            _quickAction1Button.Prepare(_sceneManager, OnClick_QuickAction1Button);
+            _quickAction2Button.Prepare(_sceneManager, OnClick_QuickAction2Button);
+            _quickAction3Button.Prepare(_sceneManager, OnClick_QuickAction3Button);
+            _quickAction4Button.Prepare(_sceneManager, OnClick_QuickAction4Button);
 
             _quickAction1Icon.Prepare("QuickActionButton");
             _quickAction2Icon.Prepare("QuickActionButton");

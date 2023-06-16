@@ -1,5 +1,6 @@
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Models;
+using SurvivalIsland.Gameplay.Management;
 using System;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace SurvivalIsland.Common.Management
     {
         InputHandlerBase _inputHandler;
 
-        public void Prepare(InputType inputType, Action actionToExecute)
+        public void Prepare(GameplaySceneManager gameplaySceneManager, InputType inputType, Action actionToExecute)
         {
             switch (inputType)
             {
@@ -17,7 +18,7 @@ namespace SurvivalIsland.Common.Management
                     _inputHandler = new AxisInputHandler(actionToExecute);
                     break;
                 case InputType.Virtual:
-                    _inputHandler = new VirtualInputHandler(actionToExecute);
+                    _inputHandler = new VirtualInputHandler(gameplaySceneManager, actionToExecute);
                     break;
             }
         }
