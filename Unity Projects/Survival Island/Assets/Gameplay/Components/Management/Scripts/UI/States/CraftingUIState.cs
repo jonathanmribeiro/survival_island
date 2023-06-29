@@ -5,6 +5,7 @@ using SurvivalIsland.Common.Models;
 using SurvivalIsland.Common.Utils;
 using SurvivalIsland.Components.MainCharacter;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SurvivalIsland.Gameplay.Management.UI
 {
@@ -53,9 +54,14 @@ namespace SurvivalIsland.Gameplay.Management.UI
         private ChildButtonAction _inventoryButton7;
         private ChildButtonAction _inventoryButton8;
 
-        private ChildButtonAction _openJournalButton;
-        private ChildButtonAction _confirmCraftingButton;
-        private ChildButtonAction _closeCraftingButton;
+        private ChildButtonAction _openJournal;
+        private Button _openJournalButton;
+
+        private ChildButtonAction _confirmCrafting;
+        private Button _confirmCraftingButton;
+
+        private ChildButtonAction _closeCrafting;
+        private Button _closeCraftingButton;
 
         private Inventory _recipeInventory;
 
@@ -110,9 +116,14 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _inventoryButton8 = inventoryPanel.FindChild("InventorySlot8").GetComponent<ChildButtonAction>();
 
             var middlePanel = _craftingUI.FindChild("MiddlePanel");
-            _openJournalButton = middlePanel.FindChild("Journal").GetComponent<ChildButtonAction>();
-            _confirmCraftingButton = middlePanel.FindChild("Craft").GetComponent<ChildButtonAction>();
-            _closeCraftingButton = middlePanel.FindChild("Close").GetComponent<ChildButtonAction>();
+            _openJournal = middlePanel.FindChild("Journal").GetComponent<ChildButtonAction>();
+            _openJournalButton = _openJournal.GetComponentInChildren<Button>();
+
+            _confirmCrafting = middlePanel.FindChild("Craft").GetComponent<ChildButtonAction>();
+            _confirmCraftingButton = _confirmCrafting.GetComponentInChildren<Button>();
+            
+            _closeCrafting = middlePanel.FindChild("Close").GetComponent<ChildButtonAction>();
+            _closeCraftingButton = _closeCrafting.GetComponentInChildren<Button>();
         }
 
         public void EnterState()
@@ -142,9 +153,10 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _inventoryButton7.Prepare(_sceneManager, OnClick_InventoryButton7);
             _inventoryButton8.Prepare(_sceneManager, OnClick_InventoryButton8);
 
-            _openJournalButton.Prepare(_sceneManager, () => { });
-            _confirmCraftingButton.Prepare(_sceneManager, OnClick_ConfirmCrafting);
-            _closeCraftingButton.Prepare(_sceneManager, OnClick_CloseCrafting);
+            _openJournal.Prepare(_sceneManager, () => { });
+            _confirmCrafting.Prepare(_sceneManager, OnClick_ConfirmCrafting);
+            _closeCrafting.Prepare(_sceneManager, OnClick_CloseCrafting);
+            _confirmCraftingButton.interactable = _recipeInventory.CurrentAmount == 0;
         }
 
         public void ExitState() => _craftingUI.SetActive(false);

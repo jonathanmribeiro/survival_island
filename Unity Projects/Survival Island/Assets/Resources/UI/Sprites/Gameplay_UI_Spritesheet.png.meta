@@ -127,7 +127,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 56
+        y: 72
         width: 24
         height: 24
       alignment: 0
@@ -148,7 +148,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 25
-        y: 60
+        y: 76
         width: 20
         height: 20
       alignment: 0
@@ -169,7 +169,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 25
-        y: 40
+        y: 56
         width: 20
         height: 19
       alignment: 0
@@ -190,7 +190,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4
-        y: 40
+        y: 56
         width: 16
         height: 16
       alignment: 0
@@ -211,7 +211,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 46
-        y: 40
+        y: 56
         width: 40
         height: 40
       alignment: 0
@@ -232,7 +232,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 55
-        y: 49
+        y: 65
         width: 22
         height: 22
       alignment: 0
@@ -253,7 +253,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 16
+        y: 32
         width: 24
         height: 24
       alignment: 0
@@ -274,7 +274,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 24
-        y: 34
+        y: 50
         width: 22
         height: 6
       alignment: 0
@@ -295,7 +295,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 24
-        y: 16
+        y: 32
         width: 22
         height: 6
       alignment: 0
@@ -316,7 +316,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 47
-        y: 17
+        y: 33
         width: 22
         height: 22
       alignment: 0
@@ -337,7 +337,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 16
         width: 15
         height: 16
       alignment: 0
@@ -358,11 +358,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 15
-        y: 0
+        y: 16
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -379,11 +379,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 31
-        y: 0
+        y: 16
         width: 15
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -400,11 +400,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 47
-        y: 0
+        y: 16
         width: 15
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -412,6 +412,27 @@ TextureImporter:
       bones: []
       spriteID: e20c761c2197b1549914bf771168c8cc
       internalID: -309648488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Big_Wooden_panel
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 24, z: 19, w: 24}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1889ff5fa8cc0247ba2825a73a81f40
+      internalID: -1990058611
       vertices: []
       indices: 
       edges: []
@@ -427,6 +448,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Big_Wooden_panel: -1990058611
       Brown_Filling_01: 821204153
       Brown_Filling_02: -13284915
       Button_Close_Down: -1910034401
