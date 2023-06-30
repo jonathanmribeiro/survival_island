@@ -85,6 +85,7 @@
     <Compile Include="Assets\Common\Scripts\Interfaces\IPlayerActionState.cs" />
     <Compile Include="Assets\Common\Scripts\Inventory\InventoryItemFactory.cs" />
     <Compile Include="Assets\Components\Trees\Scripts\TreeProps.cs" />
+    <Compile Include="Assets\Common\Scripts\Extensions\ParticleSystemExtensions.cs" />
     <Compile Include="Assets\Common\Scripts\Constants\InventoryConstants.cs" />
     <Compile Include="Assets\Common\Scripts\Utils\SmoothFollow.cs" />
     <Compile Include="Assets\Common\Scripts\Models\VitalitySystemModel.cs" />

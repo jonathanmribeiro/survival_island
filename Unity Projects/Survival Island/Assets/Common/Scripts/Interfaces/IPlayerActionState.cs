@@ -1,5 +1,4 @@
 using SurvivalIsland.Common.Enums;
-using SurvivalIsland.Common.Models;
 using System;
 using UnityEngine;
 

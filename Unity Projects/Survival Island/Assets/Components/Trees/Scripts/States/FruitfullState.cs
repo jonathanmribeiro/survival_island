@@ -2,7 +2,6 @@
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
 using SurvivalIsland.Common.Interfaces;
-using SurvivalIsland.Common.Models;
 using SurvivalIsland.Common.Utils;
 using System;
 using System.Collections.Generic;
@@ -85,8 +84,7 @@ namespace SurvivalIsland.Components.Trees
             if (!_playerInRange)
                 return;
 
-            if (!_leavesParticleSystem.isPlaying)
-                _leavesParticleSystem.Play();
+            _leavesParticleSystem.TryPlay();
 
             var randomItem = _manager.ObtainRandom(_treeProps.FruitType);
 
@@ -101,7 +99,6 @@ namespace SurvivalIsland.Components.Trees
                 var instanceToRemove = _fruitInstances.First();
                 UnityEngine.Object.Destroy(instanceToRemove.gameObject);
                 _fruitInstances.Remove(instanceToRemove);
-                _treeProps.ReduceCurrentAmount(_treeProps.FruitType);
                 VerifyMaximumAmountOfFruit();
             }
 
@@ -113,7 +110,7 @@ namespace SurvivalIsland.Components.Trees
 
         private void PopulateFruitArea()
         {
-            var totalFruitAmount = _manager.ObtainAll(_treeProps.FruitType).Count;
+            var totalFruitAmount = _manager.CountItemsOfType(_treeProps.FruitType);
             var currentInstantiatedFruits = _fruitInstances.Count;
 
             for (int i = currentInstantiatedFruits; i < totalFruitAmount; i++)
@@ -122,7 +119,7 @@ namespace SurvivalIsland.Components.Trees
             }
         }
 
-        private void VerifyMaximumAmountOfFruit()
-            => _hasMaximumAmountOfFruits = _manager.ObtainAll(_treeProps.FruitType)?.Count.Equals(_treeProps.MaxFruitAmount) ?? false;
+        private void VerifyMaximumAmountOfFruit() =>
+            _hasMaximumAmountOfFruits = _manager.CountItemsOfType(_treeProps.FruitType).Equals(_treeProps.MaxFruitAmount);
     }
 }

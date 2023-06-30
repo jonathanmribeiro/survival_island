@@ -46,6 +46,9 @@ namespace SurvivalIsland.Components.Trees
 
             if (!_treeProps.TimeEnteredHarvestingState.HasValue)
                 _treeProps.TimeEnteredHarvestingState = _dayNightCycle.CurrentTime;
+
+            _manager.ForceAmount(InventoryItemType.Leaf, _treeProps.MaxLeavesAmount);
+            _manager.ForceAmount(InventoryItemType.Wood, _treeProps.MaxWoodAmount);
         }
 
         public void UpdateState()
@@ -70,8 +73,7 @@ namespace SurvivalIsland.Components.Trees
             if (!_playerInRange)
                 return;
 
-            var randomItem = _manager.ObtainRandom(InventoryItemType.Leaf)
-                ?? _manager.ObtainRandom(InventoryItemType.Wood);
+            InventoryItemModel randomItem = TryGetRandomItem();
 
             if (randomItem != null)
             {
@@ -79,14 +81,14 @@ namespace SurvivalIsland.Components.Trees
                 {
                     case InventoryItemType.Leaf:
                         _playerActionToExecute = PlayerActionTypes.Collecting;
-                        if (!_leavesParticleSystem.isPlaying)
-                            _leavesParticleSystem.Play();
+                        _leavesParticleSystem.TryPlay();
                         break;
                     case InventoryItemType.Wood:
                         _playerActionToExecute = PlayerActionTypes.Chopping;
-                        if (!_woodParticleSystem.isPlaying)
-                            _woodParticleSystem.Play();
+                        _woodParticleSystem.TryPlay();
                         break;
+                    default:
+                        return;
                 }
 
                 var actionExecutedSuccessfully = playerActionCallback.Invoke(_playerActionToExecute, randomItem);
@@ -94,15 +96,16 @@ namespace SurvivalIsland.Components.Trees
                 if (actionExecutedSuccessfully)
                 {
                     _manager.Remove(randomItem);
-                    _treeProps.ReduceCurrentAmount(randomItem.Type);
                 }
             }
 
-            randomItem = _manager.ObtainRandom(InventoryItemType.Leaf)
-                ?? _manager.ObtainRandom(InventoryItemType.Wood);
+            randomItem = TryGetRandomItem();
 
             if (randomItem == null)
                 _manager.EnterTrunkState();
         }
+
+        public InventoryItemModel TryGetRandomItem() => _manager.ObtainRandom(InventoryItemType.Leaf) 
+            ?? _manager.ObtainRandom(InventoryItemType.Wood);
     }
 }

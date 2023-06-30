@@ -10,18 +10,15 @@ namespace SurvivalIsland.Components.Trees
         public InventoryItemType FruitType;
 
         public int MaxFruitAmount;
-        public int CurrentWoodAmount;
-
         public int MaxLeavesAmount;
-        public int CurrentFruitAmount;
-
         public int MaxWoodAmount;
-        public int CurrentLeavesAmount;
 
         public TimeSpan TimeNeededInGoneState;
         public TimeSpan TimeNeededInGrowingState;
-        public TimeSpan TimeNeededToSpawnFruit;
         public TimeSpan TimeNeededInHarvestingState;
+
+        public TimeSpan TimeNeededToSpawnFruit;
+        public TimeSpan TimeNeededToSpawnWood;
 
         public DateTime? TimeEnteredFruitfullState;
         public DateTime? TimeEnteredGoneState;
@@ -41,26 +38,10 @@ namespace SurvivalIsland.Components.Trees
             TimeNeededInGrowingState = TimeSpan.FromDays(days);
 
             days = random.Next(3, 5);
-            TimeNeededToSpawnFruit = TimeSpan.FromDays(days);
+            TimeNeededInHarvestingState = TimeSpan.FromDays(days);
 
             days = random.Next(3, 5);
-            TimeNeededInHarvestingState = TimeSpan.FromDays(days);
-        }
-
-        public void ReduceCurrentAmount(InventoryItemType itemType)
-        {
-            if (itemType.Equals(FruitType))
-            {
-                CurrentFruitAmount--;
-            }
-            else if (itemType.Equals(InventoryItemType.Wood))
-            {
-                CurrentWoodAmount--;
-            }
-            else if (itemType.Equals(InventoryItemType.Leaf))
-            {
-                CurrentLeavesAmount--;
-            }
+            TimeNeededToSpawnFruit = TimeSpan.FromDays(days);
         }
     }
 }

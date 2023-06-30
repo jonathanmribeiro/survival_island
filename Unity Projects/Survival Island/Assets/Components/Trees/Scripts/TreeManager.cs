@@ -1,11 +1,9 @@
 using SurvivalIsland.Common.Bases;
-using SurvivalIsland.Common.Constants;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
 using SurvivalIsland.Common.Inventory;
 using SurvivalIsland.Common.Models;
 using SurvivalIsland.Common.Utils;
-using System.Collections.Generic;
 
 namespace SurvivalIsland.Components.Trees
 {
@@ -34,7 +32,7 @@ namespace SurvivalIsland.Components.Trees
 
         public void Prepare(DayNightCycle dayNightCycle)
         {
-            Inventory.Prepare();
+            Inventory.Prepare(3);
 
             //TODO receive the proper initial props for the tree
             Inventory.AddMultiple(InventoryItemType.Wood, TreeProps.MaxWoodAmount);
@@ -55,10 +53,19 @@ namespace SurvivalIsland.Components.Trees
             CurrentState.UpdateState();
         }
 
-        public bool TryAddItem(InventoryItemType itemType) => Inventory.TryAddItem(itemType);
-        public void AddMultiple(InventoryItemType itemType, int amount) => Inventory.AddMultiple(itemType, amount);
-        public InventoryItemModel ObtainRandom(InventoryItemType itemType) => Inventory.ObtainRandom(itemType);
-        public List<InventoryItemModel> ObtainAll(InventoryItemType itemType) => Inventory.ObtainAll(itemType);
-        public void Remove(InventoryItemModel item) => Inventory.Remove(item);
+        public bool TryAddItem(InventoryItemType itemType)
+            => Inventory.TryAddItem(itemType);
+
+        public InventoryItemModel ObtainRandom(InventoryItemType itemType)
+            => Inventory.ObtainRandom(itemType);
+
+        public int CountItemsOfType(InventoryItemType itemType)
+            => Inventory.ObtainAll(itemType)?.Count ?? 0;
+
+        public void Remove(InventoryItemModel item)
+            => Inventory.Remove(item);
+
+        public void ForceAmount(InventoryItemType itemType, int amount)
+            => Inventory.ForceAmount(itemType, amount);
     }
 }

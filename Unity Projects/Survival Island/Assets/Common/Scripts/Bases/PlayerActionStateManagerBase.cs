@@ -8,6 +8,7 @@ namespace SurvivalIsland.Common.Bases
     public class PlayerActionStateManagerBase : MonoBehaviour
     {
         public IPlayerActionState CurrentState;
+        public string CurrentStateName;
         public Transform SelectorLocation;
         public Vector2 SelectorSize;
 
@@ -15,6 +16,7 @@ namespace SurvivalIsland.Common.Bases
         {
             CurrentState?.ExitState();
             CurrentState = nextState;
+            CurrentStateName = CurrentState.GetType().Name;
             CurrentState.EnterState();
         }
 

@@ -18,7 +18,7 @@ namespace SurvivalIsland.Common.Inventory
         public int CurrentAmount => Slots?.Count(x => x.Type != InventoryItemType.None) ?? 0;
         private float CurrentTotalWeight => Slots?.Sum(x => x.CurrentWeight) ?? 0;
 
-        public void Prepare(int maxItems = 999, float maxWeight = 999)
+        public void Prepare(int maxItems = 10, float maxWeight = 999)
         {
             Slots = new();
 
@@ -31,7 +31,26 @@ namespace SurvivalIsland.Common.Inventory
             MaxWeight = maxWeight;
         }
 
+        private void RearrangeInventory()
+        {
+            for (int i = 0; i < Slots.Count - 2; i++)
+            {
+                var currentSlot = Slots[i];
+                var nextSlot = Slots[i + 1];
+
+                if (currentSlot.Type == InventoryItemType.None)
+                {
+                    Slots[i].Items = nextSlot.Items;
+                    Slots[i].Type = nextSlot.Type;
+
+                    Slots[i + 1].Items = new();
+                    Slots[i + 1].Type = InventoryItemType.None;
+                }
+            }
+        }
+
         public bool TryAddItem(InventoryItemType type) => TryAddItem(InventoryItemFactory.Obtain(type));
+       
         public bool TryAddItem(InventoryItemModel item)
         {
             var futureWeight = CurrentTotalWeight + item.Weight;
@@ -60,6 +79,7 @@ namespace SurvivalIsland.Common.Inventory
 
             return true;
         }
+        
         public void AddMultiple(InventoryItemType type, int amount)
         {
             for (int i = 0; i < amount; i++)
@@ -70,10 +90,13 @@ namespace SurvivalIsland.Common.Inventory
                     break;
             }
         }
-
+        
         public InventoryItemModel ObtainRandom(InventoryItemType type) => Slots.FirstOrDefault(x => x.Type == type)?.Items.FirstOrDefault();
+        
         public List<InventoryItemModel> ObtainAll(InventoryItemType type) => Slots.FirstOrDefault(x => x.Type == type)?.Items;
+        
         public InventoryItemSlot ObtainSlot(int index) => index < Slots.Count - 1 ? Slots[index] : default;
+        
         public void Remove(InventoryItemModel item)
         {
             var slot = Slots.FirstOrDefault(x => x.Type == item.Type);
@@ -90,23 +113,21 @@ namespace SurvivalIsland.Common.Inventory
             }
         }
 
-
-        private void RearrangeInventory()
+        public void RemoveAll(InventoryItemType type)
         {
-            for (int i = 0; i < Slots.Count - 2; i++)
+            var slots = Slots.Where(x => x.Type == type);
+            foreach (var slot in slots)
             {
-                var currentSlot = Slots[i];
-                var nextSlot = Slots[i + 1];
-
-                if (currentSlot.Type == InventoryItemType.None)
-                {
-                    Slots[i].Items = nextSlot.Items;
-                    Slots[i].Type = nextSlot.Type;
-
-                    Slots[i + 1].Items = new();
-                    Slots[i + 1].Type = InventoryItemType.None;
-                }
+                slot.Items.Clear();
+                slot.Type = InventoryItemType.None;
+                RearrangeInventory();
             }
+        }
+
+        public void ForceAmount(InventoryItemType itemType, int amount)
+        {
+            RemoveAll(itemType);
+            AddMultiple(itemType, amount);
         }
     }
 }
