@@ -9,20 +9,22 @@ namespace SurvivalIsland.Components.MainCharacter
 {
     public class MainCharacterActionsManager : MonoBehaviour
     {
+        public PlayerActionTypes ActionToExecute;
         private MainCharacterInventoryManager _inventoryManager;
         private PlayerActionStateManagerBase _managerInteracting;
 
         private GameObject _actionBalloon;
         private Animator _actionBalloonAnimator;
+        private SpriteRenderer _actionBalloonSpriteRenderer;
 
         private SelectorManager _selectorManager;
-
 
         private void Awake()
         {
             _inventoryManager = GetComponent<MainCharacterInventoryManager>();
             _actionBalloon = gameObject.FindChild("MainCharacterBalloon");
             _actionBalloonAnimator = _actionBalloon.GetComponent<Animator>();
+            _actionBalloonSpriteRenderer = _actionBalloon.GetComponent<SpriteRenderer>();
             _selectorManager = gameObject.GetComponentInChildren<SelectorManager>();
         }
 
@@ -57,20 +59,25 @@ namespace SurvivalIsland.Components.MainCharacter
 
         private void UpdateActionBalloon()
         {
-            switch (_managerInteracting?.GetAction())
+            ActionToExecute = _managerInteracting != null ? _managerInteracting.GetAction() : PlayerActionTypes.None;
+
+            switch (ActionToExecute)
             {
                 case PlayerActionTypes.Collecting:
                     _actionBalloon.SetActive(true);
                     _actionBalloonAnimator.SetBool(PlayerActionTypes.Collecting.ToString(), true);
                     _actionBalloonAnimator.SetBool(PlayerActionTypes.Chopping.ToString(), false);
+                    _actionBalloonSpriteRenderer.enabled = true;
                     break;
                 case PlayerActionTypes.Chopping:
                     _actionBalloon.SetActive(true);
-                    _actionBalloonAnimator.SetBool(PlayerActionTypes.Chopping.ToString(), true);
                     _actionBalloonAnimator.SetBool(PlayerActionTypes.Collecting.ToString(), false);
+                    _actionBalloonAnimator.SetBool(PlayerActionTypes.Chopping.ToString(), true);
+                    _actionBalloonSpriteRenderer.enabled = true;
                     break;
                 default:
                     _actionBalloon.SetActive(false);
+                    _actionBalloonSpriteRenderer.enabled = false;
                     break;
             }
         }

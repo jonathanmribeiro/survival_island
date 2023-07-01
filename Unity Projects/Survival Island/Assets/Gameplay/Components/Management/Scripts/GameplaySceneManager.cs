@@ -42,7 +42,7 @@ namespace SurvivalIsland.Gameplay.Management
         private void Start()
         {
             _cameraManager.SetFollowingTarget(_mainCharacter.transform);
-            _inputManager.Prepare(this, InputType.Virtual, EventPlayerAction);
+            _inputManager.Prepare(this, InputType.Virtual, ExecutePlayerAction);
             _mainCharacterManager.Prepare(_inputManager, _dayNightCycle);
             _uiManager.Prepare(this, _mainCharacterManager, _dayNightCycle);
 
@@ -72,7 +72,7 @@ namespace SurvivalIsland.Gameplay.Management
             }
         }
 
-        private void EventPlayerAction()
+        private void ExecutePlayerAction()
         {
             foreach (var manager in _treeManagers)
             {

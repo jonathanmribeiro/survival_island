@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SurvivalIsland.Common.Interfaces
 {
-    public interface IPlayerActionState: IState
+    public interface IPlayerActionState : IState
     {
         public PlayerActionTypes GetAction();
         public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback);

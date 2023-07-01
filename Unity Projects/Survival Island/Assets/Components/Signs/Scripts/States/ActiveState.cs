@@ -1,7 +1,6 @@
 using SurvivalIsland.Common.Bases;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Interfaces;
-using SurvivalIsland.Common.Models;
 using System;
 
 namespace SurvivalIsland.Components.Signs
