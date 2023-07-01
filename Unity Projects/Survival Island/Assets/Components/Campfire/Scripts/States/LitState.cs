@@ -48,7 +48,7 @@ namespace SurvivalIsland.Components.Campfire
             _boundariesCollider.enabled = true;
             _activationTrigger.enabled = true;
 
-            _signAlert.Prepare(SignStates.InactiveState);
+            _signAlert.Prepare(_manager, SignStates.InactiveState);
         }
 
         public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)

@@ -15,8 +15,8 @@ namespace SurvivalIsland.Components.Signs
         }
 
         public void EnterState() => _manager.gameObject.SetActive(true);
-        public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback) {/*Left empty on purpose*/}
-        public void ExitState() {/*Left empty on purpose*/}
+        public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback) => _manager.Parent.ExecuteAction(playerActionCallback);
+        public void ExitState() => _manager.gameObject.SetActive(false);
         public PlayerActionTypes GetAction() => _playerInRange ? PlayerActionTypes.OpenConstructionUI : PlayerActionTypes.None;
         public void UpdateState() {/*Left empty on purpose*/}
     }

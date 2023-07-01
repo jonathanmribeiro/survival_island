@@ -10,8 +10,9 @@ namespace SurvivalIsland.Components.MainCharacter
     public class MainCharacterActionsManager : MonoBehaviour
     {
         public PlayerActionTypes ActionToExecute;
+        public PlayerActionStateManagerBase ManagerInteracting;
+
         private MainCharacterInventoryManager _inventoryManager;
-        private PlayerActionStateManagerBase _managerInteracting;
 
         private GameObject _actionBalloon;
         private Animator _actionBalloonAnimator;
@@ -49,17 +50,17 @@ namespace SurvivalIsland.Components.MainCharacter
 
         private void OnTriggerStay2D(Collider2D collision)
         {
-            collision.TryGetComponent(out _managerInteracting);
+            collision.TryGetComponent(out ManagerInteracting);
         }
 
         private void OnTriggerExit2D()
         {
-            _managerInteracting = null;
+            ManagerInteracting = null;
         }
 
         private void UpdateActionBalloon()
         {
-            ActionToExecute = _managerInteracting != null ? _managerInteracting.GetAction() : PlayerActionTypes.None;
+            ActionToExecute = ManagerInteracting != null ? ManagerInteracting.GetAction() : PlayerActionTypes.None;
 
             switch (ActionToExecute)
             {
@@ -87,10 +88,10 @@ namespace SurvivalIsland.Components.MainCharacter
             Transform location = transform;
             Vector2 size = Vector2.one;
 
-            if (_managerInteracting != null)
+            if (ManagerInteracting != null)
             {
-                location = _managerInteracting.SelectorLocation;
-                size = _managerInteracting.SelectorSize;
+                location = ManagerInteracting.SelectorLocation;
+                size = ManagerInteracting.SelectorSize;
             }
 
             _selectorManager.UpdateSelector(location, size);

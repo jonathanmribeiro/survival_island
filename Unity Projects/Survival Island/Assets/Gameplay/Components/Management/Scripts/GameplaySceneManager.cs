@@ -74,15 +74,9 @@ namespace SurvivalIsland.Gameplay.Management
 
         private void ExecutePlayerAction()
         {
-            foreach (var manager in _treeManagers)
-            {
-                manager.ExecuteAction(_mainCharacterActionsManager.ExecuteAction);
-            }
-
-            foreach (var manager in _campfireManagers)
-            {
-                manager.ExecuteAction(_mainCharacterActionsManager.ExecuteAction);
-            }
+            _mainCharacterActionsManager
+                .ManagerInteracting
+                ?.ExecuteAction(_mainCharacterActionsManager.ExecuteAction);
         }
 
         private void PrepareTrees()

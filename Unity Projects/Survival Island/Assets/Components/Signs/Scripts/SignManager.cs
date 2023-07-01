@@ -5,6 +5,8 @@ namespace SurvivalIsland.Components.Signs
 {
     public class SignManager : PlayerActionStateManagerBase
     {
+        public PlayerActionStateManagerBase Parent;
+
         private ActiveState _activeState;
         private InactiveState _inactiveState;
 
@@ -14,9 +16,10 @@ namespace SurvivalIsland.Components.Signs
             _inactiveState = new(this);
         }
 
-        public void Prepare(SignStates state)
+        public void Prepare(PlayerActionStateManagerBase parent, SignStates state)
         {
             SelectorLocation = gameObject.FindChild("SelectorLocation").transform;
+            Parent = parent;
 
             switch (state)
             {
