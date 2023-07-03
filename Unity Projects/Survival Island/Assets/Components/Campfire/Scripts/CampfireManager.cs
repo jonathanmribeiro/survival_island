@@ -45,6 +45,6 @@ namespace SurvivalIsland.Components.Campfire
         public void EnterLitState() => SwitchState(_litState);
         public void EnterPendingConstructionState() => SwitchState(_pendingConstructionState);
         public void EnterUnlitState() => SwitchState(_unlitState);
-        public void OpenCraftingUI() => _gameplayUIManager.EnterCraftingUIState(RecipeInventory);
+        public void OpenCraftingUI() => _gameplayUIManager.EnterCraftingUIState(RecipeInventory, EnterUnlitState);
     }
 }

@@ -3,6 +3,7 @@ using SurvivalIsland.Common.Inventory;
 using SurvivalIsland.Common.Utils;
 using SurvivalIsland.Components.MainCharacter;
 using SurvivalIsland.Gameplay.Management.UI;
+using System;
 
 namespace SurvivalIsland.Gameplay.Management
 {
@@ -30,9 +31,10 @@ namespace SurvivalIsland.Gameplay.Management
 
         public void UpdateUI() => CurrentState.UpdateState();
         public void EnterBasicUIState() => SwitchState(_basicUIState);
-        public void EnterCraftingUIState(Inventory recipeInventory)
+        public void EnterCraftingUIState(Inventory recipeInventory, Action afterCraftingCallback)
         {
             _craftingUIState.SetRecipe(recipeInventory);
+            _craftingUIState.SetCraftingCallback(afterCraftingCallback);
             SwitchState(_craftingUIState);
         }
         public void EnterInventoryState() => SwitchState(_inventoryUIState);

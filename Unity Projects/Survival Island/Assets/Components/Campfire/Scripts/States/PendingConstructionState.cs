@@ -58,10 +58,7 @@ namespace SurvivalIsland.Components.Campfire
             _manager.OpenCraftingUI();
         }
 
-        public void ExitState()
-        {
-            throw new NotImplementedException();
-        }
+        public void ExitState() {/* Left empty on purpose */}
 
         public PlayerActionTypes GetAction() => PlayerActionTypes.None;
 
