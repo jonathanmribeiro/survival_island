@@ -8109,14 +8109,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 179064746731291183, guid: 5b5866bca35904140bc110b6611523de, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 179064746731291183, guid: 5b5866bca35904140bc110b6611523de, type: 3}
-      propertyPath: m_SortingOrder
-      value: 999
-      objectReference: {fileID: 0}
     - target: {fileID: 4030652864318511567, guid: 5b5866bca35904140bc110b6611523de, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -8159,10 +8151,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4030652864318511567, guid: 5b5866bca35904140bc110b6611523de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4513369362536496770, guid: 5b5866bca35904140bc110b6611523de, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4684942993384997373, guid: 5b5866bca35904140bc110b6611523de, type: 3}
@@ -47235,7 +47223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 551550585975779361, guid: 7671191dc571b9343a941b7770940754, type: 3}
       propertyPath: _targetDayLength
-      value: 2
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 551550585975779361, guid: 7671191dc571b9343a941b7770940754, type: 3}
       propertyPath: LightColor.ctime0

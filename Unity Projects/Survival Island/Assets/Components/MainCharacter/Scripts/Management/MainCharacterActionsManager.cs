@@ -68,12 +68,21 @@ namespace SurvivalIsland.Components.MainCharacter
                     _actionBalloon.SetActive(true);
                     _actionBalloonAnimator.SetBool(PlayerActionTypes.Collecting.ToString(), true);
                     _actionBalloonAnimator.SetBool(PlayerActionTypes.Chopping.ToString(), false);
+                    _actionBalloonAnimator.SetBool(PlayerActionTypes.FeedCampfire.ToString(), false);
                     _actionBalloonSpriteRenderer.enabled = true;
                     break;
                 case PlayerActionTypes.Chopping:
                     _actionBalloon.SetActive(true);
                     _actionBalloonAnimator.SetBool(PlayerActionTypes.Collecting.ToString(), false);
                     _actionBalloonAnimator.SetBool(PlayerActionTypes.Chopping.ToString(), true);
+                    _actionBalloonAnimator.SetBool(PlayerActionTypes.FeedCampfire.ToString(), false);
+                    _actionBalloonSpriteRenderer.enabled = true;
+                    break;
+                case PlayerActionTypes.FeedCampfire:
+                    _actionBalloon.SetActive(true);
+                    _actionBalloonAnimator.SetBool(PlayerActionTypes.Collecting.ToString(), false);
+                    _actionBalloonAnimator.SetBool(PlayerActionTypes.Chopping.ToString(), false);
+                    _actionBalloonAnimator.SetBool(PlayerActionTypes.FeedCampfire.ToString(), true);
                     _actionBalloonSpriteRenderer.enabled = true;
                     break;
                 default:

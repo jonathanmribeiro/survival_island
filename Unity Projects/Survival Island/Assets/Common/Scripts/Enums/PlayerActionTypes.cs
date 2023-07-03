@@ -5,6 +5,7 @@ namespace SurvivalIsland.Common.Enums
 		None,
 		Collecting,
 		Chopping,
-        OpenConstructionUI
+        OpenConstructionUI,
+		FeedCampfire
     }
 }
