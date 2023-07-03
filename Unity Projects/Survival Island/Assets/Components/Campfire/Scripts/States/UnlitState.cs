@@ -50,24 +50,12 @@ namespace SurvivalIsland.Components.Campfire
             _signAlert.Prepare(_manager, SignStates.InactiveState);
         }
 
-        public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
-        {
-            throw new NotImplementedException();
-        }
+        public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback) { }
 
-        public void ExitState()
-        {
-            throw new NotImplementedException();
-        }
+        public void ExitState() { }
 
-        public PlayerActionTypes GetAction()
-        {
-            throw new NotImplementedException();
-        }
+        public PlayerActionTypes GetAction() { return default; }
 
-        public void UpdateState()
-        {
-            throw new NotImplementedException();
-        }
+        public void UpdateState() { }
     }
 }
