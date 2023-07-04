@@ -1,15 +1,11 @@
 using SurvivalIsland.Common.Bases;
-using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
-using SurvivalIsland.Common.Interfaces;
-using SurvivalIsland.Common.Models;
 using SurvivalIsland.Components.Signs;
-using System;
 using UnityEngine;
 
 namespace SurvivalIsland.Components.Campfire
 {
-    public class ExtinguishedState : PlayerDetectionBase, IPlayerActionState
+    public class ExtinguishedState : StateBase
     {
         private CampfireManager _manager;
 
@@ -38,7 +34,7 @@ namespace SurvivalIsland.Components.Campfire
             _signAlert = _manager.GetComponentInChildren<SignManager>();
         }
 
-        public void EnterState()
+        public override void EnterState()
         {
             _pristineWood.SetActive(false);
             _burnedWood.SetActive(true);
@@ -49,26 +45,6 @@ namespace SurvivalIsland.Components.Campfire
             _activationTrigger.enabled = true;
 
             _signAlert.Prepare(_manager, SignStates.InactiveState);
-        }
-
-        public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ExitState()
-        {
-            throw new NotImplementedException();
-        }
-
-        public PlayerActionTypes GetAction()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateState()
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -82,7 +82,6 @@
     <Compile Include="Assets\Components\Trees\Scripts\States\TrunkState.cs" />
     <Compile Include="Assets\Components\Trees\Scripts\States\GoneState.cs" />
     <Compile Include="Assets\Common\Scripts\Extensions\GameObjectExtensions.cs" />
-    <Compile Include="Assets\Common\Scripts\Interfaces\IPlayerActionState.cs" />
     <Compile Include="Assets\Common\Scripts\Inventory\InventoryItemFactory.cs" />
     <Compile Include="Assets\Components\Trees\Scripts\TreeProps.cs" />
     <Compile Include="Assets\Common\Scripts\Extensions\ParticleSystemExtensions.cs" />
@@ -94,7 +93,7 @@
     <Compile Include="Assets\Common\Scripts\Utils\ResourceLoader.cs" />
     <Compile Include="Assets\Components\Trees\Scripts\States\GrowingState.cs" />
     <Compile Include="Assets\Common\Scripts\Utils\ChildTextUpdater.cs" />
-    <Compile Include="Assets\Common\Scripts\Bases\PlayerDetectionBase.cs" />
+    <Compile Include="Assets\Common\Scripts\Bases\StateBase.cs" />
     <Compile Include="Assets\Components\Signs\Scripts\States\InactiveState.cs" />
     <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterMovementManager.cs" />
     <Compile Include="Assets\Common\Scripts\Constants\AnimatorVariablesConstants.cs" />

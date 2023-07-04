@@ -1,7 +1,6 @@
 ﻿using SurvivalIsland.Common.Bases;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
-using SurvivalIsland.Common.Interfaces;
 using SurvivalIsland.Common.Utils;
 using System;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ using UnityEngine;
 
 namespace SurvivalIsland.Components.Trees
 {
-    public class FruitfullState : PlayerDetectionBase, IPlayerActionState
+    public class FruitfullState : StateBase
     {
         private readonly GameObject _canopy;
         private readonly GameObject _trunk;
@@ -43,7 +42,7 @@ namespace SurvivalIsland.Components.Trees
             _fruitInstances = new();
         }
 
-        public void EnterState()
+        public override void EnterState()
         {
             _canopy.SetActive(true);
             _trunk.SetActive(true);
@@ -56,7 +55,7 @@ namespace SurvivalIsland.Components.Trees
             PopulateFruitArea();
         }
 
-        public void UpdateState()
+        public override void UpdateState()
         {
             if (_hasMaximumAmountOfFruits)
                 return;
@@ -72,14 +71,14 @@ namespace SurvivalIsland.Components.Trees
             }
         }
 
-        public void ExitState()
+        public override void ExitState()
         {
             _treeProps.TimeEnteredFruitfullState = null;
         }
 
-        public PlayerActionTypes GetAction() => PlayerActionTypes.Collecting;
+        public override PlayerActionTypes GetAction() => PlayerActionTypes.Collecting;
 
-        public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
+        public override void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
         {
             if (!_playerInRange)
                 return;

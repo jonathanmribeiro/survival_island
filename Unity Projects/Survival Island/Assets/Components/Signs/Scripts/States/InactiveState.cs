@@ -1,12 +1,8 @@
 using SurvivalIsland.Common.Bases;
-using SurvivalIsland.Common.Enums;
-using SurvivalIsland.Common.Interfaces;
-using SurvivalIsland.Common.Models;
-using System;
 
 namespace SurvivalIsland.Components.Signs
 {
-    public class InactiveState : PlayerDetectionBase, IPlayerActionState
+    public class InactiveState : StateBase
     {
         private SignManager _manager;
 
@@ -15,14 +11,9 @@ namespace SurvivalIsland.Components.Signs
             _manager = manager;
         }
 
-        public void EnterState()
+        public override void EnterState()
         {
             _manager.gameObject.SetActive(false);
         }
-
-        public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback) {/*Left empty on purpose*/}
-        public void ExitState() {/*Left empty on purpose*/}
-        public PlayerActionTypes GetAction() => PlayerActionTypes.None;
-        public void UpdateState() {/*Left empty on purpose*/}
     }
 }

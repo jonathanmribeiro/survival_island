@@ -1,14 +1,13 @@
 using SurvivalIsland.Common.Bases;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
-using SurvivalIsland.Common.Interfaces;
 using SurvivalIsland.Components.Signs;
 using System;
 using UnityEngine;
 
 namespace SurvivalIsland.Components.Campfire
 {
-    public class PendingConstructionState : PlayerDetectionBase, IPlayerActionState
+    public class PendingConstructionState : StateBase
     {
         private CampfireManager _manager;
 
@@ -37,7 +36,7 @@ namespace SurvivalIsland.Components.Campfire
             _signAlert = _manager.GetComponentInChildren<SignManager>();
         }
 
-        public void EnterState()
+        public override void EnterState()
         {
             _pristineWood.SetActive(false);
             _burnedWood.SetActive(false);
@@ -50,21 +49,12 @@ namespace SurvivalIsland.Components.Campfire
             _signAlert.Prepare(_manager, SignStates.ActiveState);
         }
 
-        public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
+        public override void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
         {
             if (!_signAlert.GetAction().Equals(PlayerActionTypes.OpenConstructionUI))
                 return;
 
             _manager.OpenCraftingUI();
-        }
-
-        public void ExitState() {/* Left empty on purpose */}
-
-        public PlayerActionTypes GetAction() => PlayerActionTypes.None;
-
-        public void UpdateState()
-        {
-            throw new NotImplementedException();
         }
     }
 }

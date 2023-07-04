@@ -1,7 +1,6 @@
 using SurvivalIsland.Common.Bases;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
-using SurvivalIsland.Common.Interfaces;
 using SurvivalIsland.Common.Utils;
 using SurvivalIsland.Components.Signs;
 using System;
@@ -9,7 +8,7 @@ using UnityEngine;
 
 namespace SurvivalIsland.Components.Campfire
 {
-    public class LitState : PlayerDetectionBase, IPlayerActionState
+    public class LitState : StateBase
     {
         private CampfireManager _manager;
 
@@ -43,7 +42,7 @@ namespace SurvivalIsland.Components.Campfire
             _signAlert = _manager.GetComponentInChildren<SignManager>();
         }
 
-        public void EnterState()
+        public override void EnterState()
         {
             _pristineWood.SetActive(false);
             _burnedWood.SetActive(true);
@@ -62,18 +61,7 @@ namespace SurvivalIsland.Components.Campfire
             }
         }
 
-        public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
-        {
-            /*Left empty on purpose*/
-        }
-
-        public void ExitState()
-        {
-        }
-
-        public PlayerActionTypes GetAction() => PlayerActionTypes.None;
-
-        public void UpdateState()
+        public override void UpdateState()
         {
             if (_manager.CountItemsOfType(InventoryItemType.Wood) == 0)
             {

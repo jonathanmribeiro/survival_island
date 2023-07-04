@@ -1,7 +1,6 @@
 ﻿using SurvivalIsland.Common.Bases;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
-using SurvivalIsland.Common.Interfaces;
 using SurvivalIsland.Common.Models;
 using SurvivalIsland.Common.Utils;
 using System;
@@ -9,7 +8,7 @@ using UnityEngine;
 
 namespace SurvivalIsland.Components.Trees
 {
-    public class HarvestingState : PlayerDetectionBase, IPlayerActionState
+    public class HarvestingState : StateBase
     {
         private readonly GameObject _canopy;
         private readonly GameObject _trunk;
@@ -38,7 +37,7 @@ namespace SurvivalIsland.Components.Trees
             _woodParticleSystem = _trunk.GetComponent<ParticleSystem>();
         }
 
-        public void EnterState()
+        public override void EnterState()
         {
             _canopy.SetActive(true);
             _trunk.SetActive(true);
@@ -51,7 +50,7 @@ namespace SurvivalIsland.Components.Trees
             _manager.ForceAmount(InventoryItemType.Wood, _treeProps.MaxWoodAmount);
         }
 
-        public void UpdateState()
+        public override void UpdateState()
         {
             DateTime nextStateTime = _treeProps.TimeEnteredHarvestingState.Value.Add(_treeProps.TimeNeededInHarvestingState);
 
@@ -61,14 +60,14 @@ namespace SurvivalIsland.Components.Trees
             }
         }
 
-        public void ExitState()
+        public override void ExitState()
         {
             _treeProps.TimeEnteredHarvestingState = null;
         }
 
-        public PlayerActionTypes GetAction() => _playerActionToExecute;
+        public override PlayerActionTypes GetAction() => _playerActionToExecute;
 
-        public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
+        public override void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
         {
             if (!_playerInRange)
                 return;

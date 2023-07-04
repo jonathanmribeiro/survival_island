@@ -1,5 +1,4 @@
 using SurvivalIsland.Common.Enums;
-using SurvivalIsland.Common.Interfaces;
 using SurvivalIsland.Common.Models;
 using System;
 using UnityEngine;
@@ -8,13 +7,13 @@ namespace SurvivalIsland.Common.Bases
 {
     public class PlayerActionStateManagerBase : MonoBehaviour
     {
-        public IPlayerActionState CurrentState;
+        public StateBase CurrentState;
         public string CurrentStateName;
         public Transform SelectorLocation;
         public Vector2 SelectorSize;
         public Inventory.Inventory Inventory;
 
-        public void SwitchState(IPlayerActionState nextState)
+        public void SwitchState(StateBase nextState)
         {
             CurrentState?.ExitState();
             CurrentState = nextState;

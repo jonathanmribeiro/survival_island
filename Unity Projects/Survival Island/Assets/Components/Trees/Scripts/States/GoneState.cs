@@ -1,14 +1,12 @@
 ﻿using SurvivalIsland.Common.Bases;
-using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
-using SurvivalIsland.Common.Interfaces;
 using SurvivalIsland.Common.Utils;
 using System;
 using UnityEngine;
 
 namespace SurvivalIsland.Components.Trees
 {
-    public class GoneState : PlayerDetectionBase, IPlayerActionState
+    public class GoneState : StateBase
     {
         private readonly GameObject _canopy;
         private readonly GameObject _trunk;
@@ -32,7 +30,7 @@ namespace SurvivalIsland.Components.Trees
             _circleCollider = _manager.GetComponent<CircleCollider2D>();
         }
 
-        public void EnterState()
+        public override void EnterState()
         {
             _canopy.SetActive(false);
             _trunk.SetActive(false);
@@ -43,7 +41,7 @@ namespace SurvivalIsland.Components.Trees
                 _treeProps.TimeEnteredGoneState = _dayNightCycle.CurrentTime;
         }
 
-        public void UpdateState()
+        public override void UpdateState()
         {
             DateTime nextStateTime = _treeProps.TimeEnteredGoneState.Value.Add(_treeProps.TimeNeededInGoneState);
 
@@ -53,14 +51,10 @@ namespace SurvivalIsland.Components.Trees
             }
         }
 
-        public void ExitState()
+        public override void ExitState()
         {
             _treeProps.TimeEnteredGoneState = null;
             _circleCollider.enabled = true;
         }
-        
-        public PlayerActionTypes GetAction() => PlayerActionTypes.None;
-
-        public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback) {/*Left empty on purpose*/}
     }
 }

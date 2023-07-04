@@ -1,14 +1,13 @@
 ﻿using SurvivalIsland.Common.Bases;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
-using SurvivalIsland.Common.Interfaces;
 using SurvivalIsland.Common.Utils;
 using System;
 using UnityEngine;
 
 namespace SurvivalIsland.Components.Trees
 {
-    public class GrowingState : PlayerDetectionBase, IPlayerActionState
+    public class GrowingState : StateBase
     {
         private readonly GameObject _canopy;
         private readonly GameObject _trunk;
@@ -34,7 +33,7 @@ namespace SurvivalIsland.Components.Trees
             _woodParticleSystem = _trunk.GetComponent<ParticleSystem>();
         }
 
-        public void EnterState()
+        public override void EnterState()
         {
             _canopy.SetActive(false);
             _trunk.SetActive(false);
@@ -46,7 +45,7 @@ namespace SurvivalIsland.Components.Trees
                 _treeProps.TimeEnteredGrowingState = _dayNightCycle.CurrentTime;
         }
 
-        public void UpdateState()
+        public override void UpdateState()
         {
             DateTime nextStateTime = _treeProps.TimeEnteredGrowingState.Value.Add(_treeProps.TimeNeededInGoneState);
 
@@ -56,14 +55,14 @@ namespace SurvivalIsland.Components.Trees
             }
         }
 
-        public void ExitState()
+        public override void ExitState()
         {
             _treeProps.TimeEnteredGrowingState = null;
         }
 
-        public PlayerActionTypes GetAction() => PlayerActionTypes.Chopping;
+        public override PlayerActionTypes GetAction() => PlayerActionTypes.Chopping;
 
-        public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
+        public override void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
         {
             if (!_playerInRange)
                 return;

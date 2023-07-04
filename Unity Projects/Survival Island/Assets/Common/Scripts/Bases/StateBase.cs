@@ -1,9 +1,12 @@
 using SurvivalIsland.Common.Constants;
+using SurvivalIsland.Common.Enums;
+using SurvivalIsland.Common.Interfaces;
+using System;
 using UnityEngine;
 
 namespace SurvivalIsland.Common.Bases
 {
-    public class PlayerDetectionBase
+    public class StateBase: IState
     {
         public bool _playerInRange = false;
 
@@ -18,5 +21,15 @@ namespace SurvivalIsland.Common.Bases
             if (collision.CompareTag(TagConstants.PLAYER))
                 _playerInRange = false;
         }
+
+        public virtual PlayerActionTypes GetAction() => PlayerActionTypes.None;
+
+        public virtual void EnterState() { }
+
+        public virtual void UpdateState() { }
+
+        public virtual void ExitState() { }
+
+        public virtual void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback) { }
     }
 }
