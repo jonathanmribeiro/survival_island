@@ -15,6 +15,7 @@ namespace SurvivalIsland.Components.Trees
         private GoneState _goneState;
 
         public TreeProps TreeProps;
+        public Inventory TreeInventory;
 
         private void Awake()
         {
@@ -30,12 +31,12 @@ namespace SurvivalIsland.Components.Trees
 
         public void Prepare(DayNightCycle dayNightCycle)
         {
-            Inventory.Prepare(3);
+            TreeInventory.Prepare(3);
 
             //TODO receive the proper initial props for the tree
-            Inventory.AddMultiple(InventoryItemType.Wood, TreeProps.MaxWoodAmount);
-            Inventory.AddMultiple(TreeProps.FruitType, TreeProps.MaxFruitAmount);
-            Inventory.AddMultiple(InventoryItemType.Leaf, TreeProps.MaxLeavesAmount);
+            TreeInventory.AddMultiple(InventoryItemType.Wood, TreeProps.MaxWoodAmount);
+            TreeInventory.AddMultiple(TreeProps.FruitType, TreeProps.MaxFruitAmount);
+            TreeInventory.AddMultiple(InventoryItemType.Leaf, TreeProps.MaxLeavesAmount);
 
             _fruitfullState = new(this, TreeProps, dayNightCycle);
             _goneState = new(this, TreeProps, dayNightCycle);

@@ -50,8 +50,9 @@ namespace SurvivalIsland.Common.Inventory
             }
         }
 
+        #region Adders
         public bool TryAddItem(InventoryItemType type) => TryAddItem(InventoryItemFactory.Obtain(type));
-       
+
         public bool TryAddItem(InventoryItemModel item)
         {
             var futureWeight = CurrentTotalWeight + item.Weight;
@@ -80,7 +81,7 @@ namespace SurvivalIsland.Common.Inventory
 
             return true;
         }
-        
+
         public void AddMultiple(InventoryItemType type, int amount)
         {
             for (int i = 0; i < amount; i++)
@@ -91,13 +92,24 @@ namespace SurvivalIsland.Common.Inventory
                     break;
             }
         }
-        
-        public InventoryItemModel ObtainRandom(InventoryItemType type) => Slots.FirstOrDefault(x => x.Type == type)?.Items.FirstOrDefault();
-        
-        public List<InventoryItemModel> ObtainAll(InventoryItemType type) => Slots.FirstOrDefault(x => x.Type == type)?.Items;
-        
-        public InventoryItemSlot ObtainSlot(int index) => index < Slots.Count - 1 ? Slots[index] : default;
-        
+        #endregion
+
+        #region Obtainers
+
+        public InventoryItemModel ObtainRandom(InventoryItemType type)
+            => Slots.FirstOrDefault(x => x.Type == type)?.Items.FirstOrDefault();
+
+        public List<InventoryItemModel> ObtainAll(InventoryItemType type)
+            => Slots.FirstOrDefault(x => x.Type == type)?.Items;
+
+        public InventoryItemSlot ObtainSlot(int index)
+            => index < Slots.Count - 1 ? Slots[index] : default;
+
+        public int CountItemsOfType(InventoryItemType itemType)
+            => ObtainAll(itemType)?.Count ?? 0;
+        #endregion
+
+        #region Removers
         public void Remove(InventoryItemModel item)
         {
             var slot = Slots.FirstOrDefault(x => x.Type == item.Type);
@@ -138,5 +150,6 @@ namespace SurvivalIsland.Common.Inventory
             RemoveAll(itemType);
             AddMultiple(itemType, amount);
         }
+        #endregion
     }
 }

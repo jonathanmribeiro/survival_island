@@ -39,7 +39,7 @@ namespace SurvivalIsland.Components.Trees
             _trunk.SetActive(false);
             _sapling.SetActive(true);
 
-            _manager.ForceAmount(InventoryItemType.Wood, _treeProps.MaxWoodAmount / 4);
+            _manager.TreeInventory.ForceAmount(InventoryItemType.Wood, _treeProps.MaxWoodAmount / 4);
 
             if (!_treeProps.TimeEnteredGrowingState.HasValue)
                 _treeProps.TimeEnteredGrowingState = _dayNightCycle.CurrentTime;
@@ -67,7 +67,7 @@ namespace SurvivalIsland.Components.Trees
             if (!_playerInRange)
                 return;
 
-            var randomItem = _manager.ObtainRandom(InventoryItemType.Wood);
+            var randomItem = _manager.TreeInventory.ObtainRandom(InventoryItemType.Wood);
             _woodParticleSystem.TryPlay();
 
             if (randomItem != null)
@@ -76,11 +76,11 @@ namespace SurvivalIsland.Components.Trees
 
                 if (actionExecutedSuccessfully)
                 {
-                    _manager.Remove(randomItem);
+                    _manager.TreeInventory.Remove(randomItem);
                 }
             }
 
-            randomItem = _manager.ObtainRandom(InventoryItemType.Wood);
+            randomItem = _manager.TreeInventory.ObtainRandom(InventoryItemType.Wood);
 
             if (randomItem == null)
                 _manager.EnterGoneState();

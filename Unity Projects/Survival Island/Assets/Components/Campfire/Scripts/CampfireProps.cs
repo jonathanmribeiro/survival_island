@@ -1,13 +1,17 @@
 using System;
 
-public class CampfireProps
+namespace SurvivalIsland.Components.Campfire
 {
-    public DateTime? TimeEnteredLitState;
-    public DateTime TimeBurnedWood;
-    public TimeSpan TimeNeededToBurnWood;
-
-    public CampfireProps()
+    [Serializable]
+    public class CampfireProps
     {
-        TimeNeededToBurnWood = TimeSpan.FromHours(1);
+        public DateTime? TimeEnteredLitState;
+        public DateTime TimeBurnedWood;
+        public TimeSpan TimeNeededToBurnWood;
+
+        public CampfireProps()
+        {
+            TimeNeededToBurnWood = TimeSpan.FromHours(1);
+        }
     }
 }

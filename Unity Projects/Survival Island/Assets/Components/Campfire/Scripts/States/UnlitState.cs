@@ -51,7 +51,7 @@ namespace SurvivalIsland.Components.Campfire
 
         public override void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
         {
-            var woodAmount = _manager.CountItemsOfType(InventoryItemType.Wood);
+            var woodAmount = _manager.CampfireInventory.CountItemsOfType(InventoryItemType.Wood);
 
             if (woodAmount > 0)
                 _manager.EnterLitState();

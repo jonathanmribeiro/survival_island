@@ -46,8 +46,8 @@ namespace SurvivalIsland.Components.Trees
             if (!_treeProps.TimeEnteredHarvestingState.HasValue)
                 _treeProps.TimeEnteredHarvestingState = _dayNightCycle.CurrentTime;
 
-            _manager.ForceAmount(InventoryItemType.Leaf, _treeProps.MaxLeavesAmount);
-            _manager.ForceAmount(InventoryItemType.Wood, _treeProps.MaxWoodAmount);
+            _manager.TreeInventory.ForceAmount(InventoryItemType.Leaf, _treeProps.MaxLeavesAmount);
+            _manager.TreeInventory.ForceAmount(InventoryItemType.Wood, _treeProps.MaxWoodAmount);
         }
 
         public override void UpdateState()
@@ -94,7 +94,7 @@ namespace SurvivalIsland.Components.Trees
 
                 if (actionExecutedSuccessfully)
                 {
-                    _manager.Remove(randomItem);
+                    _manager.TreeInventory.Remove(randomItem);
                 }
             }
 
@@ -104,7 +104,7 @@ namespace SurvivalIsland.Components.Trees
                 _manager.EnterTrunkState();
         }
 
-        public InventoryItemModel TryGetRandomItem() => _manager.ObtainRandom(InventoryItemType.Leaf) 
-            ?? _manager.ObtainRandom(InventoryItemType.Wood);
+        public InventoryItemModel TryGetRandomItem() => _manager.TreeInventory.ObtainRandom(InventoryItemType.Leaf) 
+            ?? _manager.TreeInventory.ObtainRandom(InventoryItemType.Wood);
     }
 }

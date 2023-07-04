@@ -64,7 +64,7 @@ namespace SurvivalIsland.Components.Trees
 
             if (_dayNightCycle.CurrentTime >= respawnFruitTime)
             {
-                _manager.TryAddItem(_treeProps.FruitType);
+                _manager.TreeInventory.TryAddItem(_treeProps.FruitType);
                 VerifyMaximumAmountOfFruit();
                 PopulateFruitArea();
                 _treeProps.TimeEnteredFruitfullState = _dayNightCycle.CurrentTime;
@@ -85,7 +85,7 @@ namespace SurvivalIsland.Components.Trees
 
             _leavesParticleSystem.TryPlay();
 
-            var randomItem = _manager.ObtainRandom(_treeProps.FruitType);
+            var randomItem = _manager.TreeInventory.ObtainRandom(_treeProps.FruitType);
 
             if (randomItem == null)
                 return;
@@ -94,7 +94,7 @@ namespace SurvivalIsland.Components.Trees
 
             if (actionExecutedSuccessfully)
             {
-                _manager.Remove(randomItem);
+                _manager.TreeInventory.Remove(randomItem);
                 var instanceToRemove = _fruitInstances.First();
                 UnityEngine.Object.Destroy(instanceToRemove.gameObject);
                 _fruitInstances.Remove(instanceToRemove);
@@ -109,7 +109,7 @@ namespace SurvivalIsland.Components.Trees
 
         private void PopulateFruitArea()
         {
-            var totalFruitAmount = _manager.CountItemsOfType(_treeProps.FruitType);
+            var totalFruitAmount = _manager.TreeInventory.CountItemsOfType(_treeProps.FruitType);
             var currentInstantiatedFruits = _fruitInstances.Count;
 
             for (int i = currentInstantiatedFruits; i < totalFruitAmount; i++)
@@ -118,7 +118,7 @@ namespace SurvivalIsland.Components.Trees
             }
         }
 
-        private void VerifyMaximumAmountOfFruit() =>
-            _hasMaximumAmountOfFruits = _manager.CountItemsOfType(_treeProps.FruitType).Equals(_treeProps.MaxFruitAmount);
+        private void VerifyMaximumAmountOfFruit()
+            => _hasMaximumAmountOfFruits = _manager.TreeInventory.CountItemsOfType(_treeProps.FruitType).Equals(_treeProps.MaxFruitAmount);
     }
 }

@@ -35,7 +35,7 @@ namespace SurvivalIsland.Components.Trees
             _trunk.SetActive(true);
             _sapling.SetActive(false);
 
-            _manager.ForceAmount(InventoryItemType.Wood, _treeProps.MaxWoodAmount / 3);
+            _manager.TreeInventory.ForceAmount(InventoryItemType.Wood, _treeProps.MaxWoodAmount / 3);
         }
 
         public override PlayerActionTypes GetAction() => PlayerActionTypes.Chopping;
@@ -45,7 +45,7 @@ namespace SurvivalIsland.Components.Trees
             if (!_playerInRange)
                 return;
 
-            var randomItem = _manager.ObtainRandom(InventoryItemType.Wood);
+            var randomItem = _manager.TreeInventory.ObtainRandom(InventoryItemType.Wood);
             
                 _woodParticleSystem.TryPlay();
 
@@ -55,11 +55,11 @@ namespace SurvivalIsland.Components.Trees
 
                 if (actionExecutedSuccessfully)
                 {
-                    _manager.Remove(randomItem);
+                    _manager.TreeInventory.Remove(randomItem);
                 }
             }
 
-            randomItem = _manager.ObtainRandom(InventoryItemType.Wood);
+            randomItem = _manager.TreeInventory.ObtainRandom(InventoryItemType.Wood);
 
             if (randomItem == null)
                 _manager.EnterGoneState();

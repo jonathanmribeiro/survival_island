@@ -63,7 +63,7 @@ namespace SurvivalIsland.Components.Campfire
 
         public override void UpdateState()
         {
-            if (_manager.CountItemsOfType(InventoryItemType.Wood) == 0)
+            if (_manager.CampfireInventory.CountItemsOfType(InventoryItemType.Wood) == 0)
             {
                 _manager.EnterExtinguishedState();
                 return;
@@ -73,7 +73,7 @@ namespace SurvivalIsland.Components.Campfire
 
             if (_dayNightCycle.CurrentTime >= timeToConsumeWood)
             {
-                _manager.Remove(InventoryItemType.Wood);
+                _manager.CampfireInventory.Remove(InventoryItemType.Wood);
                 _campfireProps.TimeBurnedWood = _dayNightCycle.CurrentTime;
             }
         }

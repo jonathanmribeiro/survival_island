@@ -41,7 +41,7 @@ Transform:
   - {fileID: 5330326939684631826}
   - {fileID: 1628198966980488072}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2045430030876512653
 SpriteRenderer:
@@ -378,25 +378,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4924133344518619626, guid: 5f30d7eb53fa9cb4585cdd3c0e1cbbc8, type: 3}
-      propertyPath: m_SortingOrder
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 6090295910927223213, guid: 5f30d7eb53fa9cb4585cdd3c0e1cbbc8, type: 3}
       propertyPath: m_Name
       value: MainCharacterBalloon
-      objectReference: {fileID: 0}
-    - target: {fileID: 6090295910927223213, guid: 5f30d7eb53fa9cb4585cdd3c0e1cbbc8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7519758112652031232, guid: 5f30d7eb53fa9cb4585cdd3c0e1cbbc8, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7519758112652031232, guid: 5f30d7eb53fa9cb4585cdd3c0e1cbbc8, type: 3}
-      propertyPath: m_SortingOrder
-      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
