@@ -2,7 +2,6 @@ using SurvivalIsland.Common.Bases;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
 using SurvivalIsland.Common.Inventory;
-using SurvivalIsland.Common.Models;
 using SurvivalIsland.Common.Utils;
 
 namespace SurvivalIsland.Components.Trees
@@ -15,7 +14,6 @@ namespace SurvivalIsland.Components.Trees
         private TrunkState _trunkState;
         private GoneState _goneState;
 
-        public Inventory Inventory;
         public TreeProps TreeProps;
 
         private void Awake()
@@ -52,20 +50,5 @@ namespace SurvivalIsland.Components.Trees
         {
             CurrentState.UpdateState();
         }
-
-        public bool TryAddItem(InventoryItemType itemType)
-            => Inventory.TryAddItem(itemType);
-
-        public InventoryItemModel ObtainRandom(InventoryItemType itemType)
-            => Inventory.ObtainRandom(itemType);
-
-        public int CountItemsOfType(InventoryItemType itemType)
-            => Inventory.ObtainAll(itemType)?.Count ?? 0;
-
-        public void Remove(InventoryItemModel item)
-            => Inventory.Remove(item);
-
-        public void ForceAmount(InventoryItemType itemType, int amount)
-            => Inventory.ForceAmount(itemType, amount);
     }
 }

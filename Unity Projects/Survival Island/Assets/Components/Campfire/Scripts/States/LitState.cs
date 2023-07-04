@@ -2,7 +2,7 @@ using SurvivalIsland.Common.Bases;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
 using SurvivalIsland.Common.Interfaces;
-using SurvivalIsland.Common.Models;
+using SurvivalIsland.Common.Utils;
 using SurvivalIsland.Components.Signs;
 using System;
 using UnityEngine;
@@ -22,10 +22,15 @@ namespace SurvivalIsland.Components.Campfire
         private CircleCollider2D _activationTrigger;
 
         private SignManager _signAlert;
+        private CampfireProps _campfireProps;
+        private DayNightCycle _dayNightCycle;
 
-        public LitState(CampfireManager manager)
+        public LitState(CampfireManager manager, CampfireProps campfireProps, DayNightCycle dayNightCycle)
         {
             _manager = manager;
+
+            _campfireProps = campfireProps;
+            _dayNightCycle = dayNightCycle;
 
             _pristineWood = _manager.gameObject.FindChild("PristineWood");
             _burnedWood = _manager.gameObject.FindChild("BurnedWood");
@@ -49,26 +54,40 @@ namespace SurvivalIsland.Components.Campfire
             _activationTrigger.enabled = true;
 
             _signAlert.Prepare(_manager, SignStates.InactiveState);
+
+            if (!_campfireProps.TimeEnteredLitState.HasValue)
+            {
+                _campfireProps.TimeEnteredLitState = _dayNightCycle.CurrentTime;
+                _campfireProps.TimeBurnedWood = _campfireProps.TimeEnteredLitState.Value;
+            }
         }
 
         public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
         {
-            throw new NotImplementedException();
+            /*Left empty on purpose*/
         }
 
         public void ExitState()
         {
-            throw new NotImplementedException();
         }
 
-        public PlayerActionTypes GetAction()
-        {
-            throw new NotImplementedException();
-        }
+        public PlayerActionTypes GetAction() => PlayerActionTypes.None;
 
         public void UpdateState()
         {
-            throw new NotImplementedException();
+            if (_manager.CountItemsOfType(InventoryItemType.Wood) == 0)
+            {
+                _manager.EnterExtinguishedState();
+                return;
+            }
+
+            DateTime timeToConsumeWood = _campfireProps.TimeBurnedWood.Add(_campfireProps.TimeNeededToBurnWood);
+
+            if (_dayNightCycle.CurrentTime >= timeToConsumeWood)
+            {
+                _manager.Remove(InventoryItemType.Wood);
+                _campfireProps.TimeBurnedWood = _dayNightCycle.CurrentTime;
+            }
         }
     }
 }

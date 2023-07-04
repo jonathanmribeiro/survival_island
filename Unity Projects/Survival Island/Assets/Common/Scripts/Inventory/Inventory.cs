@@ -4,6 +4,7 @@ using SurvivalIsland.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static UnityEditor.Progress;
 
 namespace SurvivalIsland.Common.Inventory
 {
@@ -111,6 +112,14 @@ namespace SurvivalIsland.Common.Inventory
                     RearrangeInventory();
                 }
             }
+        }
+
+        public void Remove(InventoryItemType itemType)
+        {
+            var slot = Slots.FirstOrDefault(x => x.Type == itemType);
+
+            if (slot != null)
+                Remove(slot.Items.First());
         }
 
         public void RemoveAll(InventoryItemType type)

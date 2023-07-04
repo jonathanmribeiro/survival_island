@@ -378,6 +378,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4924133344518619626, guid: 5f30d7eb53fa9cb4585cdd3c0e1cbbc8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 6090295910927223213, guid: 5f30d7eb53fa9cb4585cdd3c0e1cbbc8, type: 3}
       propertyPath: m_Name
       value: MainCharacterBalloon

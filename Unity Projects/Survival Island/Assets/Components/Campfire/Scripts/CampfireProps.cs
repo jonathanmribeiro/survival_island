@@ -1,18 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public class CampfireProps : MonoBehaviour
+public class CampfireProps
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public DateTime? TimeEnteredLitState;
+    public DateTime TimeBurnedWood;
+    public TimeSpan TimeNeededToBurnWood;
 
-    // Update is called once per frame
-    void Update()
+    public CampfireProps()
     {
-        
+        TimeNeededToBurnWood = TimeSpan.FromHours(1);
     }
 }

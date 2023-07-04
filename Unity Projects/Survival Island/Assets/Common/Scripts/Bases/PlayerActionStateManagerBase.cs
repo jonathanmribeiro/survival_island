@@ -1,5 +1,6 @@
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Interfaces;
+using SurvivalIsland.Common.Models;
 using System;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace SurvivalIsland.Common.Bases
         public string CurrentStateName;
         public Transform SelectorLocation;
         public Vector2 SelectorSize;
+        public Inventory.Inventory Inventory;
 
         public void SwitchState(IPlayerActionState nextState)
         {
@@ -28,5 +30,23 @@ namespace SurvivalIsland.Common.Bases
             => CurrentState.ExecuteAction(playerActionCallback);
 
         public PlayerActionTypes GetAction() => CurrentState.GetAction();
+
+        public int CountItemsOfType(InventoryItemType itemType)
+            => Inventory.ObtainAll(itemType)?.Count ?? 0;
+
+        public bool TryAddItem(InventoryItemType itemType)
+            => Inventory.TryAddItem(itemType);
+
+        public InventoryItemModel ObtainRandom(InventoryItemType itemType)
+            => Inventory.ObtainRandom(itemType);
+
+        public void Remove(InventoryItemModel item)
+            => Inventory.Remove(item);
+
+        public void Remove(InventoryItemType itemType)
+            => Inventory.Remove(itemType);
+
+        public void ForceAmount(InventoryItemType itemType, int amount)
+            => Inventory.ForceAmount(itemType, amount);
     }
 }

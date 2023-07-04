@@ -2,6 +2,7 @@ using SurvivalIsland.Common.Bases;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
 using SurvivalIsland.Common.Models;
+using SurvivalIsland.Common.Utils;
 using SurvivalIsland.Components.Selector;
 using UnityEngine;
 
@@ -17,6 +18,7 @@ namespace SurvivalIsland.Components.MainCharacter
         private GameObject _actionBalloon;
         private Animator _actionBalloonAnimator;
         private SpriteRenderer _actionBalloonSpriteRenderer;
+        private ChildTextUpdater _timeLabel;
 
         private SelectorManager _selectorManager;
 
@@ -27,11 +29,13 @@ namespace SurvivalIsland.Components.MainCharacter
             _actionBalloonAnimator = _actionBalloon.GetComponent<Animator>();
             _actionBalloonSpriteRenderer = _actionBalloon.GetComponent<SpriteRenderer>();
             _selectorManager = gameObject.GetComponentInChildren<SelectorManager>();
+            _timeLabel = _actionBalloon.GetComponent<ChildTextUpdater>();
         }
 
         public void Prepare()
         {
             _selectorManager.Prepare();
+            _timeLabel.gameObject.SetActive(false);
         }
 
         public bool ExecuteAction(PlayerActionTypes performedAction, object itemModel = null)
