@@ -16,8 +16,10 @@ namespace SurvivalIsland.Common.Inventory
         public int MaxItems;
         public float MaxWeight;
 
-        public int CurrentAmount => Slots?.Count(x => x.Type != InventoryItemType.None) ?? 0;
-        private float CurrentTotalWeight => Slots?.Sum(x => x.CurrentWeight) ?? 0;
+        public int CurrentAmount 
+            => Slots?.Count(x => x.Type != InventoryItemType.None) ?? 0;
+        private float CurrentTotalWeight 
+            => Slots?.Sum(x => x.CurrentWeight) ?? 0;
 
         public void Prepare(int maxItems = 10, float maxWeight = 999)
         {
@@ -51,7 +53,8 @@ namespace SurvivalIsland.Common.Inventory
         }
 
         #region Adders
-        public bool TryAddItem(InventoryItemType type) => TryAddItem(InventoryItemFactory.Obtain(type));
+        public bool TryAddItem(InventoryItemType type) 
+            => TryAddItem(InventoryItemFactory.Obtain(type));
 
         public bool TryAddItem(InventoryItemModel item)
         {

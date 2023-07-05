@@ -158,7 +158,8 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _craftingUI.SetActive(true);
         }
 
-        public void ExitState() => _craftingUI.SetActive(false);
+        public void ExitState() 
+            => _craftingUI.SetActive(false);
 
         public void UpdateState()
         {
@@ -208,21 +209,38 @@ namespace SurvivalIsland.Gameplay.Management.UI
             }
         }
 
-        public void OnClick_CloseCrafting() => _uiManager.EnterBasicUIState();
+        public void OnClick_CloseCrafting() 
+            => _uiManager.EnterBasicUIState();
+
         public void OnClick_ConfirmCrafting()
         {
             _uiManager.EnterBasicUIState();
             _afterCraftingCallback.Invoke();
         }
 
-        private void OnClick_InventoryButton1() => HandleInventoryClick(0);
-        private void OnClick_InventoryButton2() => HandleInventoryClick(1);
-        private void OnClick_InventoryButton3() => HandleInventoryClick(2);
-        private void OnClick_InventoryButton4() => HandleInventoryClick(3);
-        private void OnClick_InventoryButton5() => HandleInventoryClick(4);
-        private void OnClick_InventoryButton6() => HandleInventoryClick(5);
-        private void OnClick_InventoryButton7() => HandleInventoryClick(6);
-        private void OnClick_InventoryButton8() => HandleInventoryClick(7);
+        private void OnClick_InventoryButton1() 
+            => HandleInventoryClick(0);
+
+        private void OnClick_InventoryButton2() 
+            => HandleInventoryClick(1);
+
+        private void OnClick_InventoryButton3() 
+            => HandleInventoryClick(2);
+
+        private void OnClick_InventoryButton4() 
+            => HandleInventoryClick(3);
+
+        private void OnClick_InventoryButton5() 
+            => HandleInventoryClick(4);
+
+        private void OnClick_InventoryButton6() 
+            => HandleInventoryClick(5);
+
+        private void OnClick_InventoryButton7() 
+            => HandleInventoryClick(6);
+
+        private void OnClick_InventoryButton8() 
+            => HandleInventoryClick(7);
 
         private void HandleInventoryClick(int index)
         {

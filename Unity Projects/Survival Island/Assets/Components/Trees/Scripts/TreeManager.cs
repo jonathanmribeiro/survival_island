@@ -23,11 +23,20 @@ namespace SurvivalIsland.Components.Trees
             SelectorLocation = gameObject.FindChild("SelectorLocation").transform;
         }
 
-        public void EnterFruitfullState() => SwitchState(_fruitfullState);
-        public void EnterHarvestingState() => SwitchState(_harvestingState);
-        public void EnterGrowingState() => SwitchState(_growingState);
-        public void EnterTrunkState() => SwitchState(_trunkState);
-        public void EnterGoneState() => SwitchState(_goneState);
+        public void EnterFruitfullState() 
+            => SwitchState(_fruitfullState);
+
+        public void EnterHarvestingState() 
+            => SwitchState(_harvestingState);
+
+        public void EnterGrowingState() 
+            => SwitchState(_growingState);
+
+        public void EnterTrunkState() 
+            => SwitchState(_trunkState);
+
+        public void EnterGoneState() 
+            => SwitchState(_goneState);
 
         public void Prepare(DayNightCycle dayNightCycle)
         {

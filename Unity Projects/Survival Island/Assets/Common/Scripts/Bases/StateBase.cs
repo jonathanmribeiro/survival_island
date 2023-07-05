@@ -22,7 +22,8 @@ namespace SurvivalIsland.Common.Bases
                 _playerInRange = false;
         }
 
-        public virtual PlayerActionTypes GetAction() => PlayerActionTypes.None;
+        public virtual PlayerActionTypes GetAction() 
+            => PlayerActionTypes.None;
 
         public virtual void EnterState() { }
 

@@ -76,7 +76,8 @@ namespace SurvivalIsland.Components.Trees
             _treeProps.TimeEnteredFruitfullState = null;
         }
 
-        public override PlayerActionTypes GetAction() => PlayerActionTypes.Collecting;
+        public override PlayerActionTypes GetAction()
+            => PlayerActionTypes.Collecting;
 
         public override void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
         {

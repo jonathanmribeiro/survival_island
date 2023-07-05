@@ -38,7 +38,8 @@ namespace SurvivalIsland.Components.Trees
             _manager.TreeInventory.ForceAmount(InventoryItemType.Wood, _treeProps.MaxWoodAmount / 3);
         }
 
-        public override PlayerActionTypes GetAction() => PlayerActionTypes.Chopping;
+        public override PlayerActionTypes GetAction() 
+            => PlayerActionTypes.Chopping;
 
         public override void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
         {

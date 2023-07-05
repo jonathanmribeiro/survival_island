@@ -65,7 +65,8 @@ namespace SurvivalIsland.Components.Trees
             _treeProps.TimeEnteredHarvestingState = null;
         }
 
-        public override PlayerActionTypes GetAction() => _playerActionToExecute;
+        public override PlayerActionTypes GetAction()
+            => _playerActionToExecute;
 
         public override void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
         {
@@ -104,7 +105,8 @@ namespace SurvivalIsland.Components.Trees
                 _manager.EnterTrunkState();
         }
 
-        public InventoryItemModel TryGetRandomItem() => _manager.TreeInventory.ObtainRandom(InventoryItemType.Leaf) 
-            ?? _manager.TreeInventory.ObtainRandom(InventoryItemType.Wood);
+        public InventoryItemModel TryGetRandomItem()
+            => _manager.TreeInventory.ObtainRandom(InventoryItemType.Leaf)
+                ?? _manager.TreeInventory.ObtainRandom(InventoryItemType.Wood);
     }
 }

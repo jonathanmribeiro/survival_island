@@ -8,7 +8,8 @@ namespace SurvivalIsland.Common.Utils
         public Transform Target;
 
         public Vector3 Velocity = Vector3.zero;
-        private float SelfZPosition => transform.position.z;
+        private float SelfZPosition 
+            => transform.position.z;
 
         public void UpdateSmoothFollow()
         {

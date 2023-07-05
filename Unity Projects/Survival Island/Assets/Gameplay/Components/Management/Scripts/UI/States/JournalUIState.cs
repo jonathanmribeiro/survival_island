@@ -31,6 +31,7 @@ namespace SurvivalIsland.Gameplay.Management.UI
 
         }
 
-        public void ExitState() => _journalUI.SetActive(false);
+        public void ExitState()
+            => _journalUI.SetActive(false);
     }
 }

@@ -28,7 +28,10 @@ namespace SurvivalIsland.Components.Signs
             }
         }
 
-        public void EnterActiveState() => SwitchState(_activeState);
-        public void EnterInactiveState() => SwitchState(_inactiveState);
+        public void EnterActiveState() 
+            => SwitchState(_activeState);
+
+        public void EnterInactiveState() 
+            => SwitchState(_inactiveState);
     }
 }

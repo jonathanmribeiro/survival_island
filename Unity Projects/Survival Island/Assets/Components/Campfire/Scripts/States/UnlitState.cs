@@ -57,6 +57,7 @@ namespace SurvivalIsland.Components.Campfire
                 _manager.EnterLitState();
         }
 
-        public override PlayerActionTypes GetAction() => PlayerActionTypes.FeedCampfire;
+        public override PlayerActionTypes GetAction() 
+            => PlayerActionTypes.FeedCampfire;
     }
 }

@@ -132,12 +132,22 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _quickAction4Text.UpdateUI(_mainCharacterManager.GetInventorySlot(3).CurrentAmount.ToString());
         }
 
-        public void ExitState() => _basicUI.SetActive(false);
-        private void OnClick_OpenInventory() => _uiManager.EnterInventoryState();
-        private void OnClick_QuickAction1Button() => _mainCharacterManager.OnClick_QuickAction1Button();
-        private void OnClick_QuickAction2Button() => _mainCharacterManager.OnClick_QuickAction2Button();
-        private void OnClick_QuickAction3Button() => _mainCharacterManager.OnClick_QuickAction3Button();
-        private void OnClick_QuickAction4Button() => _mainCharacterManager.OnClick_QuickAction4Button();
+        public void ExitState() 
+            => _basicUI.SetActive(false);
 
+        private void OnClick_OpenInventory() 
+            => _uiManager.EnterInventoryState();
+
+        private void OnClick_QuickAction1Button() 
+            => _mainCharacterManager.OnClick_QuickAction1Button();
+
+        private void OnClick_QuickAction2Button() 
+            => _mainCharacterManager.OnClick_QuickAction2Button();
+
+        private void OnClick_QuickAction3Button() 
+            => _mainCharacterManager.OnClick_QuickAction3Button();
+
+        private void OnClick_QuickAction4Button() 
+            => _mainCharacterManager.OnClick_QuickAction4Button();
     }
 }

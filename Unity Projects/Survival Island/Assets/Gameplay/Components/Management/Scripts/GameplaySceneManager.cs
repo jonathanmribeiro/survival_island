@@ -99,7 +99,10 @@ namespace SurvivalIsland.Gameplay.Management
             }
         }
 
-        public void BlockInput() => InputIsLocked = true;
-        public void ReleaseInput() => InputIsLocked = false;
+        public void BlockInput() 
+            => InputIsLocked = true;
+
+        public void ReleaseInput() 
+            => InputIsLocked = false;
     }
 }

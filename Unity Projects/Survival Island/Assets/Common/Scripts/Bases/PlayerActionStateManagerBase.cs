@@ -1,5 +1,4 @@
 using SurvivalIsland.Common.Enums;
-using SurvivalIsland.Common.Models;
 using System;
 using UnityEngine;
 
@@ -20,13 +19,16 @@ namespace SurvivalIsland.Common.Bases
             CurrentState.EnterState();
         }
 
-        private void OnTriggerStay2D(Collider2D collision) => CurrentState.OnTriggerStay2D(collision);
+        private void OnTriggerStay2D(Collider2D collision) 
+            => CurrentState.OnTriggerStay2D(collision);
 
-        private void OnTriggerExit2D(Collider2D collision) => CurrentState.OnTriggerExit2D(collision);
+        private void OnTriggerExit2D(Collider2D collision) 
+            => CurrentState.OnTriggerExit2D(collision);
 
         public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
             => CurrentState.ExecuteAction(playerActionCallback);
 
-        public PlayerActionTypes GetAction() => CurrentState.GetAction();
+        public PlayerActionTypes GetAction() 
+            => CurrentState.GetAction();
     }
 }

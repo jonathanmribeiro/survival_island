@@ -14,8 +14,10 @@ namespace SurvivalIsland.Common.Models
 
         public List<InventoryItemModel> Items;
 
-        public int CurrentAmount => Items.Count;
-        public float CurrentWeight => Items.Select(x => x.Weight).Sum();
+        public int CurrentAmount 
+            => Items.Count;
+        public float CurrentWeight 
+            => Items.Select(x => x.Weight).Sum();
 
         public InventoryItemSlot(InventoryItemType type, int slotNumber)
         {

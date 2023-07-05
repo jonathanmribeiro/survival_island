@@ -29,15 +29,22 @@ namespace SurvivalIsland.Gameplay.Management
             EnterBasicUIState();
         }
 
-        public void UpdateUI() => CurrentState.UpdateState();
-        public void EnterBasicUIState() => SwitchState(_basicUIState);
+        public void UpdateUI() 
+            => CurrentState.UpdateState();
+
+        public void EnterBasicUIState() 
+            => SwitchState(_basicUIState);
+
         public void EnterCraftingUIState(Inventory recipeInventory, Action afterCraftingCallback)
         {
             _craftingUIState.SetRecipe(recipeInventory);
             _craftingUIState.SetCraftingCallback(afterCraftingCallback);
             SwitchState(_craftingUIState);
         }
-        public void EnterInventoryState() => SwitchState(_inventoryUIState);
-        public void EnterJournalState() => SwitchState(_journalUIState);
+        public void EnterInventoryState() 
+            => SwitchState(_inventoryUIState);
+
+        public void EnterJournalState() 
+            => SwitchState(_journalUIState);
     }
 }

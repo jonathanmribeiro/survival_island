@@ -17,5 +17,10 @@ namespace SurvivalIsland.Common.Utils
         {
             _text.text = datetime;
         }
+
+        public void Disable() 
+            => _text.gameObject.SetActive(false);
+        public void Enable() 
+            => _text.gameObject.SetActive(true);
     }
 }

@@ -35,7 +35,7 @@ namespace SurvivalIsland.Components.MainCharacter
         public void Prepare()
         {
             _selectorManager.Prepare();
-            _timeLabel.gameObject.SetActive(false);
+            _timeLabel.Disable();
         }
 
         public bool ExecuteAction(PlayerActionTypes performedAction, object itemModel = null)

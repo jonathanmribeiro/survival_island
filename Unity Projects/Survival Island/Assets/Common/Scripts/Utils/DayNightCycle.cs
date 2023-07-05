@@ -38,7 +38,8 @@ namespace SurvivalIsland.Common.Utils
         [SerializeField]
         public Gradient LightColor;
 
-        public DateTime CurrentTime => GetCurrentTime();
+        public DateTime CurrentTime 
+            => GetCurrentTime();
 
         public void UpdateDayNightCycle()
         {

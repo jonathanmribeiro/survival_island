@@ -60,7 +60,8 @@ namespace SurvivalIsland.Components.Trees
             _treeProps.TimeEnteredGrowingState = null;
         }
 
-        public override PlayerActionTypes GetAction() => PlayerActionTypes.Chopping;
+        public override PlayerActionTypes GetAction() 
+            => PlayerActionTypes.Chopping;
 
         public override void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
         {

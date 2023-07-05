@@ -152,8 +152,13 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _inventoryText8.UpdateUI(_mainCharacterManager.GetInventorySlot(7).CurrentAmount.ToString());
         }
 
-        public void ExitState() => _inventoryUI.SetActive(false);
-        public void OnClick_CloseInventory() => _uiManager.EnterBasicUIState();
-        public void OnClick_OpenJournal() => _uiManager.EnterJournalState();
+        public void ExitState() 
+            => _inventoryUI.SetActive(false);
+
+        public void OnClick_CloseInventory() 
+            => _uiManager.EnterBasicUIState();
+
+        public void OnClick_OpenJournal() 
+            => _uiManager.EnterJournalState();
     }
 }

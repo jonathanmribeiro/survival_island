@@ -7,7 +7,8 @@ namespace SurvivalIsland.Components.Selector
     {
         private SmoothFollow _smoothFollow;
         private SpriteRenderer _spriteRenderer;
-        private float DistanceFromParent => Vector3.Distance(transform.parent.position, transform.position);
+        private float DistanceFromParent 
+            => Vector3.Distance(transform.parent.position, transform.position);
         
         private void Awake()
         {
