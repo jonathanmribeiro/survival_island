@@ -5,6 +5,7 @@ using SurvivalIsland.Common.Utils;
 using SurvivalIsland.Components.Signs;
 using System;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace SurvivalIsland.Components.Campfire
 {
@@ -24,6 +25,8 @@ namespace SurvivalIsland.Components.Campfire
         private CampfireProps _campfireProps;
         private DayNightCycle _dayNightCycle;
 
+        private Light2D _flameLight;
+
         public LitState(CampfireManager manager, CampfireProps campfireProps, DayNightCycle dayNightCycle)
         {
             _manager = manager;
@@ -35,6 +38,8 @@ namespace SurvivalIsland.Components.Campfire
             _burnedWood = _manager.gameObject.FindChild("BurnedWood");
             _pendingConstructionWood = _manager.gameObject.FindChild("PendingConstructionWood");
             _flame = _manager.gameObject.FindChild("Flame");
+            _flameLight = _manager.GetComponentInChildren<Light2D>();
+            _flameLight.enabled = false;
 
             _boundariesCollider = _manager.gameObject.GetComponent<CapsuleCollider2D>();
             _activationTrigger = _manager.gameObject.GetComponent<CircleCollider2D>();
@@ -61,6 +66,7 @@ namespace SurvivalIsland.Components.Campfire
             }
 
             _dayNightCycle.MinuteByMinuteSubscribers.Add(UpdateTimeLeft);
+            _flameLight.enabled = true;
         }
 
         public override void UpdateState()
@@ -72,10 +78,14 @@ namespace SurvivalIsland.Components.Campfire
             }
 
             UpdateWoodAmount();
+            UpdateFlameLight();
         }
 
         public override void ExitState()
-            => _dayNightCycle.MinuteByMinuteSubscribers.Remove(UpdateTimeLeft);
+        {
+            _dayNightCycle.MinuteByMinuteSubscribers.Remove(UpdateTimeLeft);
+            _flameLight.enabled = false;
+        }
 
         public override PlayerActionTypes GetAction()
             => PlayerActionTypes.FeedCampfire;
@@ -100,5 +110,28 @@ namespace SurvivalIsland.Components.Campfire
                 _campfireProps.TimeBurnedWood = _dayNightCycle.CurrentTime;
             }
         }
+
+        private void UpdateFlameLight()
+        {
+            if (UnityEngine.Random.Range(0f, 1f) > 0.7f)
+            {
+                _flameLight.color = new Color(0.74f, 0.62f, 0.48f);
+
+                var firewoodAmount = _manager.CampfireInventory.CountItemsOfType(InventoryItemType.Wood);
+
+                var minIntensity = Mathf.SmoothStep(0.1f, 0.8f, firewoodAmount / 10.0f);
+                var maxIntensity = Mathf.SmoothStep(0.3f, 1.2f, firewoodAmount / 10.0f);
+                _flameLight.intensity = UnityEngine.Random.Range(minIntensity, maxIntensity);
+
+                var minOuterRadius = Mathf.SmoothStep(3.5f, 9.0f, firewoodAmount / 10.0f);
+                var maxOuterRadius = Mathf.SmoothStep(3.8f, 9.3f, firewoodAmount / 10.0f);
+                _flameLight.pointLightOuterRadius = UnityEngine.Random.Range(minOuterRadius, maxOuterRadius);
+
+                var minInnerRadius = Mathf.SmoothStep(0.0f, 0.3f, firewoodAmount / 10.0f);
+                var maxInnerRadius = Mathf.SmoothStep(0.1f, 0.5f, firewoodAmount / 10.0f);
+                _flameLight.pointLightInnerRadius = UnityEngine.Random.Range(minInnerRadius, maxInnerRadius);
+            }
+        }
+
     }
 }

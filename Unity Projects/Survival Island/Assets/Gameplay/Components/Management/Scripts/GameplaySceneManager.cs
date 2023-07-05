@@ -46,7 +46,7 @@ namespace SurvivalIsland.Gameplay.Management
             _mainCharacterManager.Prepare(_inputManager, _dayNightCycle);
             _uiManager.Prepare(this, _mainCharacterManager, _dayNightCycle);
 
-            _dayNightCycle.SetCurrentTime(DateTime.Now);
+            _dayNightCycle.SetCurrentTime(new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 20, 00, 00));
 
             PrepareTrees();
             PrepareCampfires();
