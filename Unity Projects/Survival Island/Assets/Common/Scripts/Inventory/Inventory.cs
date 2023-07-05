@@ -4,7 +4,6 @@ using SurvivalIsland.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using static UnityEditor.Progress;
 
 namespace SurvivalIsland.Common.Inventory
 {
@@ -16,9 +15,9 @@ namespace SurvivalIsland.Common.Inventory
         public int MaxItems;
         public float MaxWeight;
 
-        public int CurrentAmount 
+        public int CurrentDifferentItemsAmount
             => Slots?.Count(x => x.Type != InventoryItemType.None) ?? 0;
-        private float CurrentTotalWeight 
+        private float CurrentTotalWeight
             => Slots?.Sum(x => x.CurrentWeight) ?? 0;
 
         public void Prepare(int maxItems = 10, float maxWeight = 999)
@@ -53,14 +52,19 @@ namespace SurvivalIsland.Common.Inventory
         }
 
         #region Adders
-        public bool TryAddItem(InventoryItemType type) 
+        public bool TryAddItem(InventoryItemType type)
             => TryAddItem(InventoryItemFactory.Obtain(type));
 
         public bool TryAddItem(InventoryItemModel item)
         {
+            var alreadyHasSlotOfType = CountItemsOfType(item.Type) > 0;
+
+            if (!alreadyHasSlotOfType && CurrentDifferentItemsAmount >= MaxItems)
+                return false;
+
             var futureWeight = CurrentTotalWeight + item.Weight;
 
-            if (CurrentAmount >= MaxItems || futureWeight >= MaxWeight)
+            if (futureWeight >= MaxWeight)
                 return false;
 
             var slot = Slots.FirstOrDefault(x => x.Type == item.Type);

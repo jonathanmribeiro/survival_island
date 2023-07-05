@@ -4,6 +4,7 @@ using SurvivalIsland.Common.Extensions;
 using SurvivalIsland.Common.Models;
 using SurvivalIsland.Common.Utils;
 using SurvivalIsland.Components.Selector;
+using System;
 using UnityEngine;
 
 namespace SurvivalIsland.Components.MainCharacter
@@ -88,10 +89,12 @@ namespace SurvivalIsland.Components.MainCharacter
                     _actionBalloonAnimator.SetBool(PlayerActionTypes.Chopping.ToString(), false);
                     _actionBalloonAnimator.SetBool(PlayerActionTypes.FeedCampfire.ToString(), true);
                     _actionBalloonSpriteRenderer.enabled = true;
+                    UpdateTimeLabel(ManagerInteracting?.TimeLeft);
                     break;
                 default:
                     _actionBalloon.SetActive(false);
                     _actionBalloonSpriteRenderer.enabled = false;
+                    UpdateTimeLabel();
                     break;
             }
         }
@@ -108,6 +111,18 @@ namespace SurvivalIsland.Components.MainCharacter
             }
 
             _selectorManager.UpdateSelector(location, size);
+        }
+
+        private void UpdateTimeLabel(TimeSpan? timeLeft = null)
+        {
+            if (timeLeft == null)
+            {
+                _timeLabel.Disable();
+                return;
+            }
+
+            _timeLabel.Enable();
+            _timeLabel.UpdateUI(timeLeft.Value.ToString(@"h\:mm"));
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -6,45 +7,59 @@ namespace SurvivalIsland.Common.Utils
 {
     public class DayNightCycle : MonoBehaviour
     {
+        const float SECONDS_IN_A_DAY = 86400f;
+
         [Header("Time")]
         [Tooltip("Day length in minutes")]
         [SerializeField]
         private float _targetDayLength = 0.5f;
-        public float TargetDayLength { get { return _targetDayLength; } }
+        public float TargetDayLength => _targetDayLength;
 
         [SerializeField]
         [Range(0f, 1f)]
         private float _timeOfDay;
-        public float TimeOfDay { get { return _timeOfDay; } }
+        public float TimeOfDay => _timeOfDay;
 
         [SerializeField]
         private int _dayNumber = 1;
-        public int DayNumber { get { return _dayNumber; } }
+        public int DayNumber => _dayNumber;
 
         [SerializeField]
         private int _monthNumber = 1;
-        public int MonthNumber { get { return _monthNumber; } }
+        public int MonthNumber => _monthNumber;
 
         [SerializeField]
         private int _yearNumber = 1;
-        public int YearNumber { get { return _yearNumber; } }
+        public int YearNumber => _yearNumber;
 
         private float _timeScale = 100f;
 
         [SerializeField]
         private int _yearLength = 100;
-        public float YearLength { get { return _yearLength; } }
+        public float YearLength => _yearLength;
 
         [SerializeField]
-        public Gradient LightColor;
+        private Gradient _lightColor;
+        public Gradient LightColor => _lightColor;
 
-        public DateTime CurrentTime 
+        private List<Action> _minuteByMinuteSubscribers;
+        public List<Action> MinuteByMinuteSubscribers => _minuteByMinuteSubscribers;
+        
+        private int _lastMinuteCalculated;
+
+        private void Awake()
+        {
+            _minuteByMinuteSubscribers = new();
+        }
+
+        public DateTime CurrentTime
             => GetCurrentTime();
 
         public void UpdateDayNightCycle()
         {
             UpdateTimeScale();
             UpdateTime();
+            UpdateNewMinute();
             AdjustSunColor();
         }
 
@@ -55,7 +70,7 @@ namespace SurvivalIsland.Common.Utils
 
         private void UpdateTime()
         {
-            _timeOfDay += Time.deltaTime * _timeScale / 86400; // seconds in a day
+            _timeOfDay += Time.fixedDeltaTime * _timeScale / SECONDS_IN_A_DAY;
 
             if (_timeOfDay > 1) //new day
             {
@@ -81,35 +96,30 @@ namespace SurvivalIsland.Common.Utils
 
         private void AdjustSunColor()
         {
-            GetComponent<Light2D>().color = LightColor.Evaluate(_timeOfDay);
+            GetComponent<Light2D>().color = _lightColor.Evaluate(_timeOfDay);
         }
 
         private int GetMonthLength()
-        {
-            int monthLength = 1;
-
-            switch (_monthNumber)
+            => _monthNumber switch
             {
-                case 1: monthLength = 31; break;
-                case 2: monthLength = 28; break;
-                case 3: monthLength = 31; break;
-                case 4: monthLength = 30; break;
-                case 5: monthLength = 31; break;
-                case 6: monthLength = 30; break;
-                case 7: monthLength = 31; break;
-                case 8: monthLength = 31; break;
-                case 9: monthLength = 30; break;
-                case 10: monthLength = 31; break;
-                case 11: monthLength = 30; break;
-                case 12: monthLength = 31; break;
-            }
-
-            return monthLength;
-        }
+                1 => 31,
+                2 => 28,
+                3 => 31,
+                4 => 30,
+                5 => 31,
+                6 => 30,
+                7 => 31,
+                8 => 31,
+                9 => 30,
+                10 => 31,
+                11 => 30,
+                12 => 31,
+                _ => 1
+            };
 
         private DateTime GetCurrentTime()
         {
-            int seconds = Mathf.FloorToInt(_timeOfDay * 86400);
+            int seconds = Mathf.FloorToInt(_timeOfDay * SECONDS_IN_A_DAY);
 
             if (seconds < 0)
                 return default;
@@ -121,8 +131,22 @@ namespace SurvivalIsland.Common.Utils
                 _monthNumber,
                 _dayNumber,
                 timeSpan.Hours,
-                0,
+                timeSpan.Minutes,
                 timeSpan.Seconds);
+        }
+
+        private void UpdateNewMinute()
+        {
+            int seconds = Mathf.FloorToInt(_timeOfDay * SECONDS_IN_A_DAY);
+
+            if (_lastMinuteCalculated != TimeSpan.FromSeconds(seconds).Minutes)
+            {
+                _lastMinuteCalculated = TimeSpan.FromSeconds(seconds).Minutes;
+                foreach (var subscriber in _minuteByMinuteSubscribers)
+                {
+                    subscriber.Invoke();
+                }
+            }
         }
 
         public void SetCurrentTime(DateTime currentTime)
@@ -134,15 +158,7 @@ namespace SurvivalIsland.Common.Utils
             var secondsFromHour = currentTime.Hour * 60 * 60;
             var secondsFromMinutes = currentTime.Minute * 60;
 
-            _timeOfDay = (secondsFromHour + secondsFromMinutes + currentTime.Second) / 86400f; // seconds in a day
-        }
-
-        public double GetTotalDays()
-        {
-            int seconds = Mathf.FloorToInt(_timeOfDay * 86400);
-            var timeSpan = TimeSpan.FromSeconds(seconds);
-            return timeSpan.TotalDays;
+            _timeOfDay = (secondsFromHour + secondsFromMinutes + currentTime.Second) / SECONDS_IN_A_DAY;
         }
     }
-
 }

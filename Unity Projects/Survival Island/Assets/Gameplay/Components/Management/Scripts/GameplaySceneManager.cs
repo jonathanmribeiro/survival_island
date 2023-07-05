@@ -70,6 +70,11 @@ namespace SurvivalIsland.Gameplay.Management
             {
                 treeManager.UpdateTree();
             }
+
+            foreach (var campfireManager in _campfireManagers)
+            {
+                campfireManager.UpdateCampfire();
+            }
         }
 
         private void ExecutePlayerAction()

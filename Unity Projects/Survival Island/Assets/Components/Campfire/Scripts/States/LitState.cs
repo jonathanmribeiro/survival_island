@@ -59,6 +59,8 @@ namespace SurvivalIsland.Components.Campfire
                 _campfireProps.TimeEnteredLitState = _dayNightCycle.CurrentTime;
                 _campfireProps.TimeBurnedWood = _campfireProps.TimeEnteredLitState.Value;
             }
+
+            _dayNightCycle.MinuteByMinuteSubscribers.Add(UpdateTimeLeft);
         }
 
         public override void UpdateState()
@@ -69,6 +71,27 @@ namespace SurvivalIsland.Components.Campfire
                 return;
             }
 
+            UpdateWoodAmount();
+        }
+
+        public override void ExitState()
+            => _dayNightCycle.MinuteByMinuteSubscribers.Remove(UpdateTimeLeft);
+
+        public override PlayerActionTypes GetAction()
+            => PlayerActionTypes.FeedCampfire;
+
+        private void UpdateTimeLeft()
+        {
+            TimeSpan totalHoursLit = new(_manager.CampfireInventory.CountItemsOfType(InventoryItemType.Wood), 0, 0);
+
+            if (_manager.TimeLeft == null)
+                _manager.TimeLeft = totalHoursLit;
+
+            _manager.TimeLeft = _manager.TimeLeft.Value.Subtract(new(0, 1, 0));
+        }
+
+        private void UpdateWoodAmount()
+        {
             DateTime timeToConsumeWood = _campfireProps.TimeBurnedWood.Add(_campfireProps.TimeNeededToBurnWood);
 
             if (_dayNightCycle.CurrentTime >= timeToConsumeWood)

@@ -44,6 +44,11 @@ namespace SurvivalIsland.Components.Campfire
             ConfirmCrafting();
         }
 
+        public void UpdateCampfire()
+        {
+            CurrentState.UpdateState();
+        }
+
         private void ConfirmCrafting()
         {
             CampfireInventory.AddMultiple(InventoryItemType.Wood, 5);

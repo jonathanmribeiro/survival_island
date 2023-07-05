@@ -182,7 +182,7 @@ namespace SurvivalIsland.Gameplay.Management.UI
 
         public void UpdateCraftButton()
         {
-            _confirmCraftingButton.interactable = _recipeInventory.CurrentAmount == 0;
+            _confirmCraftingButton.interactable = _recipeInventory.CurrentDifferentItemsAmount == 0;
         }
 
         public void SetRecipe(Inventory recipeInventory)

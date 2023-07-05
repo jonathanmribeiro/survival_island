@@ -10,6 +10,7 @@ namespace SurvivalIsland.Common.Bases
         public string CurrentStateName;
         public Transform SelectorLocation;
         public Vector2 SelectorSize;
+        public TimeSpan? TimeLeft;
 
         public void SwitchState(StateBase nextState)
         {
