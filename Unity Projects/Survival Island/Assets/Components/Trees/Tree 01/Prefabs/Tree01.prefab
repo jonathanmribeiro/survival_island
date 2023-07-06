@@ -5105,7 +5105,7 @@ Transform:
   - {fileID: 1698650355652369447}
   - {fileID: 6145655300625378053}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1844913909285714632
 MonoBehaviour:
@@ -5119,21 +5119,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8bccd18708451439f17e9038e98858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentStateName: 
   SelectorLocation: {fileID: 0}
   SelectorSize: {x: 1.783954, y: 1}
-  Inventory:
-    Slots: []
-    MaxItems: 0
-    MaxWeight: 0
   TreeProps:
     FruitType: 1
     MaxFruitAmount: 3
-    CurrentWoodAmount: 0
     MaxLeavesAmount: 2
-    CurrentFruitAmount: 0
     MaxWoodAmount: 4
-    CurrentLeavesAmount: 0
     FruitPrefab: {fileID: 142732497648774650, guid: 106f2343a766ebe48a2cc6cd72fbe93f, type: 3}
+  TreeInventory:
+    Slots: []
+    MaxItems: 0
+    MaxWeight: 0
 --- !u!58 &4801657766981027979
 CircleCollider2D:
   m_ObjectHideFlags: 0
