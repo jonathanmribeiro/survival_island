@@ -9,6 +9,8 @@ namespace SurvivalIsland.Components.Campfire
         public DateTime TimeBurnedWood;
         public TimeSpan TimeNeededToBurnWood;
 
+        public int MaxWood = 10;
+
         public CampfireProps()
         {
             TimeNeededToBurnWood = TimeSpan.FromHours(1);

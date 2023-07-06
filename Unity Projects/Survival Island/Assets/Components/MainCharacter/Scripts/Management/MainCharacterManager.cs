@@ -53,11 +53,13 @@ namespace SurvivalIsland.Components.MainCharacter
             if (inventoryItemSlot == null || !inventoryItemSlot.Items.Any())
                 return;
 
-            InventoryItemModel itemModel = inventoryItemSlot.Items.FirstOrDefault();
+            InventoryItemModel itemModel = inventoryItemSlot.Items.First();
 
-            if (_actionsManager.ManagerInteracting != null)
+            switch (itemModel.Type)
             {
-                _actionsManager.ManagerInteracting.ExecuteQuickAction(_actionsManager.ExecuteQuickActionCallback, itemModel);
+                case InventoryItemType.Wood:
+                    _actionsManager.ManagerInteracting?.ExecuteQuickAction(_actionsManager.ExecuteQuickActionCallback, itemModel);
+                    break;
             }
         }
 
@@ -68,7 +70,7 @@ namespace SurvivalIsland.Components.MainCharacter
 
         public void InitializeInventory()
         {
-            _inventoryManager.Inventory.AddMultiple(InventoryItemType.Wood, 10);
+            _inventoryManager.Inventory.AddMultiple(InventoryItemType.Wood, 20);
         }
     }
 }

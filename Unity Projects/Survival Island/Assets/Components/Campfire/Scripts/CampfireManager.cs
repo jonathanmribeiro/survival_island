@@ -35,10 +35,10 @@ namespace SurvivalIsland.Components.Campfire
             RecipeInventory.AddMultiple(InventoryItemType.Leaf, 5);
             RecipeInventory.AddMultiple(InventoryItemType.Wood, 4);
 
-            _extinguishedState = new(this);
+            _extinguishedState = new(this, CampfireProps);
             _litState = new(this, CampfireProps, dayNightCycle);
             _pendingConstructionState = new(this);
-            _unlitState = new(this);
+            _unlitState = new(this, CampfireProps);
 
             EnterExtinguishedState();
         }

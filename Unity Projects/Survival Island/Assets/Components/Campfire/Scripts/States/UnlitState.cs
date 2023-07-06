@@ -1,6 +1,7 @@
 using SurvivalIsland.Common.Bases;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
+using SurvivalIsland.Common.Models;
 using SurvivalIsland.Components.Signs;
 using System;
 using UnityEngine;
@@ -20,10 +21,12 @@ namespace SurvivalIsland.Components.Campfire
         private CircleCollider2D _activationTrigger;
 
         private SignManager _signAlert;
+        private CampfireProps _campfireProps;
 
-        public UnlitState(CampfireManager manager)
+        public UnlitState(CampfireManager manager, CampfireProps campfireProps)
         {
             _manager = manager;
+            _campfireProps = campfireProps;
 
             _pristineWood = _manager.gameObject.FindChild("PristineWood");
             _burnedWood = _manager.gameObject.FindChild("BurnedWood");
@@ -57,7 +60,17 @@ namespace SurvivalIsland.Components.Campfire
                 _manager.EnterLitState();
         }
 
-        public override PlayerActionTypes GetAction() 
+        public override void ExecuteQuickAction(Action<InventoryItemModel> playerActionCallback, InventoryItemModel itemModel)
+        {
+            var woodAmount = _manager.CampfireInventory.CountItemsOfType(InventoryItemType.Wood);
+            if (woodAmount >= _campfireProps.MaxWood)
+                return;
+
+            if (_manager.CampfireInventory.TryAddItem(itemModel))
+                playerActionCallback.Invoke(itemModel);
+        }
+
+        public override PlayerActionTypes GetAction()
             => PlayerActionTypes.FeedCampfire;
     }
 }

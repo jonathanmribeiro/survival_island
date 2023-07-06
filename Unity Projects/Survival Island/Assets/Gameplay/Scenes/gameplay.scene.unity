@@ -47226,7 +47226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 551550585975779361, guid: 7671191dc571b9343a941b7770940754, type: 3}
       propertyPath: _targetDayLength
-      value: 13
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 551550585975779361, guid: 7671191dc571b9343a941b7770940754, type: 3}
       propertyPath: LightColor.ctime0

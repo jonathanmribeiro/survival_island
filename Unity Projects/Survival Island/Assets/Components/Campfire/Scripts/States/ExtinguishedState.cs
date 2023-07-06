@@ -21,10 +21,12 @@ namespace SurvivalIsland.Components.Campfire
         private CircleCollider2D _activationTrigger;
 
         private SignManager _signAlert;
+        private CampfireProps _campfireProps;
 
-        public ExtinguishedState(CampfireManager manager)
+        public ExtinguishedState(CampfireManager manager, CampfireProps campfireProps)
         {
             _manager = manager;
+            _campfireProps = campfireProps;
 
             _pristineWood = _manager.gameObject.FindChild("PristineWood");
             _burnedWood = _manager.gameObject.FindChild("BurnedWood");
@@ -69,6 +71,10 @@ namespace SurvivalIsland.Components.Campfire
 
         public override void ExecuteQuickAction(Action<InventoryItemModel> playerActionCallback, InventoryItemModel itemModel)
         {
+            var woodAmount = _manager.CampfireInventory.CountItemsOfType(InventoryItemType.Wood);
+            if (woodAmount >= _campfireProps.MaxWood)
+                return;
+
             if (_manager.CampfireInventory.TryAddItem(itemModel))
             {
                 playerActionCallback.Invoke(itemModel);

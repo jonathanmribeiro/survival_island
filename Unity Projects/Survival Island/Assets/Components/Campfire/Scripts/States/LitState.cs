@@ -1,6 +1,7 @@
 using SurvivalIsland.Common.Bases;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
+using SurvivalIsland.Common.Models;
 using SurvivalIsland.Common.Utils;
 using SurvivalIsland.Components.Signs;
 using System;
@@ -90,12 +91,25 @@ namespace SurvivalIsland.Components.Campfire
         public override PlayerActionTypes GetAction()
             => PlayerActionTypes.FeedCampfire;
 
+        public override void ExecuteQuickAction(Action<InventoryItemModel> playerActionCallback, InventoryItemModel itemModel)
+        {
+            var woodAmount = _manager.CampfireInventory.CountItemsOfType(InventoryItemType.Wood);
+            if (woodAmount >= _manager.CampfireProps.MaxWood)
+                return;
+
+            if (_manager.CampfireInventory.TryAddItem(itemModel))
+                playerActionCallback.Invoke(itemModel);
+
+            _manager.TimeLeft = _manager.TimeLeft.Value.Add(_campfireProps.TimeNeededToBurnWood);
+        }
+
         private void UpdateTimeLeft()
         {
-            TimeSpan totalHoursLit = new(_manager.CampfireInventory.CountItemsOfType(InventoryItemType.Wood), 0, 0);
-
             if (_manager.TimeLeft == null)
-                _manager.TimeLeft = totalHoursLit;
+            {
+                var woodAmount = _manager.CampfireInventory.CountItemsOfType(InventoryItemType.Wood);
+                _manager.TimeLeft = new(woodAmount, 0, 0);
+            }
 
             _manager.TimeLeft = _manager.TimeLeft.Value.Subtract(new(0, 1, 0));
         }
