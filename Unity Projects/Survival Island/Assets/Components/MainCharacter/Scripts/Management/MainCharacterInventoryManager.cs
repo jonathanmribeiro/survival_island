@@ -17,10 +17,6 @@ namespace SurvivalIsland.Components.MainCharacter
             CharacterInventory.Prepare(4);
         }
 
-        public void OnClick_OpenInventory()
-        {
-        }
-
         public bool TryAddItem(InventoryItemModel itemModel)
         {
             return Inventory.TryAddItem(itemModel);
@@ -44,5 +40,8 @@ namespace SurvivalIsland.Components.MainCharacter
 
             Inventory.Remove(item);
         }
+
+        public bool TryRemoveItem(InventoryItemModel itemModel)
+            => Inventory.Remove(itemModel);
     }
 }

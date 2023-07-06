@@ -1,6 +1,9 @@
 using SurvivalIsland.Common.Bases;
+using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Extensions;
+using SurvivalIsland.Common.Models;
 using SurvivalIsland.Components.Signs;
+using System;
 using UnityEngine;
 
 namespace SurvivalIsland.Components.Campfire
@@ -45,6 +48,31 @@ namespace SurvivalIsland.Components.Campfire
             _activationTrigger.enabled = true;
 
             _signAlert.Prepare(_manager, SignStates.InactiveState);
+        }
+
+        public override void UpdateState()
+        {
+            TimeSpan totalHoursLit = new(_manager.CampfireInventory.CountItemsOfType(InventoryItemType.Wood), 0, 0);
+            _manager.TimeLeft = totalHoursLit;
+        }
+
+        public override PlayerActionTypes GetAction()
+            => PlayerActionTypes.FeedCampfire;
+
+        public override void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
+        {
+            if (_manager.CampfireInventory.CountItemsOfType(InventoryItemType.Wood) > 0)
+            {
+                _manager.EnterLitState();
+            }
+        }
+
+        public override void ExecuteQuickAction(Action<InventoryItemModel> playerActionCallback, InventoryItemModel itemModel)
+        {
+            if (_manager.CampfireInventory.TryAddItem(itemModel))
+            {
+                playerActionCallback.Invoke(itemModel);
+            }
         }
     }
 }

@@ -2,6 +2,7 @@ using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Management;
 using SurvivalIsland.Common.Models;
 using SurvivalIsland.Common.Utils;
+using System.Linq;
 using UnityEngine;
 
 namespace SurvivalIsland.Components.MainCharacter
@@ -47,41 +48,27 @@ namespace SurvivalIsland.Components.MainCharacter
         public InventoryItemSlot GetCharacterItem(int inventoryItemIndex)
             => _inventoryManager.GetCharacterItem(inventoryItemIndex);
 
-        public void OnClick_QuickAction1Button()
+        public void OnClick_QuickActionButtonPressed(InventoryItemSlot inventoryItemSlot)
         {
-            var inventorySlot = GetInventorySlot(0);
-
-            if (inventorySlot == null)
+            if (inventoryItemSlot == null || !inventoryItemSlot.Items.Any())
                 return;
-        }
 
-        public void OnClick_QuickAction2Button()
-        {
-            var inventorySlot = GetInventorySlot(1);
+            InventoryItemModel itemModel = inventoryItemSlot.Items.FirstOrDefault();
 
-            if (inventorySlot == null)
-                return;
-        }
-
-        public void OnClick_QuickAction3Button()
-        {
-            var inventorySlot = GetInventorySlot(2);
-
-            if (inventorySlot == null)
-                return;
-        }
-
-        public void OnClick_QuickAction4Button()
-        {
-            var inventorySlot = GetInventorySlot(3);
-
-            if (inventorySlot == null)
-                return;
+            if (_actionsManager.ManagerInteracting != null)
+            {
+                _actionsManager.ManagerInteracting.ExecuteQuickAction(_actionsManager.ExecuteQuickActionCallback, itemModel);
+            }
         }
 
         public void RemoveInventoryItem(InventoryItemType type)
         {
             _inventoryManager.RemoveInventoryItemByType(type);
+        }
+
+        public void InitializeInventory()
+        {
+            _inventoryManager.Inventory.AddMultiple(InventoryItemType.Wood, 10);
         }
     }
 }

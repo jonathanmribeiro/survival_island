@@ -1,4 +1,5 @@
 using SurvivalIsland.Common.Enums;
+using SurvivalIsland.Common.Models;
 using System;
 using UnityEngine;
 
@@ -28,6 +29,9 @@ namespace SurvivalIsland.Common.Bases
 
         public void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
             => CurrentState.ExecuteAction(playerActionCallback);
+
+        public void ExecuteQuickAction(Action<InventoryItemModel> playerActionCallback, InventoryItemModel itemModel)
+            => CurrentState.ExecuteQuickAction(playerActionCallback, itemModel);
 
         public PlayerActionTypes GetAction() 
             => CurrentState.GetAction();

@@ -39,13 +39,16 @@ namespace SurvivalIsland.Components.MainCharacter
             _timeLabel.Disable();
         }
 
-        public bool ExecuteAction(PlayerActionTypes performedAction, object itemModel = null)
+        public bool ExecuteActionCallback(PlayerActionTypes performedAction, object itemModel)
             => performedAction switch
             {
                 PlayerActionTypes.Chopping => _inventoryManager.TryAddItem(itemModel as InventoryItemModel),
                 PlayerActionTypes.Collecting => _inventoryManager.TryAddItem(itemModel as InventoryItemModel),
                 _ => false,
             };
+
+        public void ExecuteQuickActionCallback(InventoryItemModel itemModel)
+            => _inventoryManager.TryRemoveItem(itemModel);
 
         public void UpdateActions()
         {

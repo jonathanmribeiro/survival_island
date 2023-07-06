@@ -24,7 +24,6 @@ namespace SurvivalIsland.Components.Campfire
         public void Prepare(GameplayUIManager gameplayUIManager, DayNightCycle dayNightCycle)
         {
             //TODO receive the proper initial props for the campfire
-
             gameObject.name = $"{gameObject.name}_{transform.position}";
             SelectorLocation = gameObject.FindChild("SelectorLocation").transform;
 
@@ -41,7 +40,7 @@ namespace SurvivalIsland.Components.Campfire
             _pendingConstructionState = new(this);
             _unlitState = new(this);
 
-            ConfirmCrafting();
+            EnterExtinguishedState();
         }
 
         public void UpdateCampfire()

@@ -117,7 +117,7 @@ namespace SurvivalIsland.Common.Inventory
         #endregion
 
         #region Removers
-        public void Remove(InventoryItemModel item)
+        public bool Remove(InventoryItemModel item)
         {
             var slot = Slots.FirstOrDefault(x => x.Type == item.Type);
 
@@ -129,8 +129,11 @@ namespace SurvivalIsland.Common.Inventory
                 {
                     slot.Type = InventoryItemType.None;
                     RearrangeInventory();
+                    return true;
                 }
             }
+
+            return false;
         }
 
         public void Remove(InventoryItemType itemType)
