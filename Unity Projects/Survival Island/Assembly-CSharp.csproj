@@ -65,10 +65,12 @@
     <Compile Include="Assets\Common\Scripts\Extensions\PolygonCollider2DExtensions.cs" />
     <Compile Include="Assets\Common\Scripts\Models\InputModel.cs" />
     <Compile Include="Assets\Common\Scripts\Models\Inventory\InventoryItemSlot.cs" />
+    <Compile Include="Assets\Components\Fishing\Scripts\FishingManager.cs" />
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\GameplaySceneManager.cs" />
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\UI\States\BasicUIState.cs" />
     <Compile Include="Assets\Common\Scripts\Bases\PlayerActionStateManagerBase.cs" />
     <Compile Include="Assets\Components\Trees\Scripts\States\HarvestingState.cs" />
+    <Compile Include="Assets\Components\Fishing\Scripts\FishingProps.cs" />
     <Compile Include="Assets\Common\Scripts\Constants\SceneConstants.cs" />
     <Compile Include="Assets\Common\Scripts\Utils\DayNightCycle.cs" />
     <Compile Include="Assets\Common\Scripts\Interfaces\IState.cs" />
@@ -89,6 +91,7 @@
     <Compile Include="Assets\Common\Scripts\Utils\SmoothFollow.cs" />
     <Compile Include="Assets\Common\Scripts\Models\VitalitySystemModel.cs" />
     <Compile Include="Assets\Common\Scripts\Enums\InventoryItemType.cs" />
+    <Compile Include="Assets\Components\Fishing\Scripts\States\WaitingState.cs" />
     <Compile Include="Assets\Common\Scripts\Enums\InputType.cs" />
     <Compile Include="Assets\Common\Scripts\Utils\ResourceLoader.cs" />
     <Compile Include="Assets\Components\Trees\Scripts\States\GrowingState.cs" />
@@ -122,6 +125,7 @@
     <Compile Include="Assets\Common\Scripts\Utils\ChildIconUpdater.cs" />
     <Compile Include="Assets\Components\Campfire\Scripts\States\PendingConstructionState.cs" />
     <Compile Include="Assets\Common\Management\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Components\Fishing\Scripts\States\PendingConstructionState.cs" />
     <Compile Include="Assets\Components\Campfire\Scripts\CampfireProps.cs" />
     <Compile Include="Assets\Components\MainCharacter\Scripts\Management\MainCharacterManager.cs" />
     <Compile Include="Assets\Components\Selector\Scripts\SelectorManager.cs" />

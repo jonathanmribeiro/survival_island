@@ -1,8 +1,10 @@
+using SurvivalIsland.Common.Bases;
 using SurvivalIsland.Common.Constants;
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Management;
 using SurvivalIsland.Common.Utils;
 using SurvivalIsland.Components.Campfire;
+using SurvivalIsland.Components.Fishing;
 using SurvivalIsland.Components.MainCharacter;
 using SurvivalIsland.Components.Trees;
 using SurvivalIsland.Gameplay.Management.UI;
@@ -22,8 +24,7 @@ namespace SurvivalIsland.Gameplay.Management
         private DayNightCycle _dayNightCycle;
         private GameplayUIManager _uiManager;
 
-        private TreeManager[] _treeManagers;
-        private CampfireManager[] _campfireManagers;
+        private PlayerActionStateManagerBase[] _managers;
 
         public bool InputIsLocked;
 
@@ -47,11 +48,8 @@ namespace SurvivalIsland.Gameplay.Management
             _uiManager.Prepare(this, _mainCharacterManager, _dayNightCycle);
 
             _dayNightCycle.SetCurrentTime(DateTime.Now);
-            _mainCharacterManager.InitializeInventory();
-            //_dayNightCycle.SetCurrentTime(new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 20, 00, 00));
 
-            PrepareTrees();
-            PrepareCampfires();
+            PrepareManagers();
         }
 
         private void Update()
@@ -65,17 +63,11 @@ namespace SurvivalIsland.Gameplay.Management
             }
 
             _inputManager.UpdateInput();
-
             _uiManager.UpdateUI();
 
-            foreach (var treeManager in _treeManagers)
+            foreach (var manager in _managers)
             {
-                treeManager.UpdateTree();
-            }
-
-            foreach (var campfireManager in _campfireManagers)
-            {
-                campfireManager.UpdateCampfire();
+                manager.UpdateCurrentState();
             }
         }
 
@@ -86,30 +78,31 @@ namespace SurvivalIsland.Gameplay.Management
                 ?.ExecuteAction(_mainCharacterActionsManager.ExecuteActionCallback);
         }
 
-        private void PrepareTrees()
+        private void PrepareManagers()
         {
-            _treeManagers = FindObjectsOfType<TreeManager>();
+            _managers = FindObjectsOfType<PlayerActionStateManagerBase>();
 
-            foreach (var manager in _treeManagers)
+            foreach (var manager in _managers)
             {
-                manager.Prepare(_dayNightCycle);
+                if (manager is CampfireManager)
+                {
+                    manager.Prepare(_uiManager, _dayNightCycle);
+                }
+                else if (manager is FishingManager)
+                {
+                    manager.Prepare(_uiManager);
+                }
+                else if (manager is TreeManager)
+                {
+                    manager.Prepare(_dayNightCycle);
+                }
             }
         }
 
-        private void PrepareCampfires()
-        {
-            _campfireManagers = FindObjectsOfType<CampfireManager>();
-
-            foreach (var manager in _campfireManagers)
-            {
-                manager.Prepare(_uiManager, _dayNightCycle);
-            }
-        }
-
-        public void BlockInput() 
+        public void BlockInput()
             => InputIsLocked = true;
 
-        public void ReleaseInput() 
+        public void ReleaseInput()
             => InputIsLocked = false;
     }
 }

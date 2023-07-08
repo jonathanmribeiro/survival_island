@@ -1,5 +1,7 @@
 using SurvivalIsland.Common.Enums;
 using SurvivalIsland.Common.Models;
+using SurvivalIsland.Common.Utils;
+using SurvivalIsland.Gameplay.Management;
 using System;
 using UnityEngine;
 
@@ -20,6 +22,13 @@ namespace SurvivalIsland.Common.Bases
             CurrentStateName = CurrentState.GetType().Name;
             CurrentState.EnterState();
         }
+
+        public virtual void Prepare(GameplayUIManager uiManager) { }
+        public virtual void Prepare(GameplayUIManager uiManager, DayNightCycle dayNightCycle) { }
+        public virtual void Prepare(DayNightCycle dayNightCycle) { }
+
+        public void UpdateCurrentState()
+            => CurrentState.UpdateState();
 
         private void OnTriggerStay2D(Collider2D collision) 
             => CurrentState.OnTriggerStay2D(collision);

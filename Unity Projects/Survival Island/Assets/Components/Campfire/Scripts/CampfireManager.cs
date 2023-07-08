@@ -14,20 +14,20 @@ namespace SurvivalIsland.Components.Campfire
         private PendingConstructionState _pendingConstructionState;
         private UnlitState _unlitState;
 
-        private GameplayUIManager _gameplayUIManager;
+        private GameplayUIManager _uiManager;
         
         public CampfireProps CampfireProps;
 
         public Inventory CampfireInventory;
         public Inventory RecipeInventory;
 
-        public void Prepare(GameplayUIManager gameplayUIManager, DayNightCycle dayNightCycle)
+        public override void Prepare(GameplayUIManager uiManager, DayNightCycle dayNightCycle)
         {
             //TODO receive the proper initial props for the campfire
             gameObject.name = $"{gameObject.name}_{transform.position}";
             SelectorLocation = gameObject.FindChild("SelectorLocation").transform;
 
-            _gameplayUIManager = gameplayUIManager;
+            _uiManager = uiManager;
 
             CampfireInventory.Prepare(1);
             RecipeInventory.Prepare(3);
@@ -40,12 +40,7 @@ namespace SurvivalIsland.Components.Campfire
             _pendingConstructionState = new(this);
             _unlitState = new(this, CampfireProps);
 
-            EnterExtinguishedState();
-        }
-
-        public void UpdateCampfire()
-        {
-            CurrentState.UpdateState();
+            EnterPendingConstructionState();
         }
 
         private void ConfirmCrafting()
@@ -67,6 +62,6 @@ namespace SurvivalIsland.Components.Campfire
             => SwitchState(_unlitState);
 
         public void OpenCraftingUI()
-            => _gameplayUIManager.EnterCraftingUIState(RecipeInventory, ConfirmCrafting);
+            => _uiManager.EnterCraftingUIState(RecipeInventory, ConfirmCrafting);
     }
 }

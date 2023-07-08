@@ -67,10 +67,5 @@ namespace SurvivalIsland.Components.MainCharacter
         {
             _inventoryManager.RemoveInventoryItemByType(type);
         }
-
-        public void InitializeInventory()
-        {
-            _inventoryManager.Inventory.AddMultiple(InventoryItemType.Wood, 20);
-        }
     }
 }

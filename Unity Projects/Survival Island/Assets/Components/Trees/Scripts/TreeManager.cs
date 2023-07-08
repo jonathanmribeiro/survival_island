@@ -38,7 +38,7 @@ namespace SurvivalIsland.Components.Trees
         public void EnterGoneState() 
             => SwitchState(_goneState);
 
-        public void Prepare(DayNightCycle dayNightCycle)
+        public override void Prepare(DayNightCycle dayNightCycle)
         {
             TreeInventory.Prepare(3);
 
@@ -54,11 +54,6 @@ namespace SurvivalIsland.Components.Trees
             _trunkState = new(this, TreeProps);
 
             EnterFruitfullState();
-        }
-
-        public void UpdateTree()
-        {
-            CurrentState.UpdateState();
         }
     }
 }
