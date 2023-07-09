@@ -1,5 +1,6 @@
 using SurvivalIsland.Common.Extensions;
 using SurvivalIsland.Common.Interfaces;
+using SurvivalIsland.Common.Inventory;
 using SurvivalIsland.Common.Utils;
 using SurvivalIsland.Components.MainCharacter;
 using UnityEngine;
@@ -12,38 +13,28 @@ namespace SurvivalIsland.Gameplay.Management.UI
         private readonly MainCharacterManager _mainCharacterManager;
         private readonly GameplaySceneManager _sceneManager;
 
-        private GameObject _inventoryUI;
+        private readonly GameObject _inventoryUI;
 
-        private ChildTextUpdater _healthText;
-        private ChildTextUpdater _hungerText;
-        private ChildTextUpdater _thirstText;
-        private ChildTextUpdater _energyText;
+        private readonly ChildTextUpdater _healthText;
+        private readonly ChildTextUpdater _hungerText;
+        private readonly ChildTextUpdater _thirstText;
+        private readonly ChildTextUpdater _energyText;
 
-        private ChildButtonAction _closeInventoryButton;
-        private ChildButtonAction _openJournalButton;
+        private readonly ChildButtonAction _closeInventoryButton;
+        private readonly ChildButtonAction _openJournalButton;
 
-        private ChildIconUpdater _characterIcon1;
-        private ChildIconUpdater _characterIcon2;
-        private ChildIconUpdater _characterIcon3;
-        private ChildIconUpdater _characterIcon4;
-
-        private ChildIconUpdater _inventoryIcon1;
-        private ChildIconUpdater _inventoryIcon2;
-        private ChildIconUpdater _inventoryIcon3;
-        private ChildIconUpdater _inventoryIcon4;
-        private ChildIconUpdater _inventoryIcon5;
-        private ChildIconUpdater _inventoryIcon6;
-        private ChildIconUpdater _inventoryIcon7;
-        private ChildIconUpdater _inventoryIcon8;
-
-        private ChildTextUpdater _inventoryText1;
-        private ChildTextUpdater _inventoryText2;
-        private ChildTextUpdater _inventoryText3;
-        private ChildTextUpdater _inventoryText4;
-        private ChildTextUpdater _inventoryText5;
-        private ChildTextUpdater _inventoryText6;
-        private ChildTextUpdater _inventoryText7;
-        private ChildTextUpdater _inventoryText8;
+        private readonly UIInventorySlot _characterSlot1;
+        private readonly UIInventorySlot _characterSlot2;
+        private readonly UIInventorySlot _characterSlot3;
+        private readonly UIInventorySlot _characterSlot4;
+        private readonly UIInventorySlot _uiInventorySlot1;
+        private readonly UIInventorySlot _uiInventorySlot2;
+        private readonly UIInventorySlot _uiInventorySlot3;
+        private readonly UIInventorySlot _uiInventorySlot4;
+        private readonly UIInventorySlot _uiInventorySlot5;
+        private readonly UIInventorySlot _uiInventorySlot6;
+        private readonly UIInventorySlot _uiInventorySlot7;
+        private readonly UIInventorySlot _uiInventorySlot8;
 
         public InventoryUIState(GameplayUIManager uiManager,
                                 GameplaySceneManager gameplaySceneManager,
@@ -73,29 +64,20 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _openJournalButton = middlePanel.FindChild("Journal").GetComponent<ChildButtonAction>();
 
             var characterPanel = _inventoryUI.FindChild("Character");
-            _characterIcon1 = characterPanel.FindChild("CharacterSlot1").GetComponent<ChildIconUpdater>();
-            _characterIcon2 = characterPanel.FindChild("CharacterSlot2").GetComponent<ChildIconUpdater>();
-            _characterIcon3 = characterPanel.FindChild("CharacterSlot3").GetComponent<ChildIconUpdater>();
-            _characterIcon4 = characterPanel.FindChild("CharacterSlot4").GetComponent<ChildIconUpdater>();
+            _characterSlot1 = new(gameplaySceneManager, characterPanel, "CharacterSlot1", () => { });
+            _characterSlot2 = new(gameplaySceneManager, characterPanel, "CharacterSlot2", () => { });
+            _characterSlot3 = new(gameplaySceneManager, characterPanel, "CharacterSlot3", () => { });
+            _characterSlot4 = new(gameplaySceneManager, characterPanel, "CharacterSlot4", () => { });
 
             var inventoryPanel = _inventoryUI.FindChild("Inventory");
-            _inventoryIcon1 = inventoryPanel.FindChild("InventorySlot1").GetComponent<ChildIconUpdater>();
-            _inventoryIcon2 = inventoryPanel.FindChild("InventorySlot2").GetComponent<ChildIconUpdater>();
-            _inventoryIcon3 = inventoryPanel.FindChild("InventorySlot3").GetComponent<ChildIconUpdater>();
-            _inventoryIcon4 = inventoryPanel.FindChild("InventorySlot4").GetComponent<ChildIconUpdater>();
-            _inventoryIcon5 = inventoryPanel.FindChild("InventorySlot5").GetComponent<ChildIconUpdater>();
-            _inventoryIcon6 = inventoryPanel.FindChild("InventorySlot6").GetComponent<ChildIconUpdater>();
-            _inventoryIcon7 = inventoryPanel.FindChild("InventorySlot7").GetComponent<ChildIconUpdater>();
-            _inventoryIcon8 = inventoryPanel.FindChild("InventorySlot8").GetComponent<ChildIconUpdater>();
-
-            _inventoryText1 = inventoryPanel.FindChild("InventorySlot1").GetComponent<ChildTextUpdater>();
-            _inventoryText2 = inventoryPanel.FindChild("InventorySlot2").GetComponent<ChildTextUpdater>();
-            _inventoryText3 = inventoryPanel.FindChild("InventorySlot3").GetComponent<ChildTextUpdater>();
-            _inventoryText4 = inventoryPanel.FindChild("InventorySlot4").GetComponent<ChildTextUpdater>();
-            _inventoryText5 = inventoryPanel.FindChild("InventorySlot5").GetComponent<ChildTextUpdater>();
-            _inventoryText6 = inventoryPanel.FindChild("InventorySlot6").GetComponent<ChildTextUpdater>();
-            _inventoryText7 = inventoryPanel.FindChild("InventorySlot7").GetComponent<ChildTextUpdater>();
-            _inventoryText8 = inventoryPanel.FindChild("InventorySlot8").GetComponent<ChildTextUpdater>();
+            _uiInventorySlot1 = new(gameplaySceneManager, inventoryPanel, "InventorySlot1", () => { });
+            _uiInventorySlot2 = new(gameplaySceneManager, inventoryPanel, "InventorySlot2", () => { });
+            _uiInventorySlot3 = new(gameplaySceneManager, inventoryPanel, "InventorySlot3", () => { });
+            _uiInventorySlot4 = new(gameplaySceneManager, inventoryPanel, "InventorySlot4", () => { });
+            _uiInventorySlot5 = new(gameplaySceneManager, inventoryPanel, "InventorySlot5", () => { });
+            _uiInventorySlot6 = new(gameplaySceneManager, inventoryPanel, "InventorySlot6", () => { });
+            _uiInventorySlot7 = new(gameplaySceneManager, inventoryPanel, "InventorySlot7", () => { });
+            _uiInventorySlot8 = new(gameplaySceneManager, inventoryPanel, "InventorySlot8", () => { });
         }
 
         public void EnterState()
@@ -103,18 +85,18 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _closeInventoryButton.Prepare(_sceneManager, OnClick_CloseInventory);
             _openJournalButton.Prepare(_sceneManager, OnClick_OpenJournal);
 
-            _characterIcon1.Prepare("InventorySlotIcon");
-            _characterIcon2.Prepare("InventorySlotIcon");
-            _characterIcon3.Prepare("InventorySlotIcon");
-            _characterIcon4.Prepare("InventorySlotIcon");
-            _inventoryIcon1.Prepare("InventorySlotIcon");
-            _inventoryIcon2.Prepare("InventorySlotIcon");
-            _inventoryIcon3.Prepare("InventorySlotIcon");
-            _inventoryIcon4.Prepare("InventorySlotIcon");
-            _inventoryIcon5.Prepare("InventorySlotIcon");
-            _inventoryIcon6.Prepare("InventorySlotIcon");
-            _inventoryIcon7.Prepare("InventorySlotIcon");
-            _inventoryIcon8.Prepare("InventorySlotIcon");
+            _characterSlot1.Prepare();
+            _characterSlot2.Prepare();
+            _characterSlot3.Prepare();
+            _characterSlot4.Prepare();
+            _uiInventorySlot1.Prepare();
+            _uiInventorySlot2.Prepare();
+            _uiInventorySlot3.Prepare();
+            _uiInventorySlot4.Prepare();
+            _uiInventorySlot5.Prepare();
+            _uiInventorySlot6.Prepare();
+            _uiInventorySlot7.Prepare();
+            _uiInventorySlot8.Prepare();
 
             _inventoryUI.SetActive(true);
         }
@@ -128,37 +110,27 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _thirstText.UpdateUI(playerVitalitySystem.Thirst.ToString("0"));
             _energyText.UpdateUI(playerVitalitySystem.Energy.ToString("0"));
 
-            _characterIcon1.UpdateUI(_mainCharacterManager.GetCharacterItem(0));
-            _characterIcon2.UpdateUI(_mainCharacterManager.GetCharacterItem(1));
-            _characterIcon3.UpdateUI(_mainCharacterManager.GetCharacterItem(2));
-            _characterIcon4.UpdateUI(_mainCharacterManager.GetCharacterItem(3));
-
-            _inventoryIcon1.UpdateUI(_mainCharacterManager.GetInventorySlot(0));
-            _inventoryIcon2.UpdateUI(_mainCharacterManager.GetInventorySlot(1));
-            _inventoryIcon3.UpdateUI(_mainCharacterManager.GetInventorySlot(2));
-            _inventoryIcon4.UpdateUI(_mainCharacterManager.GetInventorySlot(3));
-            _inventoryIcon5.UpdateUI(_mainCharacterManager.GetInventorySlot(4));
-            _inventoryIcon6.UpdateUI(_mainCharacterManager.GetInventorySlot(5));
-            _inventoryIcon7.UpdateUI(_mainCharacterManager.GetInventorySlot(6));
-            _inventoryIcon8.UpdateUI(_mainCharacterManager.GetInventorySlot(7));
-
-            _inventoryText1.UpdateUI(_mainCharacterManager.GetInventorySlot(0).CurrentAmount.ToString());
-            _inventoryText2.UpdateUI(_mainCharacterManager.GetInventorySlot(1).CurrentAmount.ToString());
-            _inventoryText3.UpdateUI(_mainCharacterManager.GetInventorySlot(2).CurrentAmount.ToString());
-            _inventoryText4.UpdateUI(_mainCharacterManager.GetInventorySlot(3).CurrentAmount.ToString());
-            _inventoryText5.UpdateUI(_mainCharacterManager.GetInventorySlot(4).CurrentAmount.ToString());
-            _inventoryText6.UpdateUI(_mainCharacterManager.GetInventorySlot(5).CurrentAmount.ToString());
-            _inventoryText7.UpdateUI(_mainCharacterManager.GetInventorySlot(6).CurrentAmount.ToString());
-            _inventoryText8.UpdateUI(_mainCharacterManager.GetInventorySlot(7).CurrentAmount.ToString());
+            _characterSlot1.Update(_mainCharacterManager.GetCharacterItem(0));
+            _characterSlot2.Update(_mainCharacterManager.GetCharacterItem(1));
+            _characterSlot3.Update(_mainCharacterManager.GetCharacterItem(2));
+            _characterSlot4.Update(_mainCharacterManager.GetCharacterItem(3));
+            _uiInventorySlot1.Update(_mainCharacterManager.GetInventorySlot(0));
+            _uiInventorySlot2.Update(_mainCharacterManager.GetInventorySlot(1));
+            _uiInventorySlot3.Update(_mainCharacterManager.GetInventorySlot(2));
+            _uiInventorySlot4.Update(_mainCharacterManager.GetInventorySlot(3));
+            _uiInventorySlot5.Update(_mainCharacterManager.GetInventorySlot(4));
+            _uiInventorySlot6.Update(_mainCharacterManager.GetInventorySlot(5));
+            _uiInventorySlot7.Update(_mainCharacterManager.GetInventorySlot(6));
+            _uiInventorySlot8.Update(_mainCharacterManager.GetInventorySlot(7));
         }
 
-        public void ExitState() 
+        public void ExitState()
             => _inventoryUI.SetActive(false);
 
-        public void OnClick_CloseInventory() 
+        public void OnClick_CloseInventory()
             => _uiManager.EnterBasicUIState();
 
-        public void OnClick_OpenJournal() 
+        public void OnClick_OpenJournal()
             => _uiManager.EnterJournalState();
     }
 }

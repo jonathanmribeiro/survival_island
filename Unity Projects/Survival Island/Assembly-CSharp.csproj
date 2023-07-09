@@ -110,6 +110,7 @@
     <Compile Include="Assets\Common\Management\Scripts\Input\Handlers\AxisInputHandler.cs" />
     <Compile Include="Assets\Gameplay\Components\Management\Scripts\CameraManager.cs" />
     <Compile Include="Assets\Common\Scripts\Models\Inventory\AppleModel.cs" />
+    <Compile Include="Assets\Common\Scripts\Inventory\UIInventorySlot.cs" />
     <Compile Include="Assets\Common\Scripts\Models\Inventory\LeafModel.cs" />
     <Compile Include="Assets\Common\Scripts\Utils\AreaInstantiator.cs" />
     <Compile Include="Assets\Components\Campfire\Scripts\States\UnlitState.cs" />
