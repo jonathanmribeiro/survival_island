@@ -40,7 +40,7 @@ namespace SurvivalIsland.Components.Trees
 
         public override void Prepare(DayNightCycle dayNightCycle)
         {
-            TreeInventory.Prepare(3);
+            TreeInventory.Prepare("Tree", 3);
 
             //TODO receive the proper initial props for the tree
             TreeInventory.AddMultiple(InventoryItemType.Wood, TreeProps.MaxWoodAmount);

@@ -29,8 +29,8 @@ namespace SurvivalIsland.Components.Campfire
 
             _uiManager = uiManager;
 
-            CampfireInventory.Prepare(1);
-            RecipeInventory.Prepare(3);
+            CampfireInventory.Prepare(maxItems: 1);
+            RecipeInventory.Prepare("Campfire", 3);
 
             RecipeInventory.AddMultiple(InventoryItemType.Leaf, 5);
             RecipeInventory.AddMultiple(InventoryItemType.Wood, 4);

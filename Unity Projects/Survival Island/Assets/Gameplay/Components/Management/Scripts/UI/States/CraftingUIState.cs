@@ -35,6 +35,8 @@ namespace SurvivalIsland.Gameplay.Management.UI
         private readonly ChildButtonAction _confirmCrafting;
         private readonly ChildButtonAction _closeCrafting;
 
+        private readonly ChildTextUpdater _craftableItemNameUpdater;
+
         private readonly Button _confirmCraftingButton;
         private Inventory _recipeInventory;
         private Action _afterCraftingCallback;
@@ -55,6 +57,8 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _craftableSlot2 = new(gameplaySceneManager, craftablePanel, "CraftableSlot2", () => { });
             _craftableSlot3 = new(gameplaySceneManager, craftablePanel, "CraftableSlot3", () => { });
             _craftableSlot4 = new(gameplaySceneManager, craftablePanel, "CraftableSlot4", () => { });
+
+            _craftableItemNameUpdater = craftablePanel.GetComponent<ChildTextUpdater>();
 
             var inventoryPanel = _craftingUI.FindChild("InventoryPanel");
             _uiInventorySlot1 = new(gameplaySceneManager, inventoryPanel, "InventorySlot1", () => HandleInventoryClick(0));
@@ -85,6 +89,10 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _craftableSlot2.Prepare();
             _craftableSlot3.Prepare();
             _craftableSlot4.Prepare();
+
+            _craftableItemNameUpdater.Prepare("CraftableItemNameLabel");
+            _craftableItemNameUpdater.UpdateUI(_recipeInventory.Name);
+
             _uiInventorySlot1.Prepare();
             _uiInventorySlot2.Prepare();
             _uiInventorySlot3.Prepare();
@@ -108,6 +116,7 @@ namespace SurvivalIsland.Gameplay.Management.UI
             _craftableSlot2.Update(_recipeInventory.ObtainSlot(1));
             _craftableSlot3.Update(_recipeInventory.ObtainSlot(2));
             _craftableSlot4.Update(_recipeInventory.ObtainSlot(3));
+
             _uiInventorySlot1.Update(_mainCharacterManager.GetInventorySlot(0));
             _uiInventorySlot2.Update(_mainCharacterManager.GetInventorySlot(1));
             _uiInventorySlot3.Update(_mainCharacterManager.GetInventorySlot(2));

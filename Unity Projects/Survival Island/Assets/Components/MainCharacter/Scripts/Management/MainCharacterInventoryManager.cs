@@ -13,8 +13,8 @@ namespace SurvivalIsland.Components.MainCharacter
 
         public void Prepare()
         {
-            Inventory.Prepare(8, 25);
-            CharacterInventory.Prepare(4);
+            Inventory.Prepare("Inventory", 8, 25);
+            CharacterInventory.Prepare("Weareables", 4);
         }
 
         public bool TryAddItem(InventoryItemModel itemModel)

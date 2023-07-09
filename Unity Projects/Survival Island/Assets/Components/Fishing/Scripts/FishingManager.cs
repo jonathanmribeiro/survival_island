@@ -21,7 +21,7 @@ namespace SurvivalIsland.Components.Fishing
             _waitingState = new();
             _uiManager = uiManager;
 
-            RecipeInventory.Prepare(3);
+            RecipeInventory.Prepare("Fishing Spot", 3);
             RecipeInventory.AddMultiple(InventoryItemType.Wood, 5);
 
             EnterPendingConstructionState();

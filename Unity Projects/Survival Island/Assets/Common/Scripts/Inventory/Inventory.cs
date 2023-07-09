@@ -10,6 +10,7 @@ namespace SurvivalIsland.Common.Inventory
     [Serializable]
     public class Inventory
     {
+        public string Name;
         public List<InventoryItemSlot> Slots;
 
         public int MaxItems;
@@ -20,9 +21,10 @@ namespace SurvivalIsland.Common.Inventory
         private float CurrentTotalWeight
             => Slots?.Sum(x => x.CurrentWeight) ?? 0;
 
-        public void Prepare(int maxItems = 10, float maxWeight = 999)
+        public void Prepare(string name = "", int maxItems = 10, float maxWeight = 999)
         {
             Slots = new();
+            Name = name;
 
             for (int i = 0; i < maxItems; i++)
             {

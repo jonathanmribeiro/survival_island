@@ -1,3 +1,4 @@
+using SurvivalIsland.Common.Extensions;
 using TMPro;
 using UnityEngine;
 
@@ -7,20 +8,25 @@ namespace SurvivalIsland.Common.Utils
     {
         private TMP_Text _text;
 
+        public void Prepare(string childName)
+        {
+            _text = gameObject.FindChild(childName).GetComponent<TMP_Text>();
+        }
+
         private void Awake()
         {
             _text = GetComponentInChildren<TMP_Text>();
 
         }
 
-        public void UpdateUI(string datetime)
+        public void UpdateUI(string text)
         {
-            _text.text = datetime;
+            _text.text = text;
         }
 
-        public void Disable() 
+        public void Disable()
             => _text.gameObject.SetActive(false);
-        public void Enable() 
+        public void Enable()
             => _text.gameObject.SetActive(true);
     }
 }
