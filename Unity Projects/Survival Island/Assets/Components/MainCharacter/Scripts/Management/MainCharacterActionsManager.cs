@@ -58,7 +58,10 @@ namespace SurvivalIsland.Components.MainCharacter
 
         private void OnTriggerStay2D(Collider2D collision)
         {
-            collision.TryGetComponent(out ManagerInteracting);
+            if(!collision.TryGetComponent(out ManagerInteracting))
+            {
+                collision.gameObject.TryGetParentComponent(out ManagerInteracting);
+            }
         }
 
         private void OnTriggerExit2D()
@@ -77,6 +80,7 @@ namespace SurvivalIsland.Components.MainCharacter
                     _actionBalloonAnimator.SetBool(PlayerActionTypes.Collecting.ToString(), true);
                     _actionBalloonAnimator.SetBool(PlayerActionTypes.Chopping.ToString(), false);
                     _actionBalloonAnimator.SetBool(PlayerActionTypes.FeedCampfire.ToString(), false);
+                    _actionBalloonAnimator.SetBool(PlayerActionTypes.StartFishing.ToString(), false);
                     _actionBalloonSpriteRenderer.enabled = true;
                     break;
                 case PlayerActionTypes.Chopping:
@@ -84,6 +88,7 @@ namespace SurvivalIsland.Components.MainCharacter
                     _actionBalloonAnimator.SetBool(PlayerActionTypes.Collecting.ToString(), false);
                     _actionBalloonAnimator.SetBool(PlayerActionTypes.Chopping.ToString(), true);
                     _actionBalloonAnimator.SetBool(PlayerActionTypes.FeedCampfire.ToString(), false);
+                    _actionBalloonAnimator.SetBool(PlayerActionTypes.StartFishing.ToString(), false);
                     _actionBalloonSpriteRenderer.enabled = true;
                     break;
                 case PlayerActionTypes.FeedCampfire:
@@ -91,8 +96,17 @@ namespace SurvivalIsland.Components.MainCharacter
                     _actionBalloonAnimator.SetBool(PlayerActionTypes.Collecting.ToString(), false);
                     _actionBalloonAnimator.SetBool(PlayerActionTypes.Chopping.ToString(), false);
                     _actionBalloonAnimator.SetBool(PlayerActionTypes.FeedCampfire.ToString(), true);
+                    _actionBalloonAnimator.SetBool(PlayerActionTypes.StartFishing.ToString(), false);
                     _actionBalloonSpriteRenderer.enabled = true;
                     UpdateTimeLabel(ManagerInteracting?.TimeLeft);
+                    break;
+                case PlayerActionTypes.StartFishing:
+                    _actionBalloon.SetActive(true);
+                    _actionBalloonAnimator.SetBool(PlayerActionTypes.Collecting.ToString(), false);
+                    _actionBalloonAnimator.SetBool(PlayerActionTypes.Chopping.ToString(), false);
+                    _actionBalloonAnimator.SetBool(PlayerActionTypes.FeedCampfire.ToString(), false);
+                    _actionBalloonAnimator.SetBool(PlayerActionTypes.StartFishing.ToString(), true);
+                    _actionBalloonSpriteRenderer.enabled = true;
                     break;
                 default:
                     _actionBalloon.SetActive(false);

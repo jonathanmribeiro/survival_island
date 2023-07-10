@@ -23,6 +23,6 @@ namespace SurvivalIsland.Components.Signs
             => _manager.gameObject.SetActive(false);
 
         public override PlayerActionTypes GetAction()
-            => _playerInRange ? PlayerActionTypes.OpenConstructionUI : PlayerActionTypes.None;
+            => PlayerActionTypes.OpenConstructionUI;
     }
 }

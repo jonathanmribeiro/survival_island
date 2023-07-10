@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Assets\Common\Scripts\Constants\MainCharacterConstants.cs" />
     <Compile Include="Assets\Main menu\Components\Management\Scripts\MainMenuSceneManager.cs" />
+    <Compile Include="Assets\Common\Scripts\Utils\ParentTriggerInvoker.cs" />
     <Compile Include="Assets\Components\Campfire\Scripts\CampfireManager.cs" />
     <Compile Include="Assets\Common\Scripts\Bases\StateManagerBase.cs" />
     <Compile Include="Assets\Common\Scripts\Extensions\PolygonCollider2DExtensions.cs" />

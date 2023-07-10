@@ -9,15 +9,11 @@ namespace SurvivalIsland.Components.Fishing
 {
     public class PendingConstructionState : StateBase
     {
-        private FishingManager _manager;
-
-        private GameObject _bucket;
-        private GameObject _rod;
-
-        private CapsuleCollider2D _boundariesCollider;
-        private CircleCollider2D _activationTrigger;
-
-        private SignManager _signAlert;
+        private readonly FishingManager _manager;
+        private readonly SignManager _signAlert;
+        
+        private readonly GameObject _bucket;
+        private readonly GameObject _rod;
 
         public PendingConstructionState(FishingManager manager)
         {

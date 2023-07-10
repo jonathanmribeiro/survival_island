@@ -18,13 +18,14 @@ namespace SurvivalIsland.Components.Fishing
         public override void Prepare(GameplayUIManager uiManager)
         {
             _pendingConstructionState = new(this);
-            _waitingState = new();
+            _waitingState = new(this);
             _uiManager = uiManager;
 
             RecipeInventory.Prepare("Fishing Spot", 3);
             RecipeInventory.AddMultiple(InventoryItemType.Wood, 5);
 
-            EnterPendingConstructionState();
+            EnterWaitingState();
+            //EnterPendingConstructionState();
         }
 
         public void EnterPendingConstructionState()

@@ -6,6 +6,7 @@ namespace SurvivalIsland.Common.Enums
 		Collecting,
 		Chopping,
         OpenConstructionUI,
-		FeedCampfire
+		FeedCampfire,
+        StartFishing
     }
 }

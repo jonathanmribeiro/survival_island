@@ -1,3 +1,4 @@
+using SurvivalIsland.Common.Utils;
 using UnityEngine;
 
 namespace SurvivalIsland.Common.Extensions
@@ -30,6 +31,18 @@ namespace SurvivalIsland.Common.Extensions
             }
 
             return foundling;
+        }
+
+        public static bool TryGetParentComponent<T>(this GameObject self, out T component)
+        {
+            component = default;
+
+            if (self.TryGetComponent<ParentTriggerInvoker>(out var parentTriggerInvoker))
+            {
+                return parentTriggerInvoker.transform.parent.TryGetComponent(out component);
+            }
+
+            return false;
         }
     }
 }

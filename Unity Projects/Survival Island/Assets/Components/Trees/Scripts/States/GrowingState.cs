@@ -65,9 +65,6 @@ namespace SurvivalIsland.Components.Trees
 
         public override void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
         {
-            if (!_playerInRange)
-                return;
-
             var randomItem = _manager.TreeInventory.ObtainRandom(InventoryItemType.Wood);
             _woodParticleSystem.TryPlay();
 

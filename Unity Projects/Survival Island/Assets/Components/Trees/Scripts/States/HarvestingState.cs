@@ -70,9 +70,6 @@ namespace SurvivalIsland.Components.Trees
 
         public override void ExecuteAction(Func<PlayerActionTypes, object, bool> playerActionCallback)
         {
-            if (!_playerInRange)
-                return;
-
             InventoryItemModel randomItem = TryGetRandomItem();
 
             if (randomItem != null)
