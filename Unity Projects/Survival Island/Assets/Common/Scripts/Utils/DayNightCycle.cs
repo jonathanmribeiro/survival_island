@@ -52,7 +52,7 @@ namespace SurvivalIsland.Common.Utils
             _minuteByMinuteSubscribers = new();
         }
 
-        public DateTime CurrentTime
+        public DateTime CurrentDateTime
             => GetCurrentTime();
 
         public void UpdateDayNightCycle()

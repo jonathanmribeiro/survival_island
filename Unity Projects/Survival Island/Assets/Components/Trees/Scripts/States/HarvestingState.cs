@@ -44,7 +44,7 @@ namespace SurvivalIsland.Components.Trees
             _sapling.SetActive(false);
 
             if (!_treeProps.TimeEnteredHarvestingState.HasValue)
-                _treeProps.TimeEnteredHarvestingState = _dayNightCycle.CurrentTime;
+                _treeProps.TimeEnteredHarvestingState = _dayNightCycle.CurrentDateTime;
 
             _manager.TreeInventory.ForceAmount(InventoryItemType.Leaf, _treeProps.MaxLeavesAmount);
             _manager.TreeInventory.ForceAmount(InventoryItemType.Wood, _treeProps.MaxWoodAmount);
@@ -54,7 +54,7 @@ namespace SurvivalIsland.Components.Trees
         {
             DateTime nextStateTime = _treeProps.TimeEnteredHarvestingState.Value.Add(_treeProps.TimeNeededInHarvestingState);
 
-            if (_dayNightCycle.CurrentTime >= nextStateTime)
+            if (_dayNightCycle.CurrentDateTime >= nextStateTime)
             {
                 _manager.EnterFruitfullState();
             }

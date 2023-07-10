@@ -24,7 +24,7 @@ namespace SurvivalIsland.Gameplay.Management
         private DayNightCycle _dayNightCycle;
         private GameplayUIManager _uiManager;
 
-        private PlayerActionStateManagerBase[] _managers;
+        private ActionStateManagerBase[] _managers;
 
         public bool InputIsLocked;
 
@@ -63,7 +63,7 @@ namespace SurvivalIsland.Gameplay.Management
             }
 
             _inputManager.UpdateInput();
-            _uiManager.UpdateUI();
+            _uiManager.UpdateCurrentState();
 
             foreach (var manager in _managers)
             {
@@ -80,7 +80,7 @@ namespace SurvivalIsland.Gameplay.Management
 
         private void PrepareManagers()
         {
-            _managers = FindObjectsOfType<PlayerActionStateManagerBase>();
+            _managers = FindObjectsOfType<ActionStateManagerBase>();
 
             foreach (var manager in _managers)
             {
@@ -90,7 +90,7 @@ namespace SurvivalIsland.Gameplay.Management
                 }
                 else if (manager is FishingManager)
                 {
-                    manager.Prepare(_uiManager);
+                    manager.Prepare(_uiManager, _dayNightCycle);
                 }
                 else if (manager is TreeManager)
                 {

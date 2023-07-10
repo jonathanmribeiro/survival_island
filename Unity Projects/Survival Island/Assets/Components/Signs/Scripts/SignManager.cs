@@ -3,9 +3,9 @@ using SurvivalIsland.Common.Extensions;
 
 namespace SurvivalIsland.Components.Signs
 {
-    public class SignManager : PlayerActionStateManagerBase
+    public class SignManager : ActionStateManagerBase
     {
-        public PlayerActionStateManagerBase Parent;
+        public ActionStateManagerBase Parent;
 
         private ActiveState _activeState;
         private InactiveState _inactiveState;
@@ -16,7 +16,7 @@ namespace SurvivalIsland.Components.Signs
             _inactiveState = new(this);
         }
 
-        public void Prepare(PlayerActionStateManagerBase parent, SignStates state)
+        public void Prepare(ActionStateManagerBase parent, SignStates state)
         {
             SelectorLocation = gameObject.FindChild("SelectorLocation").transform;
             Parent = parent;

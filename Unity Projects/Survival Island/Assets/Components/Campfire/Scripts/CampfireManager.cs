@@ -7,7 +7,7 @@ using SurvivalIsland.Gameplay.Management;
 
 namespace SurvivalIsland.Components.Campfire
 {
-    public class CampfireManager : PlayerActionStateManagerBase
+    public class CampfireManager : ActionStateManagerBase
     {
         private ExtinguishedState _extinguishedState;
         private LitState _litState;

@@ -11,13 +11,13 @@ namespace SurvivalIsland.Common.Bases
     {
         public bool PlayerInRange = false;
 
-        public void OnTriggerStay2D(Collider2D collision)
+        public virtual void OnTriggerStay2D(Collider2D collision)
         {
             if (collision.CompareTag(TagConstants.PLAYER))
                 PlayerInRange = true;
         }
 
-        public void OnTriggerExit2D(Collider2D collision)
+        public virtual void OnTriggerExit2D(Collider2D collision)
         {
             if (collision.CompareTag(TagConstants.PLAYER))
                 PlayerInRange = false;

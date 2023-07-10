@@ -111,7 +111,7 @@ namespace SurvivalIsland.Gameplay.Management.UI
 
         public void UpdateState()
         {
-            var currentDateTime = _dayNightCycle.CurrentTime;
+            var currentDateTime = _dayNightCycle.CurrentDateTime;
             var playerVitalitySystem = _mainCharacterManager.GetVitalitySystem();
 
             _datetimeText.UpdateUI(currentDateTime.ToString("g"));

@@ -13,5 +13,8 @@ namespace SurvivalIsland.Common.Bases
             CurrentState = nextState;
             CurrentState.EnterState();
         }
+
+        public virtual void UpdateCurrentState()
+            => CurrentState.UpdateState();
     }
 }

@@ -14,8 +14,7 @@ namespace SurvivalIsland.Common.Models
         public float Weight;
         public Sprite Icon;
 
-        public InventoryItemModel
-            (string name, string description, InventoryItemType type, float weight)
+        public InventoryItemModel(string name, string description, InventoryItemType type, float weight)
         {
             Name = name;
             Description = description;

@@ -49,7 +49,7 @@ namespace SurvivalIsland.Components.Trees
             _sapling.SetActive(false);
 
             if (!_treeProps.TimeEnteredFruitfullState.HasValue)
-                _treeProps.TimeEnteredFruitfullState = _dayNightCycle.CurrentTime;
+                _treeProps.TimeEnteredFruitfullState = _dayNightCycle.CurrentDateTime;
 
             VerifyMaximumAmountOfFruit();
             PopulateFruitArea();
@@ -62,12 +62,12 @@ namespace SurvivalIsland.Components.Trees
 
             DateTime respawnFruitTime = _treeProps.TimeEnteredFruitfullState.Value.Add(_treeProps.TimeNeededToSpawnFruit);
 
-            if (_dayNightCycle.CurrentTime >= respawnFruitTime)
+            if (_dayNightCycle.CurrentDateTime >= respawnFruitTime)
             {
                 _manager.TreeInventory.TryAddItem(_treeProps.FruitType);
                 VerifyMaximumAmountOfFruit();
                 PopulateFruitArea();
-                _treeProps.TimeEnteredFruitfullState = _dayNightCycle.CurrentTime;
+                _treeProps.TimeEnteredFruitfullState = _dayNightCycle.CurrentDateTime;
             }
         }
 

@@ -19,7 +19,7 @@ namespace SurvivalIsland.Components.MainCharacter
 
         public void UpdateVitality()
         {
-            var currentDateTime = _dayNightCycle.CurrentTime;
+            var currentDateTime = _dayNightCycle.CurrentDateTime;
 
             if ((currentDateTime - _lastDateTime).TotalMinutes > 60)
             {

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace SurvivalIsland.Common.Bases
 {
-    public class PlayerActionStateManagerBase : MonoBehaviour
+    public class ActionStateManagerBase : MonoBehaviour
     {
         public StateBase CurrentState;
         public string CurrentStateName;

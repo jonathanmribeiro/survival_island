@@ -62,7 +62,7 @@ namespace SurvivalIsland.Components.Campfire
 
             if (!_campfireProps.TimeEnteredLitState.HasValue)
             {
-                _campfireProps.TimeEnteredLitState = _dayNightCycle.CurrentTime;
+                _campfireProps.TimeEnteredLitState = _dayNightCycle.CurrentDateTime;
                 _campfireProps.TimeBurnedWood = _campfireProps.TimeEnteredLitState.Value;
             }
 
@@ -118,10 +118,10 @@ namespace SurvivalIsland.Components.Campfire
         {
             DateTime timeToConsumeWood = _campfireProps.TimeBurnedWood.Add(_campfireProps.TimeNeededToBurnWood);
 
-            if (_dayNightCycle.CurrentTime >= timeToConsumeWood)
+            if (_dayNightCycle.CurrentDateTime >= timeToConsumeWood)
             {
                 _manager.CampfireInventory.Remove(InventoryItemType.Wood);
-                _campfireProps.TimeBurnedWood = _dayNightCycle.CurrentTime;
+                _campfireProps.TimeBurnedWood = _dayNightCycle.CurrentDateTime;
             }
         }
 

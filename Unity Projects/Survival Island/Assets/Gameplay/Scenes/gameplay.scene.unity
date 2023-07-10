@@ -1387,6 +1387,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 608622267338653285, guid: f2538f050b2849d448efb5cb6f025fca, type: 3}
+      propertyPath: FishingProps.MaxFishWithinArea
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1248486874001033105, guid: f2538f050b2849d448efb5cb6f025fca, type: 3}
       propertyPath: m_Name
       value: Fishing
@@ -51257,6 +51261,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 551550585975779361, guid: 7671191dc571b9343a941b7770940754, type: 3}
+      propertyPath: _targetDayLength
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5464139524769205229, guid: 7671191dc571b9343a941b7770940754, type: 3}
       propertyPath: m_Name
       value: GameplayManager

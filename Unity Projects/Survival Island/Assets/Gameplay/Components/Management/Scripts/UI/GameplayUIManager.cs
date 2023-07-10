@@ -29,9 +29,6 @@ namespace SurvivalIsland.Gameplay.Management
             EnterBasicUIState();
         }
 
-        public void UpdateUI() 
-            => CurrentState.UpdateState();
-
         public void EnterBasicUIState() 
             => SwitchState(_basicUIState);
 

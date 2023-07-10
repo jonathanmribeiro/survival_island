@@ -38,14 +38,14 @@ namespace SurvivalIsland.Components.Trees
             _circleCollider.enabled = false;
 
             if (!_treeProps.TimeEnteredGoneState.HasValue)
-                _treeProps.TimeEnteredGoneState = _dayNightCycle.CurrentTime;
+                _treeProps.TimeEnteredGoneState = _dayNightCycle.CurrentDateTime;
         }
 
         public override void UpdateState()
         {
             DateTime nextStateTime = _treeProps.TimeEnteredGoneState.Value.Add(_treeProps.TimeNeededInGoneState);
 
-            if (_dayNightCycle.CurrentTime >= nextStateTime)
+            if (_dayNightCycle.CurrentDateTime >= nextStateTime)
             {
                 _manager.EnterGrowingState();
             }

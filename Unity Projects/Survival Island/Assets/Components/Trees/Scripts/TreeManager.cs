@@ -6,7 +6,7 @@ using SurvivalIsland.Common.Utils;
 
 namespace SurvivalIsland.Components.Trees
 {
-    public class TreeManager : PlayerActionStateManagerBase
+    public class TreeManager : ActionStateManagerBase
     {
         private FruitfullState _fruitfullState;
         private HarvestingState _harvestingState;

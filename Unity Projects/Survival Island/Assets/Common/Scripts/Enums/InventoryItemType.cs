@@ -5,6 +5,7 @@
         None,
         Apple,
         Leaf,
-        Wood
+        Wood,
+        Clownfish
     }
 }

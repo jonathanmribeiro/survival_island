@@ -42,14 +42,14 @@ namespace SurvivalIsland.Components.Trees
             _manager.TreeInventory.ForceAmount(InventoryItemType.Wood, _treeProps.MaxWoodAmount / 4);
 
             if (!_treeProps.TimeEnteredGrowingState.HasValue)
-                _treeProps.TimeEnteredGrowingState = _dayNightCycle.CurrentTime;
+                _treeProps.TimeEnteredGrowingState = _dayNightCycle.CurrentDateTime;
         }
 
         public override void UpdateState()
         {
             DateTime nextStateTime = _treeProps.TimeEnteredGrowingState.Value.Add(_treeProps.TimeNeededInGoneState);
 
-            if (_dayNightCycle.CurrentTime >= nextStateTime)
+            if (_dayNightCycle.CurrentDateTime >= nextStateTime)
             {
                 _manager.EnterHarvestingState();
             }
