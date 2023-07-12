@@ -270,7 +270,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Upper_Decorator
+      name: Spacer_Up
       rect:
         serializedVersion: 2
         x: 24
@@ -291,11 +291,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Lower_Decorator
+      name: Spacer_Down
       rect:
         serializedVersion: 2
         x: 24
-        y: 32
+        y: 44
         width: 22
         height: 6
       alignment: 0
@@ -437,6 +437,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Spacer_Left
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 33
+        width: 6
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 6, z: 0, w: 6}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34504184b8e4be74c9cb9cb0235cdcad
+      internalID: 2025452882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spacer_Right
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 33
+        width: 6
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 6, z: 0, w: 6}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 307126f7648e6c14ba3337098f6dc210
+      internalID: 292435574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -464,11 +506,13 @@ TextureImporter:
       GameplayUISpritesheet_6: -2050142778
       GameplayUISpritesheet_7: -1968599628
       GameplayUISpritesheet_8: -353218914
-      Lower_Decorator: -1627259472
       Paper_Background: 974871119
       Small_Borders_01: -1224083600
       Small_Borders_02: 2488312
-      Upper_Decorator: 1270841044
+      Spacer_Down: -1627259472
+      Spacer_Left: 2025452882
+      Spacer_Right: 292435574
+      Spacer_Up: 1270841044
       Wooden_Borders_01: -1227044851
       Wooden_Borders_02: 611861165
       Wooden_Borders_03: -1825829432

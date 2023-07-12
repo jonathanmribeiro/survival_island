@@ -97,6 +97,7 @@
     <Compile Include="Assets\Common\Scripts\Enums\InputType.cs" />
     <Compile Include="Assets\Common\Scripts\Utils\ResourceLoader.cs" />
     <Compile Include="Assets\Components\Trees\Scripts\States\GrowingState.cs" />
+    <Compile Include="Assets\Gameplay\Components\Management\Scripts\UI\States\FishingUIState.cs" />
     <Compile Include="Assets\Components\Fishing Spot\Scripts\FishingProps.cs" />
     <Compile Include="Assets\Common\Scripts\Utils\ChildTextUpdater.cs" />
     <Compile Include="Assets\Common\Scripts\Bases\StateBase.cs" />
